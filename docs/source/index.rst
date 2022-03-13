@@ -1,4 +1,4 @@
-Welcome to Lumache's documentation!
+HIFAST
 ===================================
 
 **Lumache** (/lu'make/) is a Python library for cooks and food lovers
@@ -11,12 +11,14 @@ how to :ref:`installation` the project.
 
 .. note::
 
-   This project is under active development.
+   此项目目前处于开发中
 
 Contents
 --------
 
 .. toctree::
-
-   usage
-   api
+   安装
+   流程
+   并行 <parallel>
+   示例
+   
