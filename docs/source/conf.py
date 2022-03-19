@@ -6,8 +6,8 @@ project = 'HIFAST'
 copyright = '2021, HIFAST'
 author = 'HIFAST group'
 
-release = '0.1'
-version = '0.1.0'
+release = '1.1'
+version = '1.1.0'
 
 # -- General configuration
 
