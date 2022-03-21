@@ -1,13 +1,12 @@
 HIFAST
 ===================================
 
-
 .. note::
 
    此项目目前处于开发中
 
 流程图
-----
+--------------
 
 .. diagrams.net->File->Embed->HTML->uncheck Lightbox.Edit
 .. raw:: html
@@ -22,9 +21,7 @@ HIFAST
 --------
 
 .. toctree::
-   
    安装 <installation>
    流程 <flow>
    并行 <parallel>
    示例 <examples/index>
-   
