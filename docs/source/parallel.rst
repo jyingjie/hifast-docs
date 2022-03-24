@@ -42,28 +42,30 @@ hifast.sh 组合脚本
 
    ``hifast.sh -i files.txt -n 10 -c commands.par``
 
-hifast.sh计算radec
-------------------
+hifast.sh 示例
+--------------
 
-::
+- hifast.sh计算radec
 
-   hifast.sh data/*M01*specs_T.hdf5 -c "python -m hifast.radec |  "
+  ::
 
-hifast.sh 组合 ``hifast.bld`` 和 ``hifast.multi``
--------------------------------------------------
+     hifast.sh data/*M01*specs_T.hdf5 -c "python -m hifast.radec |  "
 
--  *commands.par* 内容如下：
+-  hifast.sh 组合 ``hifast.bld`` 和 ``hifast.multi``
+  -------------------------------------------------
 
-::
+  -  *commands.par* 内容如下：
 
-   # 续行符 "\" 之后不能有空格
-   python -m hifast.bld | --method arPLS --lam 1e7 --nproc 5 --outdir ./
-   python -m hifast.multi  |  --tr --tr_method smooth --tr_s_sigma 5 --tr_n_continue 100 --fc \
-         --keep_rfi --keep_polar
+  ::
 
--  执行：
+     # 续行符 "\" 之后不能有空格
+     python -m hifast.bld | --method arPLS --lam 1e7 --nproc 5 --outdir ./
+     python -m hifast.multi  |  --tr --tr_method smooth --tr_s_sigma 5 --tr_n_continue 100 --fc \
+           --keep_rfi --keep_polar
 
-``hifast.sh data/*M*specs_T.hdf5  -n 10 -c commands.par``
-先运行\ ``python -m hifast.bld``\ 这行去基线，然后\ ``hifast.sh``\ 会自动把生成的文件输入到\ ``python -m hifast.multi``
-这行。 注意 ``python -m hifast.bld``\ 这行执行时会占用 ``3 * 5 = 15``
-个线程。
+  -  执行：
+
+  ``hifast.sh data/*M*specs_T.hdf5  -n 10 -c commands.par``
+  先运行\ ``python -m hifast.bld``\ 这行去基线，然后\ ``hifast.sh``\ 会自动把生成的文件输入到\ ``python -m hifast.multi``
+  这行。 注意 ``python -m hifast.bld``\ 这行执行时会占用 ``3 * 5 = 15``
+  个线程。
