@@ -4,7 +4,7 @@
 
 project = 'HIFAST'
 copyright = '2021, HIFAST'
-author = 'HIFAST group'
+author = 'HIFAST developers'
 
 release = '1.1'
 version = '1.1.0'
@@ -32,6 +32,20 @@ templates_path = ['_templates']
 html_theme = 'sphinx_rtd_theme'
 
 html_static_path = ['_static',]
+html_css_files = [
+    'css/custom.css',
+]
+
+rst_prolog = """
+.. role:: strike
+   :class: strike
+"""
+# usage:
+# .. :strike:`test`
+# or
+# .. container:: strike
+#    test
+
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'

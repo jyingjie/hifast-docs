@@ -23,5 +23,6 @@ HIFAST
 .. toctree::
    安装 <installation>
    流程 <flow>
+   成图 <imaging>
    并行 <parallel>
-   示例 <examples/index>
+

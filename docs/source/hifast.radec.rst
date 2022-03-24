@@ -12,17 +12,18 @@ hifast.radec 坐标转换
    # or
    python -m hifast.radec XXX_arcdrift_11_2020_XX_XX_22_54_09_000.xlsx
 
--  输入 ``hifast.sep``\ 生成的hdf5文件，\ **仅需beam
-   M01的即可**\ ，其它beam的RA DEC会存在这同一个文件里。
-   或者输入一个.xlsx结尾的馈源舱文件来计算馈源舱文件里记录时间点对应的RADEC。
+-  可以输入两种文件路径:
+  
+   - 输入 ``hifast.sep``\ 生成的 ``hdf5`` 文件，\ **仅需beam M01的即可**\ ，
+     其它beam的RA DEC会存在这同一个文件里。
+   - 输入一个 ``.xlsx`` 结尾的馈源舱文件来计算馈源舱文件里记录时间点对应的RA DEC。
 
 -  程序会先依次检测是否存在
-   *``your_HOME_dir/KY/``*\ (本地处理时建立此目录，FAST服务器上不要建立此目录),
-   *``/data/hw1/FAST/KY/``*, *``/data31/KY/``*
+   ``your_HOME_dir/KY/`` (本地处理时建立此目录，FAST服务器上无需建立此目录),
+   ``/data/hw1/FAST/KY/``, ``/data31/KY/``
    (FAST服务器馈源文件所在目录)文件夹。
    然后在最先检测到存在的文件夹里自动寻找对应的馈源舱文件。然后计算馈源舱文件文件里记录的RA
-   DEC，由于谱线记录的时间采样点和馈源舱文件的不一致，因此会插值最后得到谱线的RA
-   DEC。
+   DEC，由于谱线记录的时间采样点和馈源舱文件的不一致，因此会插值最后得到谱线的RA DEC。
 
 -  主要参数：
 
@@ -39,10 +40,8 @@ hifast.radec 坐标转换
 
 -  存放radec的输出文件名是在输入文件名上加radec。可以h5py来读取，例如：
 
-   ::
-
-      import h5py
-      f= h5py.File('data/XXX_arcdrift-M01_F-specs_T-radec.hdf5','r')
-      S=f['S']
-      print(S.keys())
-      S['mjd'][:]
+   >>> import h5py
+   >>> f= h5py.File('data/XXX_arcdrift-M01_F-specs_T-radec.hdf5','r')
+   >>> S=f['S']
+   >>> print(S.keys())
+   >>> S['mjd'][:]

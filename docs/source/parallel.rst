@@ -2,9 +2,9 @@
 ====
 
 hifast.sh 组合脚本
---------------------------
+-------------------
 
-以上的绝大多数命令只能处理一个beam的文件。下面 ####
+绝大多数 ``hifast.xxx`` 命令只能处理一个beam的文件。下面 ####
 用hifast.sh来对多个文件执行相同的\ ``python -m hifast.xxx``\ 操作
 
 ::
@@ -36,7 +36,7 @@ hifast.sh 组合脚本
 
    ::
 
-      python -m hifast.cli_sep | -d 0 -m 1 -n 1  --step 5  --frange 1369 1394 --smooth poly --s_deg 1 --outdir ./data
+      python -m hifast.sep | -d 0 -m 1 -n 1  --step 5  --frange 1369 1394 --smooth poly --s_deg 1 --outdir ./data
 
    -  可以执行：
 
