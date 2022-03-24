@@ -23,12 +23,18 @@ hifast.cube 生成FITS Cube
 
       -  ``mean``: 对谱线求平均.
       -  ``median``: 对谱线求median值.
-      -  ``reweight``: Barnes el. al. 2001, MNRAS 322, 486
-         https://ui.adsabs.harvard.edu/abs/2001MNRAS.322..486B/abstract
-         .
-      -  ``gaussian``: truncated Gaussian.
+      -  
+         .. container:: strike
+   
+           ``reweight``: Barnes el. al. 2001, MNRAS 322, 486
+           https://ui.adsabs.harvard.edu/abs/2001MNRAS.322..486B/abstract
 
-   -  ``--proj``: 投影方式: SIN, AIT, TAN.
+         Deprecated, 移除支持。
+         
+      -  ``gaussian``: truncated Gaussian kernel.
+      -  ``bessel_gaussian``: Bessel*Gaussian kernel
+
+   -  ``--proj``: 投影方式: SIN, AIT, TAN 等
    -  ``--ra_range``:
       ra的范围，后接两个数，空格隔开，下限在前，单位为度。默认值为输入文件里ra的最小值和最大值。
    -  ``--dec_range``: 类似\ ``--ra_range``\ 。
