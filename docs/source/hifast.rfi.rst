@@ -11,6 +11,10 @@ hifast.rfi 标记RFI
       python -m hifast.rfi $fname --nr True --sf True --sf_frange 1300 1500 --lf True
 
 -  输入去完基线得到的文件。目前不能处理频率在1155到1295MHz之间的RFI。
+  
+    .. figure:: download/rfi.png
+
+       RFI示意图。A: 窄RFI, B: 短RFI, C: 银河系, D: 长RFI
 
 -  主要参数，一般来说优先选用 ``--nr``, ``--sf``, ``--lf``  
    
