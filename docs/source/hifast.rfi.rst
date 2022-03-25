@@ -8,14 +8,16 @@ hifast.rfi 标记RFI
    .. code-block:: bash
 
       fname=XXX-bld.hdf5
-      python -m hifast.rfi $fname --pr True --pr_s_sigma 5 --pr_times 5 --pr_times_s 1.1
-      #or
-      python -m hifast.rfi $fname --tr True --tr_s_sigma 5 --tr_times 5 --pr_times_s 1.6 --tr_n_continue 50 --ext_add 0
+      python -m hifast.rfi $fname --nr True --sf True --sf_frange 1300 1500 --lf True
 
 -  输入去完基线得到的文件。目前不能处理频率在1155到1295MHz之间的RFI。
 
 -  主要参数，一般来说优先选用 ``--nr``, ``--sf``, ``--lf``
-  
+-  
+   -  ``--rms_frange``:
+      计算rms用的频率范围，选一个没有信号和干扰范围。
+      例如\ ``--rms_frange 1400 1410``。不指定则会尝试自动判定。
+      ``--nr``, ``--sf``, ``--lf`` 为True时需要此参数。
    - ``--nr``: 设为True时标记\ *窄RFI*。观测数据为W带的情况下， *窄RFI* 一般占据
      一到两个channel。
    - ``--sf``: 设为True时标记\ *短RFI*。
