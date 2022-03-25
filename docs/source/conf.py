@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'HIFAST'
-copyright = '2021, HIFAST'
+copyright = '2021, HIFAST developers'
 author = 'HIFAST developers'
 
 release = '1.1'

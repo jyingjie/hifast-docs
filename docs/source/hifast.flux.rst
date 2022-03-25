@@ -5,9 +5,9 @@ hifast.flux 流量定标
 
 -  示例
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   python -m hifast.flux data/XXX_arcdrift-M01_F-specs_T.hdf5
+      python -m hifast.flux data/XXX_arcdrift-M01_F-specs_T.hdf5
 
 -  输入未流量定标的hdf5文件。程序会整合RA DEC(在输入的文件的所在目录下去读取对应的radec的文件, 即\ ``hifast.radec``\ 输出的文件名中有’M01’的radec文件。
    程序目前默认使用 https://arxiv.org/abs/2002.01786
