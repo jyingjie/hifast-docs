@@ -6,15 +6,20 @@
 ---------
   
   .. figure:: download/regions1.png
+    
+    标记形状示例。
+
   .. figure:: download/regions2.png
+    
+    Mask效果。白色区域代表被替换为nan。
 
-  如图，支持的标记方式有两种
+  如图，目前支持的区域形状有两种
 
-  - 方形（Rectangle）：显然方形内区域被标记
+  - 方形（Rectangle）：区域内谱线被标记
   - 线段（line）：（CART v3.0版本支持）图中展示了水平和垂直两种，分别用来标记整个频率区间或者整条谱线。
-    操作时线段无需画得完全水平或者垂直，可以稍有倾斜角度。（注：此处被标记的并不是RFI，只是为了展示效果。）
+    操作时线段无需画得完全水平或者垂直，可以稍有倾斜角度。（注：示例图中被线段标记的并不是RFI，只是为了展示效果。）
   
-  然后在 Z Profile 里切换到另外一个偏振，查看标记情况。
+  在CARTA中通过放大和拖动来更好定位需要标记的区域，然后在CARTA的 Z Profile 里切换到另外一个偏振继续标记。
 
 导出标记区域到文件
 ---------------------
@@ -36,22 +41,22 @@
         await app.exportRegions(dir, fname, app.fileBrowserStore.exportCoordinateType,
         app.fileBrowserStore.exportFileType, app.fileBrowserStore.exportRegionIndexes);
 
-导出的文件输入到``hifast.rfi``
+导出的文件输入到 ``hifast.rfi``
 ------------------------------
 
-使用``--reg_from``参数来指定上一步导出的文件
+使用 ``--reg_from`` 参数来指定上一步导出的文件。
+
+``--reg_from default`` 自动查找同目录下对应的 ``XXX-bld.hdf5.reg`` 文件：
 
 .. code-block:: bash
 
   python -m hifast.rfi XXX-bld.hdf5 --reg_from default
 
-``--reg_from default`` 自动查找同目录下对应的 ``XXX-bld.hdf5.reg`` 文件。
+或者指定其他路径
 
 .. code-block:: bash
 
   python -m hifast.rfi XXX-bld.hdf5 --reg_from XXX.reg
-
-或者指定其他路径
 
 其他
 -------
