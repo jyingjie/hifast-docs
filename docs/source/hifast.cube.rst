@@ -29,7 +29,7 @@ hifast.cube 生成FITS Cube
            ``reweight``: Barnes el. al. 2001, MNRAS 322, 486
            https://ui.adsabs.harvard.edu/abs/2001MNRAS.322..486B/abstract
 
-         Deprecated, 移除支持。
+         移除支持。
          
       -  ``gaussian``: truncated Gaussian kernel.
       -  ``bessel_gaussian``: Bessel*Gaussian kernel
