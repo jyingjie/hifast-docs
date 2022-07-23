@@ -60,6 +60,7 @@
 
 其他
 -------
+  可能有用的CARTA设置
   
   -  Preference --> Region --> Create Mode
   -  Preference --> Region --> Line Witdth
