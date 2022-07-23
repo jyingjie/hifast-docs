@@ -87,7 +87,7 @@
 
 * 噪音管温度文件:
   
-  下载 Tcal文件夹: https://pan.cstcloud.cn/s/AfnCB96cT2s (提取码: cqwy) 放到你的家目录。
+  下载 Tcal文件夹: https://pan.cstcloud.cn/s/AfnCB96cT2s (提取码: ``cqwy``; 备用地址：https://share.weiyun.com/fFynlcX0) 放到你的家目录。
   如有新的噪音管文件，会一并更新到此链接。
 
  .. code-block:: console
