@@ -26,7 +26,9 @@ on和off的谱线，然后利用噪音管定出谱线的亮温度。
            噪音管有可能打在了连续谱源上或者被RFI污染，这样就无法使用。
            程序通过比较噪音管Cal_on附近的几条Cal_off的变化来判断。判断时先把谱线按频率分bin （ ``--freq_step_c``），
            每个bin里Cal_off的变化比例大于 ``--pcal_vary_lim_bin`` 就会被标记为损坏，
-           如果一条噪音管Cal_on有太多bin被标记（ ``--pcal_bad_lim_freq`` ），则整条被扔掉。
+           如果一条噪音管Cal_on有太多bin被标记（ ``--pcal_bad_lim_freq`` ），则整条被扔掉。输出的瀑布图展示了检查结果：上面两个
+           panel是原始的 :math:`P_{\mathrm{cal}}`，下面两个则显示了被mask的区域；左右分别为两个偏振。
+            .. figure:: download/sep-pcals.png
            
          
          - 分配给每条谱线
@@ -35,12 +37,15 @@ on和off的谱线，然后利用噪音管定出谱线的亮温度。
        
              每条谱线使用最近的 :math:`P_{\mathrm{cal}}` （先对其平滑以降低泊松噪音）来定标。如果最近那条被标记为损坏，则延申寻找最近没有被标记的那条。如果谱线和找到的Cal_on的
              距离超过 ``--cal_dis_lim``, 则这条谱线的温度将被标记为nan。（这个过程对每个频率采样分别处理。）。
+              .. figure:: download/sep-pcals-smooth.png
              
            * 合并求频率依赖 ( ``--merge_pcals True`` )
        
              一段时间内，:math:`P_{\mathrm{cal}}` 随频率依赖比较稳定，只有整体幅度上的变化。因此可以合并（ ``--method_merge``）所有 :math:`P_{\mathrm{cal}}` 降低泊松噪音（
              合并完依然需要做平滑）来得到:math:`P_{\mathrm{cal}}` 随频率的依赖。而整体幅度则可以用每条的幅度（ ``--squeeze_diff_freq``）来插值（ ``--method_interp``）。
-           
+             输出的图片展示了几条 :math:`P_{\mathrm{cal}}` 、合并后的（红线）、合并后并平滑的（黑线），以及幅度的插值结果（下panel）。
+              .. figure:: download/sep-pcals-merged.png
+
            * `用到的平滑参数`
          
              - ``--smooth``: 平滑方法。gaussian, poly 或者 mean。需配合\ ``--frange``\ 进行设置。
@@ -62,8 +67,11 @@ on和off的谱线，然后利用噪音管定出谱线的亮温度。
            如果设为auto则选取与谱线观测时间最近的噪音管文件来定标。(20200531的噪音管文件Beam19
            XX 偏振 在约1060MHz处有个大的gap。)   
 
-其他参数
+参数
 ------
+
+使用 ``python -m hifast.sep -h`` 查看。
+
    -  ``--step`` ：每次读入内存的块文件数量。
 
    -  ``--frange``\ ：程序提取和处理的频率范围(单位MHz)：后接两个数，分别是频率的下限和上限(需配合\ ``--smooth``\ 来设置)。后面的大部分处理步骤也包含此参数。

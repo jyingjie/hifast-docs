@@ -26,5 +26,6 @@ HIFAST
    成图 <imaging>
    并行 <parallel>
    tools
+   示例 <examples/index>
    changelog
 
