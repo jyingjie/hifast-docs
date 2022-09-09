@@ -21,6 +21,8 @@ HIFAST
 --------
 
 .. toctree::
+   :maxdepth: 2
+
    安装 <installation>
    流程 <flow>
    成图 <imaging>

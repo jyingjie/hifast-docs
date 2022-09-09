@@ -2,6 +2,8 @@
 ====
 
 .. toctree::
+   :maxdepth: 1
+
    hifast.xxx
    hifast.sep
    hifast.radec

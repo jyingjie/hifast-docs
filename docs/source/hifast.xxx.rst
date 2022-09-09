@@ -8,6 +8,6 @@ hifast.xxx 通用参数
 -  生成的中间文件一般为hdf5格式, 在终端执行
 
    -  ``h5dump -g /Header XXX.hdf5`` 显示生成该文件时用的命令和参数。
-   -  ``h5dump -n XXX.hdf5`` 显示文件中有什么内容。
+   -  ``h5ls -r XXX.hdf5`` 显示文件中有什么内容。
 
 
