@@ -10,14 +10,14 @@ files="$(ls RAW_data/M33_OTF/20210731/M33_OTF_1_*W_0001.fits)"
 printf "${files}"
 echo
 # commands
-# python -m hifast sep -p 3 同时执行5个 python -m hifast sep
-python -m hifast sep -p 3 \
-    "$files" \
+# python -m hifast sep -p 3 同时执行5个 python -m hifast.sep
+python -m hifast sep -p 1 \
+    $files \
    -d 4 -m 4 -n 596 --step 1 \
    --frange 1350 1450 \
    --smooth gaussian --s_sigma 2 \
    --check_cal A --pcal_vary_lim_bin 0.02 \
-   --merge_pcals True --method_merge median --method_interp quadratic \
+   --merge_pcals True --method_merge median --method_interp linear \
    --save_pcals True \
    --outdir 'output/%(project)s/%(date)s'
 

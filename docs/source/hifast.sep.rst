@@ -30,18 +30,20 @@ on和off的谱线，然后利用噪音管定出谱线的亮温度。
            
            输出的瀑布图展示了检查结果：上面两个
            panel是原始的 :math:`P_{\mathrm{cal}}`，下面两个则显示了被mask的区域；左右分别为两个偏振。
+
             .. figure:: download/sep-pcals.png
            
          
          - 分配给每条谱线
 
-           * 单独处理 ( ``--merge_pcals False`` )
+           * 方法一：单独处理 ( ``--merge_pcals False`` )
        
              每条谱线使用最近的 :math:`P_{\mathrm{cal}}` （先对其平滑以降低泊松噪音）来定标。如果最近那条被标记为损坏，则延申寻找最近没有被标记的那条。如果谱线和找到的Cal_on的
              距离超过 ``--cal_dis_lim``, 则这条谱线的温度将被标记为nan。（这个过程对每个频率采样分别处理。）。
-              .. figure:: download/sep-pcals-smooth.png
+
+             .. figure:: download/sep-pcals-smooth.png
              
-           * 合并求频率依赖 ( ``--merge_pcals True`` )
+           * 方法二：合并求频率依赖 ( ``--merge_pcals True`` )
        
              一段时间内，:math:`P_{\mathrm{cal}}` 随频率依赖比较稳定，只有整体幅度上的变化。因此可以合并（ ``--method_merge`` ，MergeFun）所有 :math:`P_{\mathrm{cal}}` 降低泊松噪音（
              合并完依然需要做平滑）来得到 :math:`P_{\mathrm{cal}}` 随频率的依赖:

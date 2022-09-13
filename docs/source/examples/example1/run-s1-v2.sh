@@ -10,9 +10,9 @@ files="$(ls RAW_data/M33_OTF/20210731/M33_OTF_1_*W_0001.fits)"
 printf "${files}"
 echo
 # commands
-# python -m hifast sep -p 3 同时执行5个 python -m hifast sep
+# python -m hifast sep -p 3 同时执行5个 python -m hifast.sep
 python -m hifast sep -p 3 \
-    "$files" \
+    $files \
    -d 4 -m 4 -n 596 --step 1 \
    --frange 1350 1450 \
    --smooth gaussian --s_sigma 2 \
