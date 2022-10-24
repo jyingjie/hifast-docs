@@ -27,4 +27,5 @@ HIFAST
    并行 <parallel>
    tools
    changelog
+   help
 

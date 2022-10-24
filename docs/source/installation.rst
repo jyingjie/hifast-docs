@@ -68,7 +68,7 @@
 安装hifast
 ----------
 
-获得hifast的安装包, 文件名一般为 ``hifast-XXX.whl`` (一般不要修改文件名)
+获得hifast的安装包(https://pan.cstcloud.cn/s/WD56MPBjTDs  密码：hifa), 文件名一般为 ``hifast-XXX.whl`` (一般不要修改文件名)
   
 安装:
 
