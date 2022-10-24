@@ -30,4 +30,5 @@ HIFAST
    tools
    示例 <examples/index>
    changelog
+   help
 
