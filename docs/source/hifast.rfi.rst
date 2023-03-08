@@ -18,11 +18,14 @@ hifast.rfi 标记RFI
 
 -  输出文件名中包含 ``-rfi``。
 
+-  示例Notebook：:download:`hifast.rfi_example.ipynb <example1/hifast.rfi_example-20230308.ipynb>`
+
 
 RFI类型参数与优先顺序
 -------------------------
 
-- 主要参数:一般来说优先选用 ``--nr``, ``--sf``, 谨慎使用 ``--pr``，非低赤纬不要使用 ``--lf``
+- 主要参数:
+   一般来说优先选用 ``--nr``, ``--sf``, 谨慎使用 ``--pr``，非低赤纬不要使用 ``--lf``
 - 通用参数：
    -  ``--replace_rfi``: 是否将输出的RFI设为NAN
 
@@ -40,68 +43,84 @@ RFI类型参数与优先顺序
 ^^^^^^^^^^^^^
 首先是先标记人工标记过的RFI。标记方法见/工具/手动标记RFI
 
-- ``--reg_from``参数以下用法：
+- ``--reg_from`` 参数有以下用法：
    -  ``none``：不做任何处理。
    -  ``default``: 将寻找名为 输入文件名+'.reg'的DS9格式region文件。如果未发现则跳过。适合用于只有个别波束有问题的RFI。
    -  ``shared``: 一些波束将会共用同一个region文件，适合用于RFI同时出现的一些波束。 
-         - ``--reg_shared_beams``：
-             用于指定哪些波束会共用同一个名称为‘*-19rfi.hdf5.reg'的且输出路径下唯一的region文件，默认为 ``all``,即19波束都需要。这也就要求在xxx-M01-xxx-19rfi.hdf5上进行人工标记才行。
-             
-             如果是逗号间隔的字符串，如 ``--reg_shared_beams 4,9,14``，则只有遇到4,9,14三个波束才会应用后缀与输入文件相同的且输出路径下唯一的region文件。这也就要求在*-bld.hdf5(类似的)上进行人工标记才行。
+      ``--reg_shared_beams``：
+          用于指定哪些波束会共用同一个名称为‘*-19rfi.hdf5.reg'的且输出路径下唯一的region文件，默认为 ``all``,即19波束都需要。这也就要求在xxx-M01-xxx-19rfi.hdf5上进行人工标记才行。
+      
+          如果是逗号间隔的字符串，如 ``--reg_shared_beams 4,9,14``，则只有遇到4,9,14三个波束才会应用后缀与输入文件相同的且输出路径下唯一的region文件。这也就要求在*-bld.hdf5(类似的)上进行人工标记才行。
          
          听起来很复杂对不对？RFI就是很难搞，俺也想减轻人工工作量。。。
 
    -  ``路径``: 直接输入一个reg文件路径
 
-`lf`, `sf`, `nr` 的搜索原理
+lf, sf, nr 的搜索原理
 ^^^^^^^^^^^^^
-bulabula
+他们三个看似参数复杂，实则都共用了同一个函数/原理。
+.. figure:: download/1380RFI.png
+
+这张图片代表了标记1380MHz RFI的方法   
 
 
 
-`lf`: Long-freq time RFI
+
+lf: Long-freq time RFI
 ^^^^^^^^^^^^^
 频率范围很大的时域RFI，可能是低赤纬的同步卫星导致的。高赤纬一般看不到，所以设成False。
 
 具体参数见示例notebook：
+
 - ``--lf``: 设为True时标记\ *长RFI*。
+
     *  ``--lf_frange``: 在此频率区间寻找 *长RFI*
     *  ``--lf_ext_add``: 向两边扩大RFI的标记范围。
-    *  ``--lf_mask_rms_times``: 
-         如果是-1，会标记整条谱线；
-         如果为0，只标记存在RFI谱线的frange区域(不过注意如果frange区域占比过大，余下的部分做FFT去驻波效果可能变差)；
-         如果大于0，则只标记存在RFI谱线的大于RMS一个倍数阈值的部分，频率方向用ext_add扩展边缘。
+    *  ``--lf_mask_rms_times``: 如果是-1，会标记整条谱线；如果为0，只标记存在RFI谱线的frange区域(不过注意如果frange区域占比过大，余下的部分做FFT去驻波效果可能变差)；如果大于0，则只标记存在RFI谱线的大于RMS一个倍数阈值的部分，频率方向用ext_add扩展边缘。
 
-`sf`: Short-freq time RFI
+sf: Short-freq time RFI
 ^^^^^^^^^^^^^^
 短横条样子的时域RFI，是GPS L3导致的，常常出没于1380~1382MHz，影响附近的3~10MHz。
 
 具体参数见示例notebook：
+
 - ``--sf``: 设为True时标记\ *短RFI*。
+
    * ``--sf_frange``: 在此频率区间寻找 *短RFI*
    * ``--sf_ext_add``: 向两边扩大RFI的标记范围，单位为channel数。
    * ``--sf_mask_rms_times``: 这里是一个正数，mask小区间frange内，从rfi峰值向两边以半高全宽扩展，为了防止mask过多，通常扩展到2~2.5倍的RMS停止。
 
-`nr`: Narrowband RFI
+nr: Narrowband RFI
 ^^^^^^^^^^^^^^
 单通道RFI
 
 具体参数见示例notebook：
+
 - ``--nr``: 设为True时标记\ *窄RFI*。观测数据为W带的情况下， *窄RFI* 一般占据一到两个channel。
+
    * ``--nr_mask_rms_times``: 如果是0，会标记整个通道；如果大于0，则只标记存在RFI通道的大于RMS一个倍数阈值的部分，时间方向用ext_add扩展边缘。
 
-`pr`: periodic RFI
+
+pdr: periodic RFI
 ^^^^^^^^^^^^^^
 8.1 MHz周期RFI，2021年7月后就没有了。
 
-去除参数过多难以详细介绍，这里只说原理是从
+去除参数过多难以详细介绍，这里只说原理：
+从超过噪声一定水平的所有峰中选取最大的一个，在其前后范围内以大约8.1MHz的间隔寻找同样超过噪声水平的峰，
+列为一组。余下的用相同的方法再选出第二组，第三组。
+通过最小二乘拟合得到每组RFI的精确频率，然后依据推测的频率标记RFI的范围。
   
+pr: polarized RFI
+^^^^^^^^^^^^^^
+利用两个偏振XX,YY差别很大来判断是否是RFI。需要注意有时银河系也可能被标记，请小心使用。
+但是pr对于偏振差异极大的RFI还是好用的，RFI边缘则容易标记不全。
 
-.. - ``--pr``: 设为True时，比较两个偏振，如果偏差过大则标记对应channel为RFI。
+ - ``--pr``: 设为True时，比较两个偏振，如果偏差过大则标记对应channel为RFI。
 
-..    *  ``--pr_s_sigma``: 沿时间维度高斯平滑（以pr_s_sigma为sigma）谱线以提高信噪比
-..    *  ``--pr_times``: 至少大于等于5
-..    *  ``--pr_times_s``: 大于1
+    *  ``--pr_s_sigma``: 沿时间维度高斯平滑（以pr_s_sigma为sigma）谱线以提高信噪比
+    *  ``--pr_times``: 至少大于等于5
+    *  ``--pr_times_s``: 大于1
+
 
 .. - ``--tr``: 设为True时，通过找出每条谱线超出噪音的“信号”，然后在沿时间轴比较，如果一个“信号”持续很久(大于\ ``--tr_n_continue``)，则认为是RFI。不适用于银河系频段。
 
