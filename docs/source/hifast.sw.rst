@@ -17,6 +17,7 @@ hifast.sw 驻波拟合
 -  输出后缀为'-sw.hdf5'
 
 -  示例Notebook：
+
    - 可交互的 :download:`hifast.sw_example.ipynb <examples/example1/hifast.sw_fft_example-20230309.ipynb>`
 
    - 不可交互的(适合快速检查) :download:`hifast.sw_example-uninteract.ipynb <examples/example1/hifast.sw_fft_example-uninteract-20230309.ipynb>`
@@ -44,11 +45,11 @@ hifast.sw 驻波拟合
 多项式+正弦函数拟合
 --------------------
 
-   -  ``--method sin_poly``\ 的参数:
+-  ``--method sin_poly``\ 的参数:
 
-       -  ``--sin_f``: 拟合时正弦函数的频率的初值。默认值为0.929,对应1.09Mhz周期的驻波。
-       -  ``--bound_f``: 拟合时正弦函数的频率的范围。
-       -  ``--deg``: 多项式的阶数。默认1。一般设为0或者1.
+   -  ``--sin_f``: 拟合时正弦函数的频率的初值。默认值为0.929,对应1.09Mhz周期的驻波。
+   -  ``--bound_f``: 拟合时正弦函数的频率的范围。
+   -  ``--deg``: 多项式的阶数。默认1。一般设为0或者1.
 
 (推荐)FFT filter滤波
 ----------------------
@@ -64,16 +65,20 @@ hifast.sw 驻波拟合
 
 - RFI, 强源（如银河系）会在傅里叶空间中形成大量的低频成分干扰，影响驻波成分的判断，所以需要先替代。
 
-- hifast的````--rfi_method``默认为'near_ripple'， 假设邻近的的驻波形态相似，使用它们来填充需要被替代的区域。
+- hifast的 ``--rfi_method``默认为'near_ripple'， 假设邻近的的驻波形态相似，使用它们来填充需要被替代的区域。
 
 - 首先对原始数据进行平滑：
-   * 第一次平滑，用于寻找需要替代的位置。使用了时间和频率两个方向，尽量保留弱源。对应``--s_method_t``,``--s_sifma_t``,``--s_method_freq``,``--s_sigma_freq``
+   * 第一次平滑，用于寻找需要替代的位置。使用了时间和频率两个方向，尽量保留弱源。
+   对应 ``--s_method_t``, ``--s_sifma_t``, ``--s_method_freq``, ``--s_sigma_freq``
 
-   * 第二次平滑，用于寻找驻波的波谷(Trough)，以实现替代时驻波波谷与波谷的对齐。如果不给定``--s_method_t_T``,``--s_sifma_t_T``,``--s_method_freq_T``,``--s_sigma_freq_T``,使用与上一组相同的。
+   * 第二次平滑，用于寻找驻波的波谷(Trough)，以实现替代时驻波波谷与波谷的对齐。
+   如果不给定 ``--s_method_t_T``, ``--s_sifma_t_T``, ``--s_method_freq_T``, ``--s_sigma_freq_T``,使用与上一组相同的。
 
-   * 由于时间上的平滑可能扩大应该替代的区域，一旦`'s_method_t'!='none`且`restrict_bound = True`，将进行只有freq方向sigma为`rms_sigma`的第三次高斯平滑来限定替代区域。对于小源，可以不使用这一步，或者对信号边缘要求不高，也可以`restrict_bound = False`
+   * 由于时间上的平滑可能扩大应该替代的区域，一旦 ``'s_method_t'!='none``且 ``restrict_bound = True``，
+   将进行只有freq方向sigma为 ``rms_sigma``的第三次高斯平滑来限定替代区域。对于小源，可以不使用这一步，或者对信号边缘要求不高，也可以 ``restrict_bound = False```
 
 - replace参数：
+
    * ``--times_thr``:大于RMS这么多倍的会被置为噪声(不平滑)
    * ``--times_s_thr``:大于RMS这么多倍的会被替代(第一次迭代)
    * ``--times_s_thr2``:大于RMS这么多倍的会被替代(第二次迭代)
@@ -164,9 +169,10 @@ FFT后傅里叶空间的处理
    相同的方法，确定on的两个阈值
 
 - iFFT
+   
    将选出来的Fourier mode逆变换回去即得到驻波。
 
-- 如果``--iter_twice=True``,则在去过一次驻波的基础上再次替代，重复以上过程。理论上效果更好，如前所述。
+- 如果 ``--iter_twice=True``,则在去过一次驻波的基础上再次替代，重复以上过程。理论上效果更好，如前所述。
 
 注意
 ^^^^^^
