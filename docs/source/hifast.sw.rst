@@ -69,13 +69,14 @@ hifast.sw 驻波拟合
 
 - 首先对原始数据进行平滑：
    * 第一次平滑，用于寻找需要替代的位置。使用了时间和频率两个方向，尽量保留弱源。
-   对应 ``--s_method_t``, ``--s_sifma_t``, ``--s_method_freq``, ``--s_sigma_freq``
+     对应 ``--s_method_t``, ``--s_sifma_t``, ``--s_method_freq``, ``--s_sigma_freq``
 
    * 第二次平滑，用于寻找驻波的波谷(Trough)，以实现替代时驻波波谷与波谷的对齐。
-   如果不给定 ``--s_method_t_T``, ``--s_sifma_t_T``, ``--s_method_freq_T``, ``--s_sigma_freq_T``,使用与上一组相同的。
+     如果不给定 ``--s_method_t_T``, ``--s_sifma_t_T``, ``--s_method_freq_T``, ``--s_sigma_freq_T``,使用与上一组相同的。
 
-   * 由于时间上的平滑可能扩大应该替代的区域，一旦 ``'s_method_t'!='none``且 ``restrict_bound = True``，
-   将进行只有freq方向sigma为 ``rms_sigma``的第三次高斯平滑来限定替代区域。对于小源，可以不使用这一步，或者对信号边缘要求不高，也可以 ``restrict_bound = False```
+   * 由于时间上的平滑可能扩大应该替代的区域，一旦 ``'s_method_t'!='none`` 且 ``restrict_bound = True``，
+     将进行只有freq方向sigma为 ``rms_sigma``的第三次高斯平滑来限定替代区域。
+     对于小源，可以不使用这一步，或者对信号边缘要求不高，也可以 ``restrict_bound = False```
 
 - replace参数：
 
@@ -90,14 +91,16 @@ hifast.sw 驻波拟合
 
 hifast通过设置RMS的倍数来决定哪些区域会被替代。
 
-   - 第一次迭代中, ``--times_thr``作为非平滑阈值用于识别异常值(比如narrow band RFI)，``--times_s_thr``是平滑的阈值，用于寻找驻波的波谷。如果对弱源流量要求不高，可以不进行第二次迭代。
+   - 第一次迭代中, ``--times_thr``作为非平滑阈值用于识别异常值(比如narrow band RFI)， 
+     ``--times_s_thr``是平滑的阈值，用于寻找驻波的波谷。如果对弱源流量要求不高，可以不进行第二次迭代。
    
       .. figure:: download/replace1.png
 
          第一次迭代中替代的示意图(交互模式)。
 
 
-   - 第二次迭代(``--iter_twice``)相当于先去了一次驻波，再确定哪些区域应该被替代，只用一次可能替代范围偏多(因为驻波的幅度影响)。 此时用``--times_s_thr2``才是平滑的阈值，用于寻找驻波的波谷。
+   - 第二次迭代(``--iter_twice``)相当于先去了一次驻波，再确定哪些区域应该被替代，只用一次可能替代范围偏多(因为驻波的幅度影响)。 
+     此时用``--times_s_thr2``才是平滑的阈值，用于寻找驻波的波谷。
       
       ``is_excluded``试图包含rfi和可能是源的部分，如果去驻波但不去基线(sw_nobld)，下一步再去基线(bld)，可以设置bld.py会读取其中的``is_excluded``，防止基线对信号的过拟合.
       
@@ -146,6 +149,7 @@ FFT后傅里叶空间的处理
       默认为 ``all``.
 
 - Noise Off
+
    由于噪音管的开关会改变驻波的振幅和相位，这里是分开处理的。
 
    .. figure:: download/fourier_water.png
