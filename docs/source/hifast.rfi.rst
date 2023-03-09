@@ -176,7 +176,9 @@ Tips
 
    .. code-block:: bash
 
-      fname=XXX-bld-rfihdf5
+      fname=XXX-bld-rfi.hdf5
       python -m hifast.waterfall $fname --outdir ./waterplot/ --replace_rfi --polar -1
- 
 
+
+ 
+wrote by astroR2, 2023/3/9
