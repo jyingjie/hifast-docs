@@ -87,6 +87,7 @@ lf, sf, nr 的搜索原理
 
 - 输出
    .. code-block:: bash
+      
       rfi starts at tn = [4886 5684 6063], ends in tn = [5030 5759 6137]
       After extension, rfi starts at tn = [4883 5681 6060], ends in tn = [5033 5762 6140]
       Median value is 0.00793326087296009. mean_thr = 0.023799782618880272. diff_thr = 0.0006346608698368073
@@ -174,6 +175,7 @@ Tips
 - 建议使用hifast.waterfall检查mask的效果(mask过多过少)，必要时可以生成cube后人工检查，迭代以上过程。
 
    .. code-block:: bash
+
       fname=XXX-bld-rfihdf5
       python -m hifast.waterfall $fname --outdir ./waterplot/ --replace_rfi --polar -1
  
