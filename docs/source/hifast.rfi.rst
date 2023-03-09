@@ -8,7 +8,7 @@ hifast.rfi 标记RFI
    .. code-block:: bash
 
       fname=XXX-bld.hdf5
-      python -m hifast.rfi $fname --nr True --sf True --sf_frange 1300 1500 --lf False
+      python -m hifast.rfi $fname --nr True --sf True --lf False --all_beams False
 
 -  输入去完基线得到的文件。目前不能处理频率在1155到1295MHz之间的RFI。
   
@@ -32,7 +32,9 @@ RFI类型参数与优先顺序
    -  ``--rms_frange``:
       计算rms用的频率范围，选一个没有信号和干扰范围。
       例如\ ``--rms_frange 1400 1410``。不指定则会尝试自动判定。
-      ``--nr``, ``--sf``, ``--lf`` 为True时需要此参数。
+      ``--nr``, ``--sf`` 为True时需要此参数。
+   -  ``--mw_frange``:
+      一个大致的银河系范围，防止把它当成RFI
 
    -  ``--all_beams``: 
       将19波束做一个平均，更容易找出19波束同时存在的RFI。目前用于``--sf``和人工标记环节。
@@ -40,13 +42,13 @@ RFI类型参数与优先顺序
       如果用了并行，则会产生大量的19rfi文件，后续的处理则会 *报错* (因为当前输出路径下只应该有一个19rfi文件)。 *所以如果不熟悉此功能的话请谨慎使用。*
 
 - hifast.rfi.py处理的优先级顺序：
-   * 人工标记的RFI
-   * `lf`: Long-freq time RFI. 类似于上图中频率范围很大的时域RFI，可能是卫星
-   * `sf`: Short-freq time RFI. 类似于上图中1380MHz的频率范围很小的时域RFI，主要是GPS
-   * `tr`: Time domain continuous RFI. 时域上连续出现的RFI。最早为8MHz的RFI设计，可能标记不全所以现在 *不推荐使用*了。
-   * `nr`: Narrowband single channel RFI. 单通道频域RFI，如上图的竖线
-   * `pdr`: Periodic 8 MHZ RFI. 间隔8MHz的高斯型RFI，来自于压缩机，2021年7月已消除
-   * `pr`: Polarized RFI. 偏振上差异过大的RFI
+   - 人工标记的RFI
+   - ``lf``: Long-freq time RFI. 类似于上图中频率范围很大的时域RFI，可能是卫星
+   - ``sf``: Short-freq time RFI. 类似于上图中1380MHz的频率范围很小的时域RFI，主要是GPS
+   - ``tr``: Time domain continuous RFI. 时域上连续出现的RFI。最早为8MHz的RFI设计，可能标记不全所以现在 *不推荐使用*了。
+   - ``nr``: Narrowband single channel RFI. 单通道频域RFI，如上图的竖线
+   - ``pdr``: Periodic 8 MHZ RFI. 间隔8MHz的高斯型RFI，来自于压缩机，2021年7月已消除
+   - ``pr``: Polarized RFI. 偏振上差异过大的RFI
 
 
 人工标记的RFI
@@ -81,8 +83,9 @@ lf, sf, nr 的搜索原理
 
    .. figure:: download/1380RFI.png
 
-       这张图片代表了标记1380MHz RFI的方法,即``--sf`` 
+      这张图片代表了标记1380MHz RFI的方法,即``--sf`` 
 
+- 输出
    .. code-block:: bash
       rfi starts at tn = [4886 5684 6063], ends in tn = [5030 5759 6137]
       After extension, rfi starts at tn = [4883 5681 6060], ends in tn = [5033 5762 6140]
@@ -95,13 +98,13 @@ lf, sf, nr 的搜索原理
       Finish
 
    
-   * 图中蓝色线是frange内所有谱线沿频率方向的平均， 平均阈值(黑色虚线)为中值的 ``--xx_mean_times``倍；
-   * 绿色线是后一个通道减前一个通道取绝对值，sf会需要此作为差的阈值(黑色虚线)，为中值的 ``--xx_diff_times``倍。
-   * 画图时绿线有向下平移一个蓝线的最大值，为了把它们画在一个图里。
-   * ``rfis start at ... end in ...``表示有哪些谱线满足了rfi_width_lim和大于times倍阈值条件，最后输出的只有3个mask frange，说明最后有三个满足边缘陡峭条件.
-   * 橙色线为标记的范围。
-   
-   *可以通过示例Notebook了解具体参数*，这里建议不熟悉的话还是通过Jupyter先调参.
+* 图中蓝色线是frange内所有谱线沿频率方向的平均， 平均阈值(黑色虚线)为中值的 ``--xx_mean_times``倍；
+* 绿色线是后一个通道减前一个通道取绝对值，sf会需要此作为差的阈值(黑色虚线)，为中值的 ``--xx_diff_times``倍。
+* 画图时绿线有向下平移一个蓝线的最大值，为了把它们画在一个图里。
+* ``rfis start at ... end in ...``表示有哪些谱线满足了rfi_width_lim和大于times倍阈值条件，最后输出的只有3个mask frange，说明最后有三个满足边缘陡峭条件.
+* 橙色线为标记的范围。
+
+*可以通过示例Notebook了解具体参数*，这里建议不熟悉的话还是通过Jupyter先调参.
 
 lf: Long-freq time RFI
 ^^^^^^^^^^^^^
@@ -121,7 +124,7 @@ sf: Short-freq time RFI
 
 - ``--sf``: 设为True时标记\ *短RFI*。
 
-   * ``--sf_mask_rms_times``: 这里是一个正数，mask小区间frange内，从rfi峰值向两边以半高全宽扩展，为了防止mask过多，通常扩展到2~2.5倍的RMS停止。
+   * ``--sf_mask_rms_times``: 这里是一个正数，mask小区间frange内，从rfi峰值向两边以半高全宽扩展，为了防止mask过多，通常扩展到2~2.5倍的RMS停止。 
 
 nr: Narrowband RFI
 ^^^^^^^^^^^^^^
@@ -134,7 +137,7 @@ nr: Narrowband RFI
    * ``--nr_mask_rms_times``: 如果是0，会标记整个通道；如果大于0，则只标记存在RFI通道的大于RMS一个倍数阈值的部分，时间方向用ext_add扩展边缘。
 
 
-pdr: periodic RFI
+pdr: Periodic RFI
 ^^^^^^^^^^^^^^
 8.1 MHz周期RFI，2021年7月后就没有了。
 
@@ -143,16 +146,16 @@ pdr: periodic RFI
 列为一组。余下的用相同的方法再选出第二组，第三组。
 通过最小二乘拟合得到每组RFI的精确频率，然后依据推测的频率标记RFI的范围。
   
-pr: polarized RFI
+pr: Polarized RFI
 ^^^^^^^^^^^^^^
 利用两个偏振XX,YY差别很大来判断是否是RFI。需要注意有时银河系也可能被标记，请小心使用。
 但是pr对于偏振差异极大的RFI还是好用的，RFI边缘则容易标记不全。
 
- - ``--pr``: 设为True时，比较两个偏振，如果偏差过大则标记对应channel为RFI。
+- ``--pr``: 设为True时，比较两个偏振，如果偏差过大则标记对应channel为RFI。
 
-    *  ``--pr_s_sigma``: 沿时间维度高斯平滑（以pr_s_sigma为sigma）谱线以提高信噪比
-    *  ``--pr_times``: 至少大于等于5
-    *  ``--pr_times_s``: 大于1
+   *  ``--pr_s_sigma``: 沿时间维度高斯平滑（以pr_s_sigma为sigma）谱线以提高信噪比
+   *  ``--pr_times``: 至少大于等于5
+   *  ``--pr_times_s``: 大于1
 
 
 .. - ``--tr``: 设为True时，通过找出每条谱线超出噪音的“信号”，然后在沿时间轴比较，如果一个“信号”持续很久(大于\ ``--tr_n_continue``)，则认为是RFI。不适用于银河系频段。
@@ -162,6 +165,16 @@ pr: polarized RFI
 ..    -  ``--tr_times_s``: 大于1.5
 ..    -  ``--tr_n_continue``: 一个“信号”持续多少条就标记为rfi
 
+Tips
+--------
+- 建议先用M01测试，如果希望sf都被标记而没有遗漏，可以尝试使用``--all_beams``,之后``--sf_use_time_only``可以直接使用xxx-M01-xxx-19rfi中标记了的条数但是mask范围分波束确定。如果不熟悉还是不要``--all_beams``，使用各自波束确定mask范围。
 
+- 如果有很长频率的RFI(可能比较窄，就几百条，应该也是卫星导致的，类似于连续谱)会导致sf标记多，建议此时先手动CARTA标记，然后再跑sf。如果只是个别波束有问题，也不要使用``--all_beams``，可能连累其他波束。
+
+- 建议使用hifast.waterfall检查mask的效果(mask过多过少)，必要时可以生成cube后人工检查，迭代以上过程。
+
+   .. code-block:: bash
+      fname=XXX-bld-rfihdf5
+      python -m hifast.waterfall $fname --outdir ./waterplot/ --replace_rfi --polar -1
  
 
