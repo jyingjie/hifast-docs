@@ -1,0 +1,107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../hifast_regions.rst:2 a780b9a658fc4c8cb4c556870d21d7d8
+msgid "手动标记RFI"
+msgstr ""
+
+#: ../../hifast_regions.rst:3 37b1a2bc18e7478aace892d7ec36dc0c
+msgid "使用CARTA在瀑布图上标记出RFI的区域（region），导出后把文件输入到 ``hifast.rfi`` 中进行标记。"
+msgstr ""
+
+#: ../../hifast_regions.rst:6 670da326efed4b7db2e421130eb4b200
+msgid "标记区域示例"
+msgstr ""
+
+#: ../../hifast_regions.rst:10 628563f9ea894368bb932a9535583aab
+msgid "标记形状示例。"
+msgstr ""
+
+#: ../../hifast_regions.rst:14 d2fd01a3c9df46eab62fb8735a7e1a3e
+msgid "Mask效果。白色区域代表被替换为nan。"
+msgstr ""
+
+#: ../../hifast_regions.rst:16 b1de2ff90814404d9f2fbd803d85252a
+msgid "用CARTA打开去过基线的谱线数据，如图。目前支持的区域形状有两种："
+msgstr ""
+
+#: ../../hifast_regions.rst:18 f70b7b0b1ebd4800848d0c1c94811386
+msgid "方形（Rectangle）：区域内谱线会被标记"
+msgstr ""
+
+#: ../../hifast_regions.rst:19 193e3a2ba2ab4f34a5f3e45731cd72db
+msgid ""
+"线段（line）：（CART v3.0版本支持）图中展示了水平和垂直两种，分别用来标记整个频率区间或者整条谱线。 "
+"操作时线段无需画得完全水平或者垂直，可以稍有倾斜角度。（注：示例图中被线段标记的并不是RFI，只是为了展示效果。）"
+msgstr ""
+
+#: ../../hifast_regions.rst:22 2c33a672b7804eb6aaf0d20a8356bde0
+msgid "在CARTA中通过放大和拖动来更好定位需要标记的区域，然后在CARTA的 Z Profile 里切换到另外一个偏振继续标记。"
+msgstr ""
+
+#: ../../hifast_regions.rst:25 0e9de7291d3c4e0999ed1029d81abb70
+msgid "导出标记区域到文件"
+msgstr ""
+
+#: ../../hifast_regions.rst:27 bf2b597c942d42f18543ec38e8b4cc34
+msgid ""
+"方法一：File --> Export regions --> 导出文件格式选 DS9 & Pixel， "
+"文件名推荐使用谱线的文件名加上\".reg\"后缀，例如 ``XXX-bld.hdf5.reg``"
+msgstr ""
+
+#: ../../hifast_regions.rst:29 8c9c7dcfde7a4cad92eeda2c6b9292e2
+msgid ""
+"方法二：使用下面的Snippets代码（CART v3.0版本支持：Preference --> Global --> Enable Code "
+"Snippets）"
+msgstr ""
+
+#: ../../hifast_regions.rst:45 459e91eea5b3442ab5d89e5d9b65d943
+msgid "导出的文件输入到 ``hifast.rfi``"
+msgstr ""
+
+#: ../../hifast_regions.rst:47 8631152bd2824a5ca60239dcf6953e25
+msgid "使用 ``--reg_from`` 参数来指定上一步导出的文件。"
+msgstr ""
+
+#: ../../hifast_regions.rst:49 55e0a727d6994bbba37120b92c58e5c2
+msgid "``--reg_from default`` 自动查找同目录下对应的 ``XXX-bld.hdf5.reg`` 文件："
+msgstr ""
+
+#: ../../hifast_regions.rst:55 c1d47e657ff8444189f7cb646efffe9b
+msgid "或者指定其他路径"
+msgstr ""
+
+#: ../../hifast_regions.rst:62 d37764f8218d476c8eba9b821b0b7380
+msgid "其他"
+msgstr ""
+
+#: ../../hifast_regions.rst:63 af180ea213c64058b78d3787014bc0d4
+msgid "可能有用的CARTA设置"
+msgstr ""
+
+#: ../../hifast_regions.rst:65 66407a3da5bc4e14bbe35abb523595a2
+msgid "Preference --> Region --> Create Mode"
+msgstr ""
+
+#: ../../hifast_regions.rst:66 5d400e874c664e88b77edefa41212e4e
+msgid "Preference --> Region --> Line Witdth"
+msgstr ""
+

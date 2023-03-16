@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../examples/example2.rst:2 d50d045fc0a441848add5a9113fbda28
+msgid "OnOff观测"
+msgstr ""
+
+#: ../../examples/example2.rst:3 483d0acb4ea5407c95f8e0e3359d861d
+msgid "方法一 和 方法二 主要区别在 是否考虑驻波相位的漂移。"
+msgstr ""
+
+#: ../../examples/example2.rst:7 408891e9815b48fa90a8fc9b791bbc59
+msgid "方法一"
+msgstr ""
+
+#: ../../examples/example2.rst:9 a3f25667831a4a66b73160adae5aa32d
+msgid ""
+"用 `hifast.pos_swi` 分离噪音管on、off 和 "
+"源（src）和参考点（ref）观测，然后噪音管定标，src减去ref后合并成一条谱线（保留两个偏振）。"
+msgstr ""
+
+#: ../../examples/example2.rst:11 ab43fd83714e430d88d9ac7b291e84ac
+msgid ":download:`M1-S1.sh <example2/M1-S1.sh>`"
+msgstr ""
+
+#: ../../examples/example2.rst:18 74730c31744043a9856e350b92198bac
+msgid "手动去基线，sin拟合驻波。"
+msgstr ""
+
+#: ../../examples/example2.rst cc49432a346d4abab1d009c21f665a8e
+msgid "下载: :download:`M1-S2.ipynb <example2/M1-S2.ipynb>`"
+msgstr ""
+
+#: ../../examples/example2.rst:23 3dfaffa1d0dc4e539f83fac54b3efc08
+msgid "用 `hifast.flux` 流量定标 和 `hifast.multi --fc True` 坐标系修正。"
+msgstr ""
+
+#: ../../examples/example2.rst:27 785602c146ee4ca3b798d4d4e838f713
+msgid "方法二"
+msgstr ""
+
+#: ../../examples/example2.rst:29 110bcec324044194b0b59094d6a7e387
+msgid "先不区分 源（src）和参考点（ref）观测。用跟mapping一样的方法来定标。"
+msgstr ""
+
+#: ../../examples/example2.rst:31 133fe49708c44023a7c34659b1c3c4d7
+msgid ":download:`M2-S1.sh <example2/M2-S1.sh>`"
+msgstr ""
+
+#: ../../examples/example2.rst:38 eb08a2243c4a4f93a3e9565a7ea54efa
+msgid "用fft方法对每条谱线去驻波"
+msgstr ""
+
+#: ../../examples/example2.rst:40 1274eb91cff1476c8e9130e1b7e2c6e1
+msgid ""
+":download:`M2-S2.sh <example2/M2-S2.sh>` :download:`S2-sw.ini "
+"<example1/conf/S2-sw.ini>`"
+msgstr ""
+
+#: ../../examples/example2.rst:48 3d497c5705804589972648bc2e94e45d
+msgid "用 `hifast.pos_swi_2` 分离源（src）和参考点（ref）观测，然后src减去ref后合并成一条谱线（保留两个偏振）。"
+msgstr ""
+
+#: ../../examples/example2.rst:50 fb691bf2d0e041958b12bcdfcdd2637c
+msgid ":download:`M2-S3.sh <example2/M2-S3.sh>`"
+msgstr ""
+
+#: ../../examples/example2.rst:57 8346edcd1ac44cb3b746f4e9a51b2583
+msgid "手动去基线"
+msgstr ""
+
+#: ../../examples/example2.rst b3e89d1c9b64452692a8c1b9eb42f91d
+msgid "下载: :download:`M2-S4.ipynb <example2/M2-S4.ipynb>`"
+msgstr ""
+
+#: ../../examples/example2.rst:62 6cd354cf3ea740fa956aee6b0274aee6
+msgid "`hifast.multi --fc True` 坐标系修正。"
+msgstr ""
+

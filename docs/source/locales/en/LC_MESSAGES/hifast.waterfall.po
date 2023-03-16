@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../hifast.waterfall.rst:2 5bfdeab9f7314c6f93b818791e6baae3
+msgid "瀑布图"
+msgstr ""
+
+#: ../../hifast.waterfall.rst:5 514191e4f3cb4948b172120e7395f9ab
+msgid "使用\\ `CARTA <https://carta.readthedocs.io/en/latest/index.html>`__\\"
+msgstr ""
+
+#: ../../hifast.waterfall.rst:6 9306ab29da5b47e2a998f0e856035f58
+msgid "选中hdf5文件中的 ``HDU 0``"
+msgstr ""
+
+#: ../../hifast.waterfall.rst:10 3c7a153958ce44d7827c9340b8463c85
+msgid "如下图"
+msgstr ""
+
+#: ../../hifast.waterfall.rst:15 0545e6688a834dadbc5a3068e882bade
+msgid "hifast.waterfall"
+msgstr ""
+
+#: ../../hifast.waterfall.rst:16 5080dd63606c4cdba028d06b19fbcbce
+msgid "``hifast.waterfall``: 画瀑布图保存成pdf"
+msgstr ""
+
+#: ../../hifast.waterfall.rst:18 b232290b2a364f8fba26cbb73271a835
+msgid "示例"
+msgstr ""
+
+#: ../../hifast.waterfall.rst:24 fa52a2484d5246edab0c78d43d90eedc
+msgid "输入hifast处理过程中生成的hdf5文件，可用通配符指定多个文件。"
+msgstr ""
+
+#: ../../hifast.waterfall.rst:25 b82e914d54d645c0bf116a5c83475a08
+msgid "主要参数："
+msgstr ""
+
+#: ../../hifast.waterfall.rst:27 2b0d2b19939441c7a8e7bb450509464b
+msgid "``-s``\\ ：默认情况是把输入的文件分组，把同一天观测的19波束文件画到一张图上输出。 加 ``-s`` 后每个文件单独画一张图保存在文件里。"
+msgstr ""
+
+#: ../../hifast.waterfall.rst:29 9c30477d44ce47259e0497d383f241fb
+msgid ""
+"``--vmin, --vmax``：图中colormap所用的数据区间。可以指定一个数字，也可以指定百分比。默认设置为 ``--vmin "
+"per0.01 --vmax per95``。"
+msgstr ""
+
+#: ../../hifast.waterfall.rst:31 7f763957d0764352b3dc5716b36afbe5
+msgid "``--interpolation``：即为plt.imshow里的参数。"
+msgstr ""
+

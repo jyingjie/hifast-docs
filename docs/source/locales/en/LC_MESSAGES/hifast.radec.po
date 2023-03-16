@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../hifast.radec.rst:2 164e4ffb1fa2418d9425a1a852cb45a5
+msgid "hifast.radec 坐标转换"
+msgstr ""
+
+#: ../../hifast.radec.rst:5 893153d586f841fc90b4166700f37198
+msgid "``hifast.radec``: 转换馈源（KY）位置到RA DEC"
+msgstr ""
+
+#: ../../hifast.radec.rst:7 a4380677fdae451ba2ae54d170efeb24
+msgid "示例"
+msgstr ""
+
+#: ../../hifast.radec.rst:15 9205e20beb504952a80ad2aec62df660
+msgid "可以输入两种文件路径:"
+msgstr ""
+
+#: ../../hifast.radec.rst:17 f3c4c725c96044faa797d47626fb825b
+msgid ""
+"输入 ``hifast.sep``\\ 生成的 ``hdf5`` 文件，\\ **仅需beam M01的即可**\\ ， 其它beam的RA "
+"DEC会存在这同一个文件里。"
+msgstr ""
+
+#: ../../hifast.radec.rst:19 235a867ed184406b8b630bcdcf31c0fa
+msgid "输入一个 ``.xlsx`` 结尾的馈源舱文件来计算馈源舱文件里记录时间点对应的RA DEC。"
+msgstr ""
+
+#: ../../hifast.radec.rst:21 c198ec97c0a14fa7864510c5a5ff900a
+msgid ""
+"程序会先依次检测是否存在 ``your_HOME_dir/KY/`` (本地处理时建立此目录，FAST服务器上无需建立此目录), "
+"``/data/hw1/FAST/KY/``, ``/data31/KY/`` (FAST服务器馈源文件所在目录)文件夹。 "
+"然后在最先检测到存在的文件夹里自动寻找对应的馈源舱文件。然后计算馈源舱文件文件里记录的RA "
+"DEC，由于谱线记录的时间采样点和馈源舱文件的不一致，因此会插值最后得到谱线的RA DEC。"
+msgstr ""
+
+#: ../../hifast.radec.rst:28 4429c24bd58e475b96db9139dc27a55a
+msgid "主要参数："
+msgstr ""
+
+#: ../../hifast.radec.rst:30 b2b1ce974c134e3e8b7cc2dd1ec4da01
+msgid "``--ky_files``\\ ：如果程序不能成功找到对应馈源舱文件，加此参数来手动指定馈源舱文件。参数后加馈源舱文件的路径，一个或多个。"
+msgstr ""
+
+#: ../../hifast.radec.rst:31 ddb0b58337cf43f28de35610edfc7dcb
+msgid ""
+"``--tol``: 正常情况下，馈源舱文件内记录的时间覆盖谱线记录的时间范围。加\\ ``--tol 5``\\ 可在馈源舱文件少记录\\ "
+"``5``\\ 秒的情况下进行外插计算RA DEC。不过这部分谱线最终需扔掉。"
+msgstr ""
+
+#: ../../hifast.radec.rst:34 54823546eebb497dba62bbd26a61ee15
+msgid "``--outdir`` ：指定输出文件存放的目录。如果输入hdf5文件默认与输入文件一致，如果输入.xlsx文件则默认为程序运行路径。"
+msgstr ""
+
+#: ../../hifast.radec.rst:36 b41a290122264d1ab6b5bfa871992ead
+msgid ""
+"``--ky_fixed``: 早期的一些Drift观测，馈源舱文件只记录开始的几分钟内的馈源舱位置"
+"，加此参数只利用这开始的几分钟来计算整个谱线的RA-DEC。由于Drift过程中馈源舱并不能完全稳定不动，这样计算出的RA "
+"DEC可能会不准确。(一般不建议使用)"
+msgstr ""
+
+#: ../../hifast.radec.rst:39 af1ef780b5b247cda729674449b503ac
+msgid "``--plot``\\ ：加此参数来画RA DEC分布图，保存为pdf图片。"
+msgstr ""
+
+#: ../../hifast.radec.rst:41 f7e98006ef474f05858e4e82f2ddb8ef
+msgid "存放radec的输出文件名是在输入文件名上加radec。可以h5py来读取，例如："
+msgstr ""
+

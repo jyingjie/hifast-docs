@@ -1,0 +1,362 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../hifast.rfi.rst:2 55e072325f464fb09ccf8aec6239a956
+msgid "hifast.rfi 标记RFI"
+msgstr ""
+
+#: ../../hifast.rfi.rst:4 33532d56aece4dfa813ef5f8b0f335a5
+msgid "``hifast.rfi`` : 标记RFI"
+msgstr ""
+
+#: ../../hifast.rfi.rst:7 fb9d155ebf49414c804fd3773f2a7361
+msgid "示例"
+msgstr ""
+
+#: ../../hifast.rfi.rst:14 b2997ad263e541f68c81ac05fa106281
+msgid "输入去完基线得到的文件。目前不能好处理频率在1155到1295MHz之间的RFI。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:16 14222f4c157e474bad43c24d051f9191
+msgid "输出文件名中包含 ``-rfi``。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:18 71f9cdd408e947199d7a3b9148b27d54
+msgid ""
+"示例Notebook：:download:`hifast.rfi_example.ipynb "
+"<examples/example1/hifast.rfi_example-20230309.ipynb>`"
+msgstr ""
+
+#: ../../hifast.rfi.rst:22 d680fa8ada1d403faaf4e6560997fb69
+msgid "RFI类型参数与优先顺序"
+msgstr ""
+
+#: ../../hifast.rfi.rst:24 921424e76de24c348476f7b6438308be
+msgid "主要参数:"
+msgstr ""
+
+#: ../../hifast.rfi.rst:25 2b85ed9d0aed4b0990ad6b0bff57a236
+msgid "一般来说优先选用 ``--nr``, ``--sf``, 谨慎使用 ``--pr``，非低赤纬不要使用 ``--lf``"
+msgstr ""
+
+#: ../../hifast.rfi.rst:40 157e73fd3ee0459eae49a365e6b9b295
+msgid "通用参数："
+msgstr ""
+
+#: ../../hifast.rfi.rst:27 d44c19d43ee640f4848779b509350cd9
+msgid "``--replace_rfi``: 是否将输出的RFI设为NAN"
+msgstr ""
+
+#: ../../hifast.rfi.rst:29 67e4d67630fb4c50992edad9dd07d8d4
+msgid ""
+"``--rms_frange``: 计算rms用的频率范围，选一个没有信号和干扰范围。 例如\\ ``--rms_frange 1400 "
+"1410``。不指定则会尝试自动判定。 ``--nr``, ``--sf`` 为True时需要此参数。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:33 5958f64545494036acc2891c6387067b
+msgid "``--mw_frange``: 一个大致的银河系范围，防止把它当成RFI"
+msgstr ""
+
+#: ../../hifast.rfi.rst:36 2e93a96dd7664fe9a9709d17b3781052
+msgid ""
+"``--all_beams``: 将19波束做一个平均，更容易找出19波束同时存在的RFI。目前用于``--sf``和人工标记环节。 *请注意*，"
+" ``all_beams=True`` 时 *不要使用波束并行* ，建议先对M01单独处理，这样会生成'xxx-M01-xxx-"
+"19rfi.hdf5'后缀的文件(可能比较慢)，后续的处理会直接应用19rfi文件。 如果用了并行，则会产生大量的19rfi文件，后续的处理则会 "
+"*报错* (因为当前输出路径下只应该有一个19rfi文件)。 *所以如果不熟悉此功能的话请谨慎使用。*"
+msgstr ""
+
+#: ../../hifast.rfi.rst:54 f48a6ceb82d741839f0c2ddfefba60f7
+msgid "RFI类别以及优先级顺序："
+msgstr ""
+
+#: ../../hifast.rfi.rst:45 918b15e615f648438b638312a9749f04
+msgid "RFI示意图。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:47 ../../hifast.rfi.rst:57
+#: 64c271f6cc2e4d7996b6dbbb21f575eb 775f8992ca1a4854b247d0dde58ff7b8
+msgid "人工标记的RFI"
+msgstr ""
+
+#: ../../hifast.rfi.rst:48 a8f8357a3f1a4e4fb732bda883dad7e7
+msgid "``lf``: Long-freq time RFI. 类似于上图中频率范围很大的时域RFI，可能是卫星。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:49 29d9dd1957bd42f29fba6bc7403f1fdb
+msgid "``sf``: Short-freq time RFI. 类似于上图中1380MHz的频率范围很小的时域RFI，主要是GPS。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:50 5b9fab2e7b154e05acb2a7700da11c45
+msgid ""
+"``tr``: Time domain continuous RFI. 时域上连续出现的RFI。最早为8MHz的RFI设计，可能标记不全，现在 "
+"*不推荐使用* 了。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:51 d8b0b769d2314b349b9a63a60d31f3e4
+msgid "``nr``: Narrowband single channel RFI. 单通道频域RFI，如上图的竖线。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:52 a77ace51fcc44c0c9f53a609a6c8f091
+msgid "``pdr``: Periodic 8 MHZ RFI. 间隔8MHz的高斯型RFI，来自于压缩机，2021年7月已消除。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:53 0b6f1ed23b15464bb6a532f271e7b463
+msgid "``pr``: Polarized RFI. 偏振上差异过大的RFI。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:58 de8104e063bc4ba4a5244f4003f0933a
+msgid "输入手动标记RFI生成的 ``.reg`` 文件。标记方法见 :doc:` 手动标记RFI </hifast\\_regions>`。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:68 2ae70d90c5d6460085756037cd0d474d
+msgid "``--reg_from`` 参数有以下用法："
+msgstr ""
+
+#: ../../hifast.rfi.rst:61 c3368b31a7eb4ebd953f5e271410b7bd
+msgid "``none``: 不做任何处理。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:62 1f23174a789b4b9389a6fdd7892ef78d
+msgid "``default``: 将寻找名为 输入文件名+'.reg'的DS9格式region文件。如果未发现则跳过。适合用于只有个别波束有问题的RFI。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:63 f7d5bec802d94107b0a8a9ad8ce6e39e
+msgid "``shared``: 一些波束将会共用同一个region文件，适合用于RFI同时出现的一些波束。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:66 04f70deb73d74d2fa9c1704ddcb732c8
+msgid ""
+"结合 ``--reg_shared_beams`` 指定哪些波束会共用同一个名称为 "
+"``*-19rfi.hdf5.reg``的且输出路径下唯一的region文件，默认为 ``all``，即19波束都需要。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:65 5cf962add92b4fbcba972c15f42ff061
+msgid ""
+"这也就要求在 ``xxx-M01-xxx-19rfi.hdf5`` 上进行人工标记才行。 如果是逗号间隔的字符串，如 "
+"``--reg_shared_beams "
+"4,9,14``，则只有遇到4,9,14三个波束才会应用后缀与输入文件相同的且输出路径下唯一的region文件。这也就要求在*-bld.hdf5(类似的)上进行人工标记才行。"
+" 这里比较复杂和费时。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:68 1b2ae20042f747f5929ae042a3fb915b
+msgid "``路径``: 直接输入一个reg文件路径"
+msgstr ""
+
+#: ../../hifast.rfi.rst:71 58241d706e95467a95a23a5e5344c335
+msgid "lf, sf, nr 的搜索原理"
+msgstr ""
+
+#: ../../hifast.rfi.rst:73 f586ee84d8b64d2e9ecfe85f210711d8
+msgid "他们三个看似参数复杂，实则都共用了同一个函数/原理。它们的共同参数是："
+msgstr ""
+
+#: ../../hifast.rfi.rst:75 69119ee056df4294b9b1f393a5c392b0
+msgid "``lf_frange``, ``sf_frange``: 在此频率区间寻找RFI，即只对这个频率区间做平均。nr则是对所有时间做平均。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:76 8e12e29d9d2744a893c78a2897237cc9
+msgid "``--lsn_thr_type``: 阈值的选取方法，默认设为 ``input_absmed_times``即使用中值的绝对值作为阈值。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:77 23fb072e48114ec4bec48a7377c0e9e9
+msgid ""
+"``--lf_mean_times``, ``--sf_mean_times``, ``--nr_mean_times``: "
+"通过平均后的找到异常谱线/通道所需的阈值"
+msgstr ""
+
+#: ../../hifast.rfi.rst:78 ffa0d75e36314b94b01eb749633b2179
+msgid ""
+"``--lf_diff_times``, ``--sf_diff_times``, ``--nr_diff_times``: "
+"lf的rfi边界平缓(所以设为0).sf和nr边缘一般比较陡峭，所以用平均后谱线的差的绝对值来限定陡峭的为sf/nr，防止标记可能的信号。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:79 a76d76512f3d494490a96673f74f8fef
+msgid ""
+"``--lf_rfi_last``, ``--sf_rfi_last``, ``--nr_rfi_width_lim``: "
+"rfi的持续时间(条数)/宽度(通道数)，lf通常较宽，nr则非常窄"
+msgstr ""
+
+#: ../../hifast.rfi.rst:80 314ae86f476c4ef6ae805fc35bf45e89
+msgid "``--lf_ext_add``, ``--sf_ext_add``: 向两边扩大RFI的标记范围，单位为channel数。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:83 ../../hifast.rfi.rst:127
+#: 3010d02c82324f95b71017016ed51cf6 dd436ef0d54b4f679c2ca1bee879220a
+msgid "sf: Short-freq time RFI"
+msgstr ""
+
+#: ../../hifast.rfi.rst:87 95a199d43d28415ba0609b3ba9e82432
+msgid "这张图片代表了标记1380MHz RFI的方法,即``--sf``"
+msgstr ""
+
+#: ../../hifast.rfi.rst:89 9c758be8dbe348c5949ff457ebe3f049
+msgid "输出"
+msgstr ""
+
+#: ../../hifast.rfi.rst:104 a8bf1a529c564490bd1aa53a99d0c541
+msgid "图中蓝色线是frange内所有谱线沿频率方向的平均， 平均阈值(黑色虚线)为中值的 ``--xx_mean_times`` 倍；"
+msgstr ""
+
+#: ../../hifast.rfi.rst:106 1bc299018587433a929c96e03ffc6347
+msgid "绿色线是后一个通道减前一个通道取绝对值，sf会需要此作为差的阈值(黑色虚线)，为中值的 ``--xx_diff_times`` 倍。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:108 65c13e07b0d64b598792bfba5aca0329
+msgid "画图时绿线有向下平移一个蓝线的最大值，为了把它们画在一个图里。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:110 b065ae99cb8c4bd595e2e60f5fb3ef92
+msgid ""
+"`rfis start at ... end in ...` "
+"表示有哪些谱线满足了rfi_width_lim和大于times倍阈值条件，最后输出的只有3个mask "
+"frange，说明最后有三个满足边缘陡峭条件."
+msgstr ""
+
+#: ../../hifast.rfi.rst:112 84da8379b615407cb62bf1a5fa96c3b4
+msgid "橙色线为标记的范围。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:114 343a371ca4f34213b20e9f7f0c64abaf
+msgid "*可以通过示例Notebook了解具体参数*，这里建议不熟悉的话还是通过Jupyter先调参."
+msgstr ""
+
+#: ../../hifast.rfi.rst:117 5ea09103cf474b4cb2274e683f6ab0d2
+msgid "lf: Long-freq time RFI"
+msgstr ""
+
+#: ../../hifast.rfi.rst:118 808cdd2ee6554ca6a778efa452f124e9
+msgid "频率范围很大的时域RFI，可能是低赤纬的同步卫星导致的。高赤纬一般看不到，所以设成False。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:120 ../../hifast.rfi.rst:130 ../../hifast.rfi.rst:140
+#: 52faa61b23454cfa9d6307d60f53b2f5 70653e371e414960921534a9bba7d9b6
+#: cdc1cd198c0040a2a22c22caec039a96
+msgid "具体参数见示例notebook："
+msgstr ""
+
+#: ../../hifast.rfi.rst:122 5d4669aa3e8b47008e33293d1c309a8f
+msgid "``--lf``: 设为True时标记\\ *长RFI*。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:124 3a70e60cc7714dcba474491442cfdb7c
+msgid ""
+"``--lf_mask_rms_times``: "
+"如果是-1，会标记整条谱线；如果为0，只标记存在RFI谱线的frange区域(不过注意如果frange区域占比过大，余下的部分做FFT去驻波效果可能变差)；如果大于0，则只标记存在RFI谱线的大于RMS一个倍数阈值的部分，频率方向用ext_add扩展边缘。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:128 ba10075df06a4197b7ab4df8683caf53
+msgid "短横条样子的时域RFI，是GPS L3导致的，常常出没于1380~1382MHz，影响附近的3~10MHz。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:132 e936dbe8aa1b46d6a4a1378bae1c73c3
+msgid "``--sf``: 设为True时标记\\ *短RFI*。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:134 eddc4608acec4ffd91027b97b30574c7
+msgid ""
+"``--sf_mask_rms_times``: "
+"这里是一个正数，mask小区间frange内，从rfi峰值向两边以半高全宽扩展，为了防止mask过多，通常扩展到2~2.5倍的RMS停止。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:137 5ca2f90263f74395b76485c5b188f3c5
+msgid "nr: Narrowband RFI"
+msgstr ""
+
+#: ../../hifast.rfi.rst:138 24026c9b5c924860801df798b4fb95a2
+msgid "单通道RFI"
+msgstr ""
+
+#: ../../hifast.rfi.rst:142 903bbded4539459888e1cfe092858c04
+msgid "``--nr``: 设为True时标记\\ *窄RFI*。观测数据为W带的情况下， *窄RFI* 一般占据一到两个channel。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:144 6336f1d5fdff469aa501ea14fa7a270f
+msgid ""
+"``--nr_mask_rms_times``: "
+"如果是0，会标记整个通道；如果大于0，则只标记存在RFI通道的大于RMS一个倍数阈值的部分，时间方向用ext_add扩展边缘。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:148 1d5ef772d0094942b96fa86e9d6be460
+msgid "pdr: Periodic RFI"
+msgstr ""
+
+#: ../../hifast.rfi.rst:149 856df7f804a14e85aa0a18922f541b40
+msgid "8.1 MHz周期RFI，2021年7月后就没有了。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:151 0c81ae7aff084acfb610a7a64f292bcd
+msgid ""
+"去除参数过多, notebook有详细介绍，这里只说原理： "
+"从超过噪声一定水平的所有峰中选取最大的一个，在其前后范围内以大约8.1MHz的间隔寻找同样超过噪声水平的峰， "
+"列为一组。余下的用相同的方法再选出第二组，第三组。 通过最小二乘拟合得到每组RFI的精确频率，然后依据推测的频率标记RFI的范围。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:157 94499f5d412a458393e163955af6641b
+msgid "pr: Polarized RFI"
+msgstr ""
+
+#: ../../hifast.rfi.rst:158 16e29624a8f1405ead261229467bc2a9
+msgid ""
+"利用两个偏振XX,YY差别很大来判断是否是RFI。需要注意有时银河系也可能被标记，请小心使用。 "
+"但是pr对于偏振差异极大的RFI还是好用的，RFI边缘则容易标记不全。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:161 a72f520b5a9d4a519b5bbd0d360f5352
+msgid "``--pr``: 设为True时，比较两个偏振，如果偏差过大则标记对应channel为RFI。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:163 8352b92a2bb140608cafa4c9ab90dd45
+msgid "``--pr_s_sigma``: 沿时间维度高斯平滑（以pr_s_sigma为sigma）谱线以提高信噪比"
+msgstr ""
+
+#: ../../hifast.rfi.rst:164 def341e4807e426597dce6b2d7bffdc8
+msgid "``--pr_times``: 至少大于等于5"
+msgstr ""
+
+#: ../../hifast.rfi.rst:165 3e2e7ea5c6104f63adf52110a76fb023
+msgid "``--pr_times_s``: 大于1"
+msgstr ""
+
+#: ../../hifast.rfi.rst:176 7be1ba3fd2e64f18a3461de8b43e160e
+msgid "Tips"
+msgstr ""
+
+#: ../../hifast.rfi.rst:177 a4675581a5904166bb162dae2c1966e4
+msgid ""
+"建议先用M01测试，如果希望sf都被标记而没有遗漏，可以尝试使用 ``--all_beams`` ,之后 "
+"``--sf_use_time_only`` 可以直接使用 ``xxx-M01-xxx-19rfi`` "
+"中标记了的条数但是mask范围分波束确定。如果不熟悉还是不要 ``--all_beams``，使用各自波束确定mask范围。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:179 2a0d4f245c744c4690d1f47517000c82
+msgid ""
+"如果有很长频率的RFI(可能比较窄，就几百条，应该也是卫星导致的，类似于连续谱)会导致sf标记多，建议此时先手动CARTA标记，然后再跑sf。如果只是个别波束有问题，也不要使用"
+" ``--all_beams``，可能连累其他波束。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:181 f02315c1e60a496b89d2cdb87ab4990b
+msgid "建议使用hifast.waterfall检查mask的效果(mask过多过少)，必要时可以生成cube后人工检查，迭代以上过程。"
+msgstr ""
+
+#: ../../hifast.rfi.rst:190 446977bc65554766a27491662aa36809
+msgid "wrote by astroR2, 2023/3/9"
+msgstr ""
+
