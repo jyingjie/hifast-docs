@@ -21,5 +21,5 @@ msgstr ""
 
 #: ../../tools.rst:2 e27dd91b8b564d8aaeb5366f32e48138
 msgid "工具"
-msgstr ""
+msgstr "Tools"
 
