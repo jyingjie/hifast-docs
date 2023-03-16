@@ -1,5 +1,5 @@
 OnOff观测
-========
+============
 方法一 和 方法二 主要区别在 是否考虑驻波相位的漂移。
 
 
@@ -18,7 +18,7 @@ OnOff观测
   2. 手动去基线，sin拟合驻波。
   
     | 下载: :download:`M1-S2.ipynb <example2/M1-S2.ipynb>`
-    | 查看: `notebook <example2/M1-S2.ipynb>`_
+    .. | 查看: `notebook <example2/M1-S2.ipynb>`_
 
   3. 用 `hifast.flux` 流量定标 和 `hifast.multi --fc True` 坐标系修正。
 
@@ -39,6 +39,7 @@ OnOff观测
    
    :download:`M2-S2.sh <example2/M2-S2.sh>`
    :download:`S2-sw.ini <example1/conf/S2-sw.ini>`
+  
     .. literalinclude:: example2/M2-S2.sh
       :language: bash
       :emphasize-lines: 4
@@ -56,6 +57,6 @@ OnOff观测
 4. 手动去基线
    
    | 下载: :download:`M2-S4.ipynb <example2/M2-S4.ipynb>`
-   | 查看: `notebook <example2/M2-S4.ipynb>`_
+   .. | 查看: `notebook <example2/M2-S4.ipynb>`_
 
 5. `hifast.multi --fc True` 坐标系修正。
