@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../index.rst:23
+msgid "安装"
+msgstr ""
+
+#: ../../index.rst:23
+msgid "流程"
+msgstr ""
+
+#: ../../index.rst:23
+msgid "成图"
+msgstr ""
+
+#: ../../index.rst:23
+msgid "并行"
+msgstr ""
+
+#: ../../index.rst:23
+msgid "示例"
+msgstr ""
+
+#: ../../index.rst:2 d017c86bfe544312a2e805affde4ef50
+msgid "HIFAST"
+msgstr ""
+
+#: ../../index.rst:6 2484dc3668984dabb5876df9cf846f80
+msgid "此项目目前处于开发中"
+msgstr ""
+
+#: ../../index.rst:9 0a619c34cc0548559942d3e9d0a27124
+msgid "流程图"
+msgstr ""
+
+#: ../../index.rst:21 1922e32890b748e0beb797ce63d5aca8
+msgid "目录"
+msgstr ""
+

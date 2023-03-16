@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../hifast.cube.rst:2 4c5acad5a0384a0ab728858866c676e0
+msgid "hifast.cube 生成FITS Cube"
+msgstr ""
+
+#: ../../hifast.cube.rst:5 16d87ad126a24bb1a6fa91d3aeb186d2
+msgid "``hifast.cube``"
+msgstr ""
+
+#: ../../hifast.cube.rst:11 b30475da4202428aa0756db664a47fd5
+msgid ""
+"这里用 ``hifast.cube`` 来生成fits cubes文件，程序先生成格点（WCS），然后找到距离格点中央为\\ "
+"``--r_cut``\\ 范围内的谱线然后按\\ ``--method``\\ 处理谱线，最后保存在fits文件里。"
+msgstr ""
+
+#: ../../hifast.cube.rst:13 3a3a2f9f1f9d4ae4b02ba42cd0c7d07c
+msgid "``python -m hifast.cube``"
+msgstr ""
+
+#: ../../hifast.cube.rst:15 6804385dbcf74e25b2d17119e8c267d9
+msgid "后面跟参考系修正后生成的hdf5文件，支持多个文件路径（空格隔开），支持通配符。程序运行后会首先输出要处理的文件路径，请检查无重复无错误。"
+msgstr ""
+
+#: ../../hifast.cube.rst:16 56e0e1a7649a4212aab85dd762e794a8
+msgid "``--outname``: 输出的fits cubes文件路径，需要指定。"
+msgstr ""
+
+#: ../../hifast.cube.rst:17 7aa7ce12d63045ec939b6312d63038fa
+msgid ""
+"``--bwidth``: ra dec 分格点时的间隔大小，单位为 "
+"角秒，默认为60。如果ra和dec采用一样间隔，参数后接一个数字即可，如果不一样，参数后接两个数，空格隔开。ra的间隔在前。"
+msgstr ""
+
+#: ../../hifast.cube.rst:19 f852b82267e848f690142916885e7e72
+msgid "``--r_cut``: 考虑距离格点中心r_cut范围内谱线。单位为 角秒，默认为90."
+msgstr ""
+
+#: ../../hifast.cube.rst:21 d470a48f07ac4c549f000360a0eaeae5
+msgid "``--method``: r_cut范围内谱线处理方法。"
+msgstr ""
+
+#: ../../hifast.cube.rst:23 5551edc8f51b4c66863432ee30d0bbb9
+msgid "``gaussian``: truncated Gaussian kernel."
+msgstr ""
+
+#: ../../hifast.cube.rst:24 31dc81e7e5ec4facb582d1a7d69d7861
+msgid "``bessel_gaussian``: Bessel*Gaussian kernel"
+msgstr ""
+
+#: ../../hifast.cube.rst:26 18c7ac0e83cf49a092d089e53f820e1c
+msgid "``--proj``: 投影方式: SIN, AIT, TAN 等"
+msgstr ""
+
+#: ../../hifast.cube.rst:27 fb175bbb011245bf932f64d7a0f164e8
+msgid "``--ra_range``: ra的范围，后接两个数，空格隔开，下限在前，单位为度。默认值为输入文件里ra的最小值和最大值。"
+msgstr ""
+
+#: ../../hifast.cube.rst:29 f7eccd96b67d4e53b4b488e8382390a7
+msgid "``--dec_range``: 类似\\ ``--ra_range``\\ 。"
+msgstr ""
+
+#: ../../hifast.cube.rst:30 f7c7cd3dd88144bf9a795f17f3b33b39
+msgid "``--range3``: 限制第三轴（速度）的范围，类似\\ ``--ra_range``\\ 。"
+msgstr ""
+

@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../installation.rst:2 c0eb72edb5ac49ae88172dc1d07f2389
+msgid "安装"
+msgstr ""
+
+#: ../../installation.rst:5 d4b9e63f497e41159cec79fe65570f19
+msgid "配置环境"
+msgstr ""
+
+#: ../../installation.rst:7 eb59283b46e0475891dc04a381619292
+msgid "方法一：用conda配置环境"
+msgstr ""
+
+#: ../../installation.rst:9 ffd560fc33a54ea1957be2addb184a10
+msgid ""
+"如果没有conda，请安装 `miniconda3 "
+"<https://docs.conda.io/en/latest/miniconda.html>`_ 或者 `Miniforge3 "
+"<https://github.com/conda-forge/miniforge>`_"
+msgstr ""
+
+#: ../../installation.rst:12 8c3cad13fc7740b3ad57d14623eb5186
+msgid ""
+"使用环境配置文件 :download:`hifast_env.yml <download/hifast_env.yml>` (ARM架构使用 "
+":download:`hifast_env.ARM64.yml <download/hifast_env.ARM64.yml>`)"
+msgstr ""
+
+#: ../../installation.rst:15 c54e556633fc473fbdb3efeed9cc1b3f
+msgid "新建一个环境:"
+msgstr ""
+
+#: ../../installation.rst:21 1dc1bfb9e94645e4afe1d05810d672b9
+msgid "``hifast_env`` 可以修改为其他字符。之后用"
+msgstr ""
+
+#: ../../installation.rst:27 b29280b3c2664e80b326c08e858f982e
+msgid "或"
+msgstr ""
+
+#: ../../installation.rst:33 8c53a2275314438c98c7e9c7aba8b9dc
+msgid "来切换到对应的环境."
+msgstr ""
+
+#: ../../installation.rst:35 a2e4532a46024123aa4587a1ab78714a
+msgid "或更新已存在环境:"
+msgstr ""
+
+#: ../../installation.rst:41 5aeb29a5d94741708163c5a059f8f892
+msgid "替换 ``ENV_NAME`` 为已存在的conda env名字, 如果是主环境，则 ``ENV_NAME`` 为 ``base``"
+msgstr ""
+
+#: ../../installation.rst:44 6cfaaa97fafc44379aba43d1a677f588
+msgid "方法二: 使用离线包配置环境(测试中, 可能会有bug)"
+msgstr ""
+
+#: ../../installation.rst:44 d6307c75fad0486db2aa5b9856753955
+msgid "从 https://pan.cstcloud.cn/s/QmkBVYgyRO8 下载 ``hifast_env.XXX.tar.gz``"
+msgstr ""
+
+#: ../../installation.rst:46 94cd103956aa40738eff2f4d04b347b8
+msgid "配置："
+msgstr ""
+
+#: ../../installation.rst:56 16519a40d94b45a8bca35a47d1e82290
+msgid "之后激活环境："
+msgstr ""
+
+#: ../../installation.rst:62 a3907a3017c4482a80b45216c92d0d7f
+msgid "移除环境："
+msgstr ""
+
+#: ../../installation.rst:69 49a842046d7b463f963b71a6b2448731
+msgid "安装hifast"
+msgstr ""
+
+#: ../../installation.rst:71 fb3423b4e60f4c2ab17ebbe688f88d8e
+msgid ""
+"获得hifast的安装包(https://pan.cstcloud.cn/s/WD56MPBjTDs  密码：hifa), 文件名一般为 "
+"``hifast-XXX.whl`` (一般不要修改文件名)"
+msgstr ""
+
+#: ../../installation.rst:73 ef6509aa59be4a53b76fee6ce9d772bf
+msgid "安装:"
+msgstr ""
+
+#: ../../installation.rst:79 a3ef3974a69e4cf68a17441e2a50091d
+msgid "卸载:"
+msgstr ""
+
+#: ../../installation.rst:86 a8495656da934955aa5b5f20c489a477
+msgid "相关数据下载"
+msgstr ""
+
+#: ../../installation.rst:88 7a4d1fffe8fd46c59e78de04d683b1f0
+msgid "噪音管温度文件:"
+msgstr ""
+
+#: ../../installation.rst:90 318e2a277c644bed9fdb9d624a0b4f69
+msgid ""
+"下载 Tcal文件夹: https://pan.cstcloud.cn/s/AfnCB96cT2s (提取码: ``cqwy``; "
+"备用地址：https://share.weiyun.com/fFynlcX0) 放到你的家目录。 如有新的噪音管文件，会一并更新到此链接。"
+msgstr ""
+

@@ -1,0 +1,395 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../hifast.sw.rst:2 c42ba22ed27a43379ff4b2311c372aef
+msgid "hifast.sw 驻波拟合"
+msgstr ""
+
+#: ../../hifast.sw.rst:4 f7337842bd2244f9a1c5eb9bf49ba047
+msgid "``hifast.sw`` : 拟合并扣除驻波(**s**\\ tanding \\ **w**\\ ave)。"
+msgstr ""
+
+#: ../../hifast.sw.rst:8 ff214471a7c14306b79a7d76f2cec60c
+msgid "示例"
+msgstr ""
+
+#: ../../hifast.sw.rst:14 a17d551a33c645ceaff0574333db9540
+msgid ""
+"输入已经 ``hifast.bld``\\ 后的\\ ``*-bld*.hdf5``\\ 文件，RFI严重的情况下最好先 "
+"``hifast.rfi``。"
+msgstr ""
+
+#: ../../hifast.sw.rst:16 0d1e6a38806f474d94ab9a7e415179bb
+msgid "输出后缀为 ``-sw.hdf5`` 或者 ``-sw_nobld.hdf5``。"
+msgstr ""
+
+#: ../../hifast.sw.rst:18 4a6802d078ac4e42b9666f5c76479e6b
+msgid "示例 Notebook："
+msgstr ""
+
+#: ../../hifast.sw.rst:20 a72e2e2f19b348c2a53aa8dadff20dd9
+msgid ""
+"可交互的 :download:`hifast.sw_example.ipynb "
+"<examples/example1/hifast.sw_fft_example-20230309.ipynb>`"
+msgstr ""
+
+#: ../../hifast.sw.rst:22 39bf7553816545e98244e98438f4993e
+msgid ""
+"不可交互的(适合快速检查) :download:`hifast.sw_example-uninteract.ipynb "
+"<examples/example1/hifast.sw_fft_example-uninteract-20230309.ipynb>`"
+msgstr ""
+
+#: ../../hifast.sw.rst:25 35689855cfc942999584628c3562b3a9
+msgid "参数"
+msgstr ""
+
+#: ../../hifast.sw.rst:28 ../../hifast.sw.rst:114
+#: 03325267e59f429d8cac49fa196a0bb1 f95b9239a59b4e7d850cf1e0a6fa48f3
+msgid "主要参数"
+msgstr ""
+
+#: ../../hifast.sw.rst:30 29ead08ef7d04dbeaeb9a214e0e65c97
+msgid "``--nproc``: 后接一个数，使用多少个进程来并行。"
+msgstr ""
+
+#: ../../hifast.sw.rst:32 b85b16979c2249119e576aec771599f9
+msgid "``--method``: {``sin_poly``, ``fft``}"
+msgstr ""
+
+#: ../../hifast.sw.rst:34 7adec1810b6244399e448d794d64764f
+msgid "``sin_poly``: 最小二乘法拟合 多项式+正弦函数"
+msgstr ""
+
+#: ../../hifast.sw.rst:36 13078d7015ed4d7eabeb52236b1e99d8
+msgid "``fft``: 在傅里叶变换后的相空间里操作再反傅里叶变换得到驻波"
+msgstr ""
+
+#: ../../hifast.sw.rst:38 c0dd79fb5feb4b0b8198ad690af1987a
+msgid ""
+"``--njoin``, ``--s_method_t``, ``--s_sigma_t``, ``--s_method_freq``, "
+"``--s_sigma_freq``, ``--average_every_freq``\\ 与  `hifast.bld "
+"<hifast.bld.html>`_ 中的类似， ``--method fft`` 时不支持 ``--njoin``\\ 。"
+msgstr ""
+
+#: ../../hifast.sw.rst:43 1713c6d8479d439bb88235a861cc7a9e
+msgid "``--nobld``: 是否返回为 未去除基线只去了驻波的数据，后缀为'-sw_nobld.hdf5'。（先去驻波再去基线可能获得更好的基线效果）"
+msgstr ""
+
+#: ../../hifast.sw.rst:46 f549c7fafa3a42f9a98ab9a2aa4a0af1
+msgid "方法一：多项式+正弦函数拟合"
+msgstr ""
+
+#: ../../hifast.sw.rst:47 5d35c19dc7c8483b8297046d1c675d60
+msgid "``--method sin_poly``"
+msgstr ""
+
+#: ../../hifast.sw.rst:49 bc076b176a864ca8a1863ba6a2b22ace
+msgid "参数:"
+msgstr ""
+
+#: ../../hifast.sw.rst:51 c8b84f1f310b4caaa9acae679cb2446c
+msgid "``--sin_f``: 拟合时正弦函数的频率的初值。默认值为0.929,对应1.09Mhz周期的驻波。"
+msgstr ""
+
+#: ../../hifast.sw.rst:52 8d0a502e4a864cc0b87eec24a74f090f
+msgid "``--bound_f``: 拟合时正弦函数的频率的范围。"
+msgstr ""
+
+#: ../../hifast.sw.rst:53 b7651f6e71a243a8830534972c30e264
+msgid "``--deg``: 多项式的阶数。默认1。一般设为0或者1."
+msgstr ""
+
+#: ../../hifast.sw.rst:56 63775c91dda24ef8b5d5a3b8a38153f5
+msgid "方法二：FFT filter滤波 (推荐)"
+msgstr ""
+
+#: ../../hifast.sw.rst:57 75435c953f264a0faab12bb6f246b61b
+msgid "``--method fft``\\ : 预先处理大的RFI或者信号，再通过FFT滤波除去驻波成分的影响。"
+msgstr ""
+
+#: ../../hifast.sw.rst:62 8a687215a7bb4a6faaae4260c515a77b
+msgid "前提参数"
+msgstr ""
+
+#: ../../hifast.sw.rst:62 ca874603aee548548bcf40f03a51c917
+msgid ""
+"``--rms_frange``: 计算rms用的频率范围，选一个没有信号和干扰范围。用于判断大的信号。例如\\ ``--rms_frange "
+"1400 1410``。不指定则会尝试自动判定。"
+msgstr ""
+
+#: ../../hifast.sw.rst:64 0a67953fd4944606acd1148456902edb
+msgid "先进行RFI，强源的替代Replacement"
+msgstr ""
+
+#: ../../hifast.sw.rst:66 635e59a7cfc04765b2cc60366126e794
+msgid "RFI, 强源（如银河系）会在傅里叶空间中形成大量的低频成分干扰，影响驻波成分的判断，所以需要先替代。"
+msgstr ""
+
+#: ../../hifast.sw.rst:68 6d45cf3267794a6fb37aad33c2b063d9
+msgid "hifast的 ``--rfi_method`` 默认为 `near_ripple` ， 假设邻近的的驻波形态相似，使用它们来填充需要被替代的区域。"
+msgstr ""
+
+#: ../../hifast.sw.rst:79 68911507fcf345858c3855ab5dd5a56c
+msgid "首先对原始数据进行平滑："
+msgstr ""
+
+#: ../../hifast.sw.rst:71 2a79ea1fc8d14e079809dbd90f5250bc
+msgid ""
+"第一次平滑，用于寻找需要替代的位置。使用了时间和频率两个方向，尽量保留弱源。 对应 ``--s_method_t``, "
+"``--s_sifma_t``, ``--s_method_freq``, ``--s_sigma_freq``"
+msgstr ""
+
+#: ../../hifast.sw.rst:74 897766c5483b46e3b2b04482630ef773
+msgid ""
+"第二次平滑，用于寻找驻波的波谷(Trough)，以实现替代时驻波波谷与波谷的对齐。 如果不给定 ``--s_method_t_T``, "
+"``--s_sifma_t_T``, ``--s_method_freq_T``, ``--s_sigma_freq_T``,使用与上一组相同的。"
+msgstr ""
+
+#: ../../hifast.sw.rst:77 e6ab41235cab41768dc235fd18c7835a
+msgid ""
+"由于时间上的平滑可能扩大应该替代的区域，一旦 ``--s_method_t`` 不为 ``none`` 且 ``restrict_bound "
+"True``， 将进行只有freq方向sigma为 ``--rms_sigma`` 的第三次高斯平滑来限定替代区域。 "
+"对于小源，可以不使用这一步，或者对信号边缘要求不高，也可以 ``restrict_bound  False``"
+msgstr ""
+
+#: ../../hifast.sw.rst:81 6e3f2eaae9ef43a387df39309c0e10a2
+msgid "replace参数："
+msgstr ""
+
+#: ../../hifast.sw.rst:83 5bb139bfbb804447977f46629aa51e4d
+msgid "``--times_thr``:大于RMS这么多倍的会被置为噪声(不平滑)"
+msgstr ""
+
+#: ../../hifast.sw.rst:84 5b2af57a3c984dd59f840f8f62ce03d0
+msgid "``--times_s_thr``:大于RMS这么多倍的会被替代(第一次迭代)"
+msgstr ""
+
+#: ../../hifast.sw.rst:85 919f629614804bf4bf82533637e693c3
+msgid "``--times_s_thr2``:大于RMS这么多倍的会被替代(第二次迭代)"
+msgstr ""
+
+#: ../../hifast.sw.rst:86 436fb022e7c0420a9160b662dcf1df49
+msgid "``--rfi_width_lim``: 要替换的rfi/源，频率上的宽度应该大于一阈值(通道数)"
+msgstr ""
+
+#: ../../hifast.sw.rst:87 2265b32d5b8c46c4a0ff95492ede6a55
+msgid "``--ext_sec``: 并向两边扩展的通道数"
+msgstr ""
+
+#: ../../hifast.sw.rst:88 e98a9a3608584094a064f717c6e01660
+msgid "``--ext_freq``: 先扩展边缘(MHz)，再寻找强流量两边的最低点，先使用左/右边的一段更干净一点的代替强流量处，默认1.3即可。"
+msgstr ""
+
+#: ../../hifast.sw.rst:90 3126dd4c7be442b79f229001f2762443
+msgid "可以发现后 ``--rfi_width_lim``， ``--ext_sec`` 参数与rfi标记含义相同。"
+msgstr ""
+
+#: ../../hifast.sw.rst:92 153dad3eb8e84c008d155dd6b3ea0fa4
+msgid "hifast通过设置RMS的倍数来决定哪些区域会被替代。"
+msgstr ""
+
+#: ../../hifast.sw.rst:94 ef6ae2ca3799447bb73342c2c9401d2d
+msgid ""
+"第一次迭代中, ``--times_thr`` 作为非平滑阈值用于识别异常值(比如narrow band RFI)， "
+"``--times_s_thr`` 是平滑的阈值，用于寻找驻波的波谷。如果对弱源流量要求不高，可以不进行第二次迭代。"
+msgstr ""
+
+#: ../../hifast.sw.rst:99 0b60fa7c0dae43d180f7b5ede71b9978
+msgid "第一次迭代中替代的示意图(交互模式)。"
+msgstr ""
+
+#: ../../hifast.sw.rst:102 90937e9561704f71ac64795df71db5d7
+msgid ""
+"第二次迭代(``--iter_twice``)相当于先去了一次驻波，再确定哪些区域应该被替代，只用一次可能替代范围偏多(因为驻波的幅度影响)。 "
+"此时用 ``--times_s_thr2`` 才是平滑的阈值，用于寻找驻波的波谷。"
+msgstr ""
+
+#: ../../hifast.sw.rst:105 e675f2d55f4b4cd88a944d5136ad066a
+msgid ""
+"``is_excluded`` "
+"试图包含rfi和可能是源的部分，如果去驻波但不去基线(sw_nobld)，下一步再去基线(bld)，可以设置bld.py会读取其中的 "
+"``is_excluded``，防止基线对信号的过拟合."
+msgstr ""
+
+#: ../../hifast.sw.rst:107 7b639b6b9c8741fc81c7de61ee470153
+msgid "如果 ``--save_is_excluded True``, ``is_excluded`` 在第二次迭代中生成并传递。"
+msgstr ""
+
+#: ../../hifast.sw.rst:110 be9dc85aecae42a39d6c1b7623d82817
+msgid "FFT后傅里叶空间的处理"
+msgstr ""
+
+#: ../../hifast.sw.rst:112 4f1369f8db2144eabc94808532b3f4e2
+msgid "这里以第一次替代后为例。"
+msgstr ""
+
+#: ../../hifast.sw.rst:116 dc7ce16981ba4002936f2e336a0cda83
+msgid "``--sw_base``: 去除傅里叶空间的常数成分。如果基线整体偏离0, 此参数设为True可将谱线整体移动一个常数值。"
+msgstr ""
+
+#: ../../hifast.sw.rst:118 16955c29227248049adc1a875bae1152
+msgid "``--sw_periods``: 去除的驻波成分。后可接多个字符。默认为\\ ``1mhz 0_04mhz``. 字符与对应的驻波周期为："
+msgstr ""
+
+#: ../../hifast.sw.rst:123 588d7162294547a68dbc6fa6b6ef3130
+msgid "字符"
+msgstr ""
+
+#: ../../hifast.sw.rst:123 aeafe9d0464a4c298afd5961eabdbc70
+msgid "驻波周期(MHz)"
+msgstr ""
+
+#: ../../hifast.sw.rst:125 d66e7e396ca84a71b63f432ee80c692b
+msgid "1mhz"
+msgstr ""
+
+#: ../../hifast.sw.rst:125 abae36bf3f264f1dba72f96c23f4c73b
+msgid "1.08"
+msgstr ""
+
+#: ../../hifast.sw.rst:126 efc40dbac3a244cb97b542120b924914
+msgid "2mhz"
+msgstr ""
+
+#: ../../hifast.sw.rst:126 b64f1a1e75e7441e9347f1a3d1d2de6c
+msgid "1.92"
+msgstr ""
+
+#: ../../hifast.sw.rst:127 18e9a904f6fa4e8c82ad6dbb584149f0
+msgid "0_04mhz"
+msgstr ""
+
+#: ../../hifast.sw.rst:127 a564500c9c0d44d09fce33ed4a787b3e
+msgid "0.039"
+msgstr ""
+
+#: ../../hifast.sw.rst:130 e2da7c33381f4072a0eea2bbcd00c5ab
+msgid "需要注意，2mhz驻波后来很罕见，只有一次出现再M06 YY，所以不用添加"
+msgstr ""
+
+#: ../../hifast.sw.rst:132 1cc58132092347eb99db231769c7ec40
+msgid ""
+"``--check_2mhz``: 若为True，如果输入Beam 6文件，将在\\ ``--sw_periods``\\ 中添加 "
+"``2mhz``, 如果输入的不是Beam 6文件，则删除 ``2mhz`` (如果存在)。所以除了2021年7月31日的数据，不要设为True"
+msgstr ""
+
+#: ../../hifast.sw.rst:135 919b3b7794aa4192a7ddfc12054b0683
+msgid ""
+"``--amp_thr_mean_factor``: 傅里叶空间的 *平均振幅* "
+"大于阈值的模，会被识别为已知的几种驻波。这里输入的是中值的倍数。输入时noise off/on分别对应两个阈值"
+msgstr ""
+
+#: ../../hifast.sw.rst:138 c58ac5a123cd4dd3b09cdcaee57312c2
+msgid ""
+"``--amp_thr_solo_factor``: 傅里叶空间的 *每一谱线的振幅* "
+"大于阈值，会被选中为驻波一部分被去除。这里输入的是中值的倍数。输入时noise off/on分别对应两个阈值"
+msgstr ""
+
+#: ../../hifast.sw.rst:141 ed4d26519cfa4015b7123e316202f41d
+msgid ""
+"``--chan_wide``: 距离驻波的模的中心左右各(2 \\* chann - 1)个通道数的模，作为驻波的一部分被选中. 用于 "
+"``1mhz`` 和 ``2mhz`` 的驻波。默认为5"
+msgstr ""
+
+#: ../../hifast.sw.rst:144 caea9ff02daa4763add08f24d5487c84
+msgid "``--chan_narr``: 同上，窄一些的. 用于 ``0_04mhz`` 的驻波和 ``1mhz`` 的倍频。默认为2"
+msgstr ""
+
+#: ../../hifast.sw.rst:147 b699ec4367834c76ade5dc6122124d08
+msgid ""
+"``--choose_method``: 选择傅里叶空间中哪些模作为驻波的方法， ``all`` 或者 ``interpolate``. 默认为 "
+"``all``."
+msgstr ""
+
+#: ../../hifast.sw.rst:151 b8a89f6f83d847d687badf62b8f8da3b
+msgid "Noise Off"
+msgstr ""
+
+#: ../../hifast.sw.rst:153 d3b731b0eac64cef88f0e1299388d1d5
+msgid "由于噪音管的开关会改变驻波的振幅和相位，这里是分开处理的。"
+msgstr ""
+
+#: ../../hifast.sw.rst:157 093d2fd1a8ed4c658653ce858311aadb
+msgid "Fourier空间的振幅，横轴0.92微秒的是1-MHz驻波，1.84微秒的是其倍频。"
+msgstr ""
+
+#: ../../hifast.sw.rst:159 1a4ef4c4a98a489d9fe000b9185b64ae
+msgid "通过交互页面调节 ``--amp_thr_mean_factor``"
+msgstr ""
+
+#: ../../hifast.sw.rst:163 8477441e017e42aea1d9531331be35c7
+msgid "Fourier空间的平均振幅，两个驻波所对应的峰都超过了阈值"
+msgstr ""
+
+#: ../../hifast.sw.rst:165 05b0dbec536a497491cbd6fe4e360e6d
+msgid "通过交互页面调节 ``--amp_thr_solo_factor``"
+msgstr ""
+
+#: ../../hifast.sw.rst:169 b1b5d95b900c452693741588bcad26f9
+msgid "Fourier空间的单条振幅，两个驻波所对应的峰都超过了阈值， ``--chan_wide``与 ``--chan_narr``能基本覆盖所需的峰。"
+msgstr ""
+
+#: ../../hifast.sw.rst:171 f1fbb590d29b47d192f14c2a241fa4a3
+msgid "Noise On"
+msgstr ""
+
+#: ../../hifast.sw.rst:173 f245b612fe1c4a4e9cb91dc6b3ad2b1f
+msgid "相同的方法，确定on的两个阈值"
+msgstr ""
+
+#: ../../hifast.sw.rst:175 e07b7f58a23946ddb284173392d51af2
+msgid "iFFT"
+msgstr ""
+
+#: ../../hifast.sw.rst:177 df39a1767fb94a6c917f81b04903bf67
+msgid "将选出来的Fourier mode逆变换回去即得到驻波。"
+msgstr ""
+
+#: ../../hifast.sw.rst:179 f404cb0e8b7c4cb6948409f0a503e352
+msgid "如果 ``--iter_twice True``,则在去过一次驻波的基础上再次替代，重复以上过程。理论上效果更好，如前所述。"
+msgstr ""
+
+#: ../../hifast.sw.rst:182 cc73c7b331304d02ab297846fcecc295
+msgid "注意"
+msgstr ""
+
+#: ../../hifast.sw.rst:183 8779b31637fa4e09bb4cd242cc2fbb69
+msgid "FFT处理后数据频率两端的效果比较差，因为对于离散的FT，两边是截断，建议适当扔掉效果不好的5~10 MHz。"
+msgstr ""
+
+#: ../../hifast.sw.rst:185 d43670c40c1d441aac28107d8a65c939
+msgid "输入的文件包含频率带宽越长，FFT分辨率越高，建议至少50MHz。"
+msgstr ""
+
+#: ../../hifast.sw.rst:188 b9c4ef46ee564c9ba32c9045970ef19e
+msgid "Wrote by astroR2, 2023/3/9"
+msgstr ""
+
+#: ../../hifast.sw.rst:189 87d4019db2cb4683b732ea26cea80d13
+msgid "参考文献："
+msgstr ""
+
+#: ../../hifast.sw.rst:190 52ed397f853042f3af9a063e87849a2b
+msgid ""
+"Xu, Chen, et al. HiFAST: An H I Data Calibration and Imaging Pipeline for"
+" FAST III. Standing Wave Removal, 2023"
+msgstr ""
+

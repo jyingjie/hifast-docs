@@ -52,4 +52,7 @@ rst_prolog = """
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
 
+gettext_uuid = True
+gettext_compact = False
+
 

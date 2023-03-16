@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../hifast.flux.rst:2 a8f3e518583640ada5b96435a750f59e
+msgid "hifast.flux 流量定标"
+msgstr ""
+
+#: ../../hifast.flux.rst:4 1bd99d0634f649468c724d2bc6e5d577
+msgid "``hifast.flux``: 流量定标Teff(K) → Flux(Jy/beam)"
+msgstr ""
+
+#: ../../hifast.flux.rst:6 12681470278e4add9ae2795a46f73216
+msgid "示例"
+msgstr ""
+
+#: ../../hifast.flux.rst:12 b58c92ec98404c5cb8cdb976b432d3a5
+msgid ""
+"输入未流量定标的hdf5文件。程序会整合RA DEC(在输入的文件的所在目录下去读取对应的radec的文件, 即\\ "
+"``hifast.radec``\\ 输出的文件名中有’M01’的radec文件。 程序目前默认使用 "
+"https://arxiv.org/abs/2002.01786 中给出的Gain与天顶角的函数关系来流量定标。"
+msgstr ""
+
+#: ../../hifast.flux.rst:15 c24bbad171514fefa50b3c6dd43e5676
+msgid "其他参数："
+msgstr ""
+
+#: ../../hifast.flux.rst:17 a01eb0bd615b486dae685c15755d64f6
+msgid "``--cali_fname``\\ ：此参数来指定当天定标源得出的Gain值(定标源的处理还在测试中，后续版本添加)。"
+msgstr ""
+
