@@ -1,8 +1,8 @@
 更新说明
-=======
+===========
 
 v1.1a1
------
+-----------
 
 - hifast.sep 增加处理Power Cal的方法
 - hifast.radec 默认使用astropy来从地平坐标系转换到RA DEC，astropy会考虑UT1-UTC的短期变化，坐标计算与之前的差别会有几个角秒。

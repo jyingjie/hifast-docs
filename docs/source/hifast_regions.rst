@@ -2,8 +2,8 @@
 ===========
 使用CARTA在瀑布图上标记出RFI的区域（region），导出后把文件输入到 ``hifast.rfi`` 中进行标记。
 
-标记区域
----------
+标记区域示例
+-----------
   
   .. figure:: download/regions1.png
     

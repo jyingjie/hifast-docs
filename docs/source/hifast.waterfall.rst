@@ -1,8 +1,8 @@
 瀑布图
 ======================
 
-使用\ `CARTA2.0 <https://carta.readthedocs.io/en/latest/index.html>`__\
---------------
+使用\ `CARTA <https://carta.readthedocs.io/en/latest/index.html>`__\
+-----------------------------------------------------------------------------
 1.  选中hdf5文件中的 ``HDU 0``
   
    .. figure:: download/CARTA_1.png
