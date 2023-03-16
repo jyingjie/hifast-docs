@@ -21,15 +21,15 @@ msgstr ""
 
 #: ../../installation.rst:2 c0eb72edb5ac49ae88172dc1d07f2389
 msgid "安装"
-msgstr ""
+msgstr "Install"
 
 #: ../../installation.rst:5 d4b9e63f497e41159cec79fe65570f19
 msgid "配置环境"
-msgstr ""
+msgstr "Environment"
 
 #: ../../installation.rst:7 eb59283b46e0475891dc04a381619292
 msgid "方法一：用conda配置环境"
-msgstr ""
+msgstr "Method 1: Use conda"
 
 #: ../../installation.rst:9 ffd560fc33a54ea1957be2addb184a10
 msgid ""
