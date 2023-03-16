@@ -52,6 +52,7 @@ rst_prolog = """
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
 
+locale_dirs = ['locale/']
 gettext_uuid = True
 gettext_compact = False
 
