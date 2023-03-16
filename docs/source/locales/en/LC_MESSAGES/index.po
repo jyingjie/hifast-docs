@@ -21,27 +21,27 @@ msgstr ""
 
 #: ../../index.rst:23
 msgid "安装"
-msgstr ""
+msgstr "Installation"
 
 #: ../../index.rst:23
 msgid "流程"
-msgstr ""
+msgstr "flow"
 
 #: ../../index.rst:23
 msgid "成图"
-msgstr ""
+msgstr "Imaging"
 
 #: ../../index.rst:23
 msgid "并行"
-msgstr ""
+msgstr "Parallel"
 
 #: ../../index.rst:23
 msgid "示例"
-msgstr ""
+msgstr "Examples"
 
 #: ../../index.rst:2 d017c86bfe544312a2e805affde4ef50
 msgid "HIFAST"
-msgstr ""
+msgstr "HiFAST"
 
 #: ../../index.rst:6 2484dc3668984dabb5876df9cf846f80
 msgid "此项目目前处于开发中"
