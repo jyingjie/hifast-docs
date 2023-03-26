@@ -52,8 +52,7 @@ hifast.sh 示例
      hifast.sh data/*M01*specs_T.hdf5 -c "python -m hifast.radec |  "
 
 -  hifast.sh 组合 ``hifast.bld`` 和 ``hifast.multi``
-  -------------------------------------------------
-
+  
   -  *commands.par* 内容如下：
 
   ::

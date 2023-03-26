@@ -9,6 +9,8 @@
    hifast.radec
    hifast.flux
    hifast.bld
+   hifast.ref
    hifast.rfi
    hifast.sw
    hifast.multi
+   

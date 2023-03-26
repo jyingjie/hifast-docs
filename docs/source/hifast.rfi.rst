@@ -73,7 +73,7 @@ lf, sf, nr 的搜索原理
 他们三个看似参数复杂，实则都共用了同一个函数/原理。它们的共同参数是：
 
 *  ``lf_frange``, ``sf_frange``: 在此频率区间寻找RFI，即只对这个频率区间做平均。nr则是对所有时间做平均。
-*  ``--lsn_thr_type``: 阈值的选取方法，默认设为 ``input_absmed_times``即使用中值的绝对值作为阈值。
+*  ``--lsn_thr_type``: 阈值的选取方法，默认设为 ``input_absmed_times`` 即使用中值的绝对值作为阈值。
 *  ``--lf_mean_times``, ``--sf_mean_times``, ``--nr_mean_times``: 通过平均后的找到异常谱线/通道所需的阈值
 *  ``--lf_diff_times``, ``--sf_diff_times``, ``--nr_diff_times``: lf的rfi边界平缓(所以设为0).sf和nr边缘一般比较陡峭，所以用平均后谱线的差的绝对值来限定陡峭的为sf/nr，防止标记可能的信号。
 *  ``--lf_rfi_last``, ``--sf_rfi_last``, ``--nr_rfi_width_lim``: rfi的持续时间(条数)/宽度(通道数)，lf通常较宽，nr则非常窄

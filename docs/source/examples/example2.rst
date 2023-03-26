@@ -18,6 +18,7 @@ OnOff观测
   2. 手动去基线，sin拟合驻波。
   
     | 下载: :download:`M1-S2.ipynb <example2/M1-S2.ipynb>`
+
     .. | 查看: `notebook <example2/M1-S2.ipynb>`_
 
   3. 用 `hifast.flux` 流量定标 和 `hifast.multi --fc True` 坐标系修正。
@@ -57,6 +58,7 @@ OnOff观测
 4. 手动去基线
    
    | 下载: :download:`M2-S4.ipynb <example2/M2-S4.ipynb>`
+   
    .. | 查看: `notebook <example2/M2-S4.ipynb>`_
 
 5. `hifast.multi --fc True` 坐标系修正。

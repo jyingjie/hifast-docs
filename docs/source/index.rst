@@ -1,4 +1,4 @@
-HIFAST
+HiFAST
 ===================================
 
 .. note::
@@ -27,8 +27,8 @@ HIFAST
    流程 <flow>
    成图 <imaging>
    并行 <parallel>
-   tools
+   工具 <tools>
    示例 <examples/index>
    changelog
-   help
+   帮助 <help>
 
