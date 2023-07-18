@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'HIFAST'
-copyright = '2021, HIFAST developers'
-author = 'HIFAST developers'
+project = 'HiFAST'
+copyright = '2021--, HIFAST developers'
+author = 'HiFAST developers'
 
 release = ''
 version = ''
