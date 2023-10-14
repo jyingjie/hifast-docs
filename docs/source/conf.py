@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'HiFAST'
-copyright = '2021--, HIFAST developers'
+copyright = '2021-->>>>>>>>>>>, HiFAST developers'
 author = 'HiFAST developers'
 
 release = ''
