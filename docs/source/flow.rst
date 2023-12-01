@@ -1,5 +1,5 @@
-流程
-====
+校准
+-----------
 
 .. toctree::
    :maxdepth: 1
@@ -13,4 +13,13 @@
    hifast.rfi
    hifast.sw
    hifast.multi
+
+
+成图
+--------
+
+.. toctree::
+   :maxdepth: 1
+
+   hifast.cube
    
