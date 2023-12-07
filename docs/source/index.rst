@@ -24,11 +24,10 @@ HiFAST
    :maxdepth: 2
 
    安装 <installation>
+   示例 <examples/index>
    流程 <flow>
-   成图 <imaging>
    并行 <parallel>
    工具 <tools>
-   示例 <examples/index>
    changelog
    帮助 <help>
 

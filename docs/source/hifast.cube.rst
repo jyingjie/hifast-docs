@@ -12,6 +12,7 @@
 ----------------------
 
 1. 输入经过多普勒(坐标系)修正后的谱线文件，文件名字中包含 ``-fc`` 。(目前需要所有文件中的谱线采样时间一致)
+
 2. 读取输入文件的坐标信息，以此生成 ``WCS`` 头文件，即RA-DEC平面网格。网格点的间隔由 ``--bwidth`` 指定。
    默认 ``WCS`` 的RA和DEC范围由输入的文件决定，也可以通过 ``--ra_range`` 和 ``--dec_range`` 指定。
    
@@ -27,17 +28,21 @@
   
         - ``--gaussian_fwhw``: 单位：角分；默认： ``beam_fwhw/2``
         - ``--r_cut``: 此时默认为 ``3*gaussian_sigma``，即 ``3*(gaussian_fwhw/(sqrt(8ln(2))))``
+      
       * ``bessel_gaussian``: 用到参数：
   
         - ``--bsize``: 单位：角分；默认： ``1.55*beam_fwhw/3``
         - ``--gsize``: 单位：角分；默认： ``2.52*beam_fwhw/3``
         - ``--r_cut``: 此时默认为 ``3.8317059702075*bsize/pi``
+      
       * ``sinc_gaussian``: 用到参数：
 
         - ``--bsize``: 单位：角分；默认： ``1.55*beam_fwhw/3``
         - ``--gsize``: 单位：角分；默认： ``2.52*beam_fwhw/3``
         - ``--r_cut``: 此时默认为 ``bsize``
+   
    - ``--frac_finite_min FRAC_FINITE_MIN``: 假设某个格点在 ``r_cut`` 内有 ``n`` 条光谱，如果某个频率（通道）中的 ``finite value`` （非nan且非无穷） 的数量小于 ``FRAC_FINITE_MIN * n``，则该通道的输出值将被设置为 ``nan`` (默认: 1)
+   
    - ``--polar {XX,YY,M}``: 极化 (默认为 ``M`` , 即为合并两个偏振。)
 
 参数
