@@ -1,6 +1,5 @@
-hifast.cube 生成FITS Cube
-=========================
-
+``hifast.cube`` 栅格化生成Data Cube
+=====================================
 
 ``hifast.cube``
 
@@ -8,23 +7,40 @@ hifast.cube 生成FITS Cube
 
    python -m hifast.cube **/data/*-fc*.hdf5 --outname ./test_cubes.fits --bwidth 60 -p SIN
 
--  这里用 ``hifast.cube`` 来生成fits
-   cubes文件，程序先生成格点（WCS），然后找到距离格点中央为\ ``--r_cut``\ 范围内的谱线然后按\ ``--method``\ 处理谱线，最后保存在fits文件里。
--  ``python -m hifast.cube``
 
-   -  后面跟参考系修正后生成的hdf5文件，支持多个文件路径（空格隔开），支持通配符。程序运行后会首先输出要处理的文件路径，请检查无重复无错误。
-   -  ``--outname``: 输出的fits cubes文件路径，需要指定。
-   -  ``--bwidth``: ra dec 分格点时的间隔大小，单位为
-      角秒，默认为60。如果ra和dec采用一样间隔，参数后接一个数字即可，如果不一样，参数后接两个数，空格隔开。ra的间隔在前。
-   -  ``--r_cut``: 考虑距离格点中心r_cut范围内谱线。单位为
-      角秒，默认为90.
-   -  ``--method``: r_cut范围内谱线处理方法。
-     
-      - ``gaussian``: truncated Gaussian kernel.
-      - ``bessel_gaussian``: Bessel*Gaussian kernel
+处理流程
+----------------------
 
-   -  ``--proj``: 投影方式: SIN, AIT, TAN 等
-   -  ``--ra_range``:
-      ra的范围，后接两个数，空格隔开，下限在前，单位为度。默认值为输入文件里ra的最小值和最大值。
-   -  ``--dec_range``: 类似\ ``--ra_range``\ 。
-   -  ``--range3``: 限制第三轴（速度）的范围，类似\ ``--ra_range``\ 。
+1. 输入经过多普勒(坐标系)修正后的谱线文件，文件名字中包含 ``-fc`` 。(目前需要所有文件中的谱线采样时间一致)
+2. 读取输入文件的坐标信息，以此生成 ``WCS`` 头文件，即RA-DEC平面网格。网格点的间隔由 ``--bwidth`` 指定。
+   默认 ``WCS`` 的RA和DEC范围由输入的文件决定，也可以通过 ``--ra_range`` 和 ``--dec_range`` 指定。
+   
+   - ``--type3``： 第三轴： ``vopt``， ``vrad`` 或 ``freq`` (默认: ``vrad``)
+   - ``--range3``： 第三轴的范围 (默认: None)
+   - ``-p``： 天球投影方式。参见 arXiv:astro-ph/0207413，第 7.2 节。投影的选择 (默认: AIT)
+  
+3. “卷积”
+   - ``--r_cut``：每个格点用到的谱线距离其中心的距离在此范围内，单位：角秒。
+   - ``--beam_fwhw``: 望远镜波束大小（全宽半高）；单位：角分 (默认: 2.9)
+   - ``--method``：卷积核类型 ``gaussian``， ``bessel_gaussian`` 或 ``sinc_gaussian`` (默认: ``gaussian``, Mangum et. al. arXiv:0709.0553)
+      * ``gaussian``: 用到参数：
+  
+        - ``--gaussian_fwhw``: 单位：角分；默认： ``beam_fwhw/2``
+        - ``--r_cut``: 此时默认为 ``3*gaussian_sigma``，即 ``3*(gaussian_fwhw/(sqrt(8ln(2))))``
+      * ``bessel_gaussian``: 用到参数：
+  
+        - ``--bsize``: 单位：角分；默认： ``1.55*beam_fwhw/3``
+        - ``--gsize``: 单位：角分；默认： ``2.52*beam_fwhw/3``
+        - ``--r_cut``: 此时默认为 ``3.8317059702075*bsize/pi``
+      * ``sinc_gaussian``: 用到参数：
+
+        - ``--bsize``: 单位：角分；默认： ``1.55*beam_fwhw/3``
+        - ``--gsize``: 单位：角分；默认： ``2.52*beam_fwhw/3``
+        - ``--r_cut``: 此时默认为 ``bsize``
+   - ``--frac_finite_min FRAC_FINITE_MIN``: 假设某个格点在 ``r_cut`` 内有 ``n`` 条光谱，如果某个频率（通道）中的 ``finite value`` （非nan且非无穷） 的数量小于 ``FRAC_FINITE_MIN * n``，则该通道的输出值将被设置为 ``nan`` (默认: 1)
+   - ``--polar {XX,YY,M}``: 极化 (默认为 ``M`` , 即为合并两个偏振。)
+
+参数
+------
+
+使用命令 ``python -m hifast.cube -h | more`` 查看更多参数说明。
