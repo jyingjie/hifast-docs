@@ -19,7 +19,7 @@
 
    - 可交互的 :download:`hifast.sw_example.ipynb <examples/example1/hifast.sw_fft_example-20230309.ipynb>`
 
-   - 不可交互的（适合快速检查）:download:`hifast.sw_example-uninteract.ipynb <examples/example1/hifast.sw_fft_example-uninteract-20230309.ipynb>`
+   - 不可交互的（适合快速检查） :download:`hifast.sw_example-uninteract.ipynb <examples/example1/hifast.sw_fft_example-uninteract-20230309.ipynb>`
 
 参数
 --------
