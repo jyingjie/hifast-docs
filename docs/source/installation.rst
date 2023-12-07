@@ -82,15 +82,19 @@
 
    $ pip uninstall hifast
 
-相关数据下载
+依赖数据
 ------------
+
+.. label-tcal_file:
 
 * 噪音管温度文件:
   
-  下载 Tcal文件夹: https://pan.cstcloud.cn/s/AfnCB96cT2s (备用地址：https://share.weiyun.com/fFynlcX0) 放到你的家目录。
-  如有新的噪音管文件，会一并更新到此链接。
+  下载  `Tcal` 文件夹: https://pan.cstcloud.cn/s/AfnCB96cT2s (备用:https://share.weiyun.com/fFynlcX0) 放到用户家目录。
+.. note:: 
+  噪音管温度文件来自 `链接 <https://fast.bao.ac.cn/cms/category/telescope_performance/noise_diode_calibration_report/>`_, 格式转换后放在上述链接中，会不定期更新。
+
 
  .. code-block:: console
 
   (hifast_env) $ ls ~/Tcal
-  20190115  20200531  20201014
+  20190115  20200531  20201014 ... ...
