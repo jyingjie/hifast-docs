@@ -6,7 +6,7 @@
 处理过程
 --------
    1. FAST的数据中，每个波束被存储为多个文件块，文件名以 ``0001.fits——9999.fits``结尾。本程序只需要输入第一个文件块的路径（例如 ``/proj/20211205/XXX_arcdrift-M02_F_0001.fits``），程序将按顺序读取和处理这些文件。
-   2. 通过使用三个整数参数 ``-d, -m, -n`` 来确定噪音管开关的周期，这三个参数分别代表延迟时间、Cal on时间和Cal off时间除以谱线的采样时间。( :doc:`示例`)
+   2. 通过使用三个整数参数 ``-d, -m, -n`` 来确定噪音管开关的周期，这三个参数分别代表延迟时间、Cal on时间和Cal off时间除以谱线的采样时间。(\ :doc:`示例 <noise_paras>`\ )
    3. 将功率转换为天线温度
    
       .. math::
@@ -61,7 +61,7 @@
            
            .. math::
 
-             \mathrm{AmpDiff_{i}} = \mathrm{SqueezeFreqFun}(P_{\mathrm{cal,i}}(\nu) / P_{\mathrm{cal,merged,smooth}}(\nu))
+             \mathrm{AmpDiff_{i}} = \mathrm{SqueezeFreqFun}(P_{\mathrm{cal,i}}(\nu) / F(\nu)_{\mathrm{smooth}})
              
           
           最后通过插值（ ``--method_interp InterpFun``）得到每条谱线 ``j`` 用到的 :math:`P_{\mathrm{cal}}` :
@@ -78,7 +78,7 @@
            - ``--smooth``: 平滑方法。可以选择 gaussian, poly 或者 mean。需配合\ ``--frange``\ 进行设置。
 
            -  gaussian：适用于频率区间比较大，需要同时加\ ``--s_sigma``\ 参数，频率区间一般大于\ ``s_sigma``\ 的3倍。平滑结果在频率两端可能不太准确(另外hifast.sw用fft方法去驻波时两端效果也会差一些)，
-              可以配合\ ``--ext_frange``\ 参数怎加处理频率范围，或者设置 ``--frange``时使用比科学需要更宽的频率范围，然后在成图前把两端去掉一点。
+              可以配合\ ``--ext_frange``\ 参数怎加处理频率范围，或者设置\ ``--frange``\ 时使用比科学需要更宽的频率范围，然后在成图前把两端去掉一点。
            -  mean:
               适用于频率区间（\ ``--frange``\ ）比较小（至少小于20）。对频率内的所有功率值进行平均。
            -  poly:
@@ -92,7 +92,7 @@
 
 使用命令 ``python -m hifast.sep -h | more`` 查看更多参数。
 
-   - ``-d, -m, -n``: 分别代表延迟时间、Cal on时间和Cal off时间除以谱线的采样时间。可以从观测日志中获得：:doc:`示例`
+   - ``-d, -m, -n``: 分别代表延迟时间、Cal on时间和Cal off时间除以谱线的采样时间。可以从观测日志中获得: :doc:`示例 <noise_paras>`\  。
    -  ``--step`` ：每次读入内存的文件块数量。
    -  ``--frange``\ ：程序提取和处理的频率范围(单位MHz)：后接两个数，分别是频率的下限和上限(需配合\ ``--smooth``\ 来设置)。后面的大部分处理步骤也包含此参数。
    -  ``--ext_frange``\ ：后接True或者False，默认为True。如果为True，并且\ ``--smooth gaussian``\ ，则自动将\ ``frange``\ 前后扩大1个\ ``s_sigma``\ 。例如\ ``--frange 1350 1430``\ 和\ ``--s_sigma 5``\ 实际处理的频率区间为1345Mhz到1435Mhz。
