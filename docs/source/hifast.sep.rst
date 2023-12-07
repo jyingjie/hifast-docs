@@ -20,7 +20,7 @@
      - :math:`T_{\mathrm{cal}}` 使用FAST官方提供的噪音管温度文件。
   
        -  ``--noise_mode``: 观测时用的噪音管强度。high 或 low，默认值 high。
-       -  ``--noise_date``: 选用哪天的噪音温度文件。例如 20190115，参见 :ref:`Tcal数据配置 <_label-tcal_file>` 。
+       -  ``--noise_date``: 选用哪天的噪音温度文件。例如 20190115，参见 :ref:`Tcal数据配置 <label-tcal_file>` 。
                             如果设为 auto，则选取与谱线观测时间最近的噪音温度文件来定标。
 
 
