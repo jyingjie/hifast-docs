@@ -1,103 +1,103 @@
-安装
-=====
+Installation
+============
 
-配置环境
---------
-方法一: 使用离线包配置环境
-   从 https://pan.cstcloud.cn/s/QmkBVYgyRO8 下载 ``hifast_env.XXX.tar.gz`` （XXX为对应的版本号）
-  
-  配置：
+Environment Configuration
+-------------------------
 
-  .. code-block:: console
+* Method 1: Configure Environment Using Offline Package
+   Download ``hifast_env.centos7.x86_64.v1.tar.gz`` (for Most Linux distributions) and (``threadpoolctl-3.1.0-py3-none-any.whl``) from https://pan.cstcloud.cn/s/QmkBVYgyRO8.
 
-   $ mkdir ~/hifast_env
-   $ tar -zxvf hifast_env.XXX.tar.gz -C ~/hifast_env
-   $ source ~/hifast_env/bin/activate
-   (hifast_env) $ conda-unpack
-   (hifast_env) $ source ~/hifast_env/bin/deactivate
-   
-  之后激活环境：
+   Install the environment package (this step is only required once):
 
-  .. code-block:: console
+   .. code-block:: console
 
-   $ source ~/hifast_env/bin/activate
-   
-  移除环境：
-  
-  .. code-block:: console
+      $ mkdir ~/hifast_env
+      $ tar -zxvf hifast_env.centos7.x86_64.v1.tar.gz -C ~/hifast_env
+      $ source ~/hifast_env/bin/activate
+      (hifast_env) $ conda-unpack
+      (hifast_env) $ # install additional package 
+      (hifast_env) $ pip install threadpoolctl-3.1.0-py3-none-any.whl 
+      (hifast_env) $ source ~/hifast_env/bin/deactivate
 
-   (hifast_env) $ source ~/hifast_env/bin/deactivate
+   To activate the environment:
 
-* 方法二：用conda配置环境
+   .. code-block:: console
 
-  如果没有conda，请安装 `miniconda3 <https://docs.conda.io/en/latest/miniconda.html>`_
-  或者 `Miniforge3 <https://github.com/conda-forge/miniforge>`_
+      $ source ~/hifast_env/bin/activate
 
-  使用环境配置文件 :download:`hifast_env.yml <download/hifast_env.yml>`
-  (ARM架构使用 :download:`hifast_env.ARM64.yml <download/hifast_env.ARM64.yml>`)
+   To deactivate the environment:
 
-  * 新建一个环境:
+   .. code-block:: console
 
-     .. code-block:: console
-      
-      $ conda env create -n hifast_env --file hifast_env.yml 
-     
-    ``hifast_env`` 可以修改为其他字符。之后用
+      (hifast_env) $ source ~/hifast_env/bin/deactivate
+
+* Method 2: Environment Configuration with Conda
+   If conda is not installed, install `miniconda3 <https://docs.conda.io/en/latest/miniconda.html>`_
+   or `Miniforge3 <https://github.com/conda-forge/miniforge>`_. 
+   Use the configuration file :download:`hifast_env.yml <download/hifast_env.yml>`
+   (For ARM architecture, use :download:`hifast_env.ARM64.yml <download/hifast_env.ARM64.yml>`).
+
+  * To create a new environment:
 
      .. code-block:: console
 
-        $ conda activate hifast_env
+      $ conda env create -n hifast_env --file hifast_env.yml
 
-    或
+    Replace ``hifast_env`` with a preferred name. Then, activate the environment:
 
      .. code-block:: console
-       
+
+      $ conda activate hifast_env
+
+    Or
+
+     .. code-block:: console
+
        $ source activate hifast_env
-      
-    来切换到对应的环境.
 
-  * 或更新已存在环境:
-  
+  * To update an existing environment:
+
      .. code-block:: console
-      
+
       $ conda env update --file hifast_env.yml -n ENV_NAME
-     
-    替换 ``ENV_NAME`` 为已存在的conda env名字, 如果是主环境，则 ``ENV_NAME`` 为 ``base``
-   
-安装hifast
-----------
 
-获得hifast的安装包(https://pan.cstcloud.cn/s/WD56MPBjTDs), 文件名一般为 ``hifast-XXX.whl`` (XXX为包括版本号的字符；一般不要修改文件名)
-  
-安装:
+    Substitute ``ENV_NAME`` with the name of an existing conda environment. Use ``base`` for the main environment.
+
+Installing hifast
+-----------------
+
+Download the hifast installation package from `<https://pan.cstcloud.cn/s/IfTYaVysS6k>`_. 
+The file is typically named ``hifast-XXX.whl`` (XXX represents the version number; avoid altering the file name).
+
+To install:
 
   .. code-block:: console
 
-   # 请替换 hifast-XXX.whl 为下载的安装包文件名
-   $ python -m pip install hifast-XXX.whl --upgrade
+   (hifast_env) $ # Replace hifast-XXX.whl with the actual file name of the downloaded package
+   (hifast_env) $ python -m pip install hifast-XXX.whl --upgrade
 
-卸载:
-  
+To uninstall:
+
   .. code-block:: console
 
-   $ pip uninstall hifast
+   (hifast_env) $ python -m pip uninstall hifast
 
-依赖数据
-------------
+Data Dependencies
+-------------------
 
 .. _label-tcal_file:
 
-* 噪音管温度文件:
-  
-  下载  `Tcal` 文件夹: https://pan.cstcloud.cn/s/AfnCB96cT2s (备用:https://share.weiyun.com/fFynlcX0) 放到用户家目录。
-  
+* Noise diode temperature File:
+
+  Download the `Tcal` folder from https://pan.cstcloud.cn/s/AfnCB96cT2s (alternative link: https://share.weiyun.com/fFynlcX0) and place it in your home directory.
+
   .. code-block:: console
 
      (hifast_env) $ ls ~/Tcal
      20190115  20200531  20201014 ... ...
-  
-  .. note:: 
-    噪音管温度文件来自 `链接 <https://fast.bao.ac.cn/cms/category/telescope_performance/noise_diode_calibration_report/>`_, 格式转换后放在上述链接中，会不定期更新。
 
+  .. note::
 
-
+     The Noise diode temperature Files are sourced from 
+     `this link <https://fast.bao.ac.cn/cms/category/telescope_performance/noise_diode_calibration_report/>`_ 
+     and are regularly updated after format conversion.

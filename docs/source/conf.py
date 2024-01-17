@@ -2,6 +2,11 @@
 
 # -- Project information
 
+import os
+import sys
+
+sys.path.append(os.path.abspath("./_ext"))
+
 project = 'HiFAST'
 copyright = '2021-->>>>>>>>>>>, HiFAST developers'
 author = 'HiFAST developers'
@@ -17,7 +22,8 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
-#    'nbsphinx',
+    'dirlist',
+    'nbsphinx',
 ]
 
 
@@ -34,6 +40,16 @@ templates_path = ['_templates']
 html_theme = 'sphinx_rtd_theme'
 
 html_static_path = ['_static',]
+
+# will be put in :/
+html_extra_path = ['_files/']
+exclude_patterns = ['_build', '_files/**', '**/RAW_data']
+# "ln -s _files/files files" for dirlist
+
+# for nbsphinx
+html_sourcelink_suffix = ''
+
+
 html_css_files = [
     'css/custom.css',
 ]
@@ -51,7 +67,7 @@ rst_prolog = """
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
-language = 'zh'
+language = 'en'
 locale_dirs = ['locales/']
 gettext_uuid = True
 gettext_compact = False

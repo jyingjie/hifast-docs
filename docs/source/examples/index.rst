@@ -1,6 +1,8 @@
-示例
-====
+Examples
+=========
 
 .. toctree::
+    :maxdepth: 1
+    
     example1
     example2

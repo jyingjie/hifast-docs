@@ -1,31 +1,31 @@
-瀑布图
-======================
+Waterfall Plot
+==============
 
-使用\ `CARTA <https://carta.readthedocs.io/en/latest/index.html>`__\
+Using CARTA
 -----------------------------------------------------------------------------
-1.  选中hdf5文件中的 ``HDU 0``
-  
+1. Select ``HDU 0`` (or ``HDU Waterfall`` depended on hifast version) in the hdf5 file
+
    .. figure:: download/CARTA_1.png
 
-2. 如下图
-   
+2. As shown in the following image
+
    .. figure:: download/CARTA_2.png
 
 hifast.waterfall
------------------
-``hifast.waterfall``: 画瀑布图保存成pdf
+----------------
+``hifast.waterfall``: Create a waterfall plot and save as a PDF
 
--  示例
+- Example
 
   .. code-block:: bash
 
       python -m hifast.waterfall data_S/M33_OTF_1_MultiBeamOTF-M*_W-XXX-specs_T-flux.hdf5
 
--  输入hifast处理过程中生成的hdf5文件，可用通配符指定多个文件。
--  主要参数：
+- Input hdf5 files generated during the hifast processing, multiple files can be specified using wildcards.
+- Key parameters:
 
-   -  ``-s``\ ：默认情况是把输入的文件分组，把同一天观测的19波束文件画到一张图上输出。
-      加 ``-s`` 后每个文件单独画一张图保存在文件里。
-   -  ``--vmin, --vmax``：图中colormap所用的数据区间。可以指定一个数字，也可以指定百分比。默认设置为
-      ``--vmin per0.01 --vmax per95``。
-   -  ``--interpolation``：即为plt.imshow里的参数。
+   - ``-s``\ ：By default, the input files are grouped, and the 19 beams observed on the same day are plotted on one chart for output.
+      Adding ``-s`` will draw each file separately and save it in the file.
+   - ``--vmin, --vmax``: The data range used for the colormap in the chart. You can specify a number or a percentage. The default setting is
+      ``--vmin per0.01 --vmax per95``.
+   - ``--interpolation``: This is the parameter for plt.imshow

@@ -1,12 +1,9 @@
-``hifast.*`` 通用参数
-=====================
+``hifast.<subcommand>`` General Parameters
+==============================================
 
--  大部分 ``hifast`` 的命令，例如 ``hifast.xxx`` 可以在终端中使用 ``python -m hifast.xxx`` 命令来执行，后面需要跟上文件路径和\ ``-``\ 加一个字母或\ ``--``\ 加多个字符的参数。
--  若要查看所有参数的说明，可以使用 ``python -m hifast.xxx -h | more`` 命令。
--  生成的中间文件通常为 hdf5 格式，在终端中执行以下命令可以查看生成该文件时所使用的命令和参数：
-   
-   -  ``h5dump -g /Header XXX.hdf5``
-   -  ``h5ls -r XXX.hdf5``
-  
-   这两个命令分别用于显示文件的命令和参数信息以及文件中包含的内容。
+- Most ``hifast`` commands, used as ``hifast.<subcommand>``, can be executed in the terminal with the command ``python -m hifast..<subcommand>``. This should be followed by the file path, and parameters prefixed with either a single dash ``-`` and a letter, or two dashes ``--`` and a string.
+- To access a comprehensive description of all available parameters, use the command ``python -m hifast.xxx -h | more``.
+- The intermediate files generated are typically in hdf5 format. To view the specific commands and parameters used for creating these files, execute the following terminal commands:
 
+  - ``h5dump -g /Header /path_to_file/obs-M01-specs_T.hdf5``: Displays the command and parameter details of the file.
+  - ``h5ls -r /path_to_file/obs-M01-specs_T.hdf5``: Lists the contents of the file in detail.

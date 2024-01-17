@@ -1,4 +1,4 @@
-校准
+Calibration 
 -----------
 
 .. toctree::
@@ -15,7 +15,7 @@
    hifast.multi
 
 
-成图
+Imaging 
 --------
 
 .. toctree::

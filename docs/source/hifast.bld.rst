@@ -1,85 +1,87 @@
-``hifast.bld`` 基线扣除
-=======================
+``hifast.bld`` Baseline fitting
+====================================
 
-``hifast.bld`` 模块用于拟合和扣除基线（**b**\ ase\ **l**\ ine\ **d**）。
+The ``hifast.bld`` module is designed for fitting and subtracting baselines.
 
-这个过程是将除信号外的其他成分作为基线进行拟合和扣除。通常基线比信号更“平滑”，因此可以使用 PLS、多项式等方法来拟合基线。
-在拟合基线时，需要排除信号区域，这里采用迭代调整每个数据点的权重来使得信号区域的权重为0或者很小。噪音会影响基线拟合的效果，因此需要通过预处理来降低噪音。
+This process involves fitting and subtracting a baseline, considering all components other than the signal. Baselines are typically "smoother" than signals, 
+thus methods like PLS and polynomials can be employed for fitting. 
+During baseline fitting, signal regions are excluded by iteratively adjusting the weights of each data point to make them zero or very small in the signal areas. 
+Noise can impact the quality of baseline fitting. Therefore, optional preprocessing is provided to reduce this effect.
 
-因此，这一步的流程为 预处理-->迭代拟合出基线后扣减-->后处理（可选，取决于预处理）。输出文件名会包含 ``-bld`` 或者 ``-bld_p``。
+The workflow is: Preprocessing --> Iterative Fitting and Subtraction of Baseline --> Post-processing (optional, depends on preprocessing). 
+The output filename will include ``-bld`` or ``-bld_p``.
 
-处理流程
-----------------
+Workflow
+--------
 
-预处理
-^^^^^^^^^^^^^^
+Preprocessing
+^^^^^^^^^^^^^
 
 .. note::
 
-   预处理后的谱线只用于拟合基线，然后再用原始谱线减去基线，因此不会影响原始谱线。
+   The spectrum after preprocessing is used only for fitting the baseline. The original spectrum is then used for baseline subtraction, thus preserving the original spectrum.
 
-预处理包括沿时间轴和沿频率方向两种操作。
+Preprocessing involves operations along both the time axis and frequency direction:
 
-   -  | 沿时间轴对每个 *channel* (*frequency sample*)操作（开启后可能需加后处理）
-      | 包括合并谱线 ``--njoin`` 和平滑 ``--s_method_t`` 两种方法，通常只使用其中一种。 ``--njoin`` 减少了要拟合的基线数量，能节省拟合基线的时间。
-      | 适用于基线在合并或者平滑的这个时间范围内比较稳定的情况。通常可以再进行后处理，用低阶多项式再次去基线来修正整体幅度的变化。
-      -  ``--njoin``: 多少条谱线合并处理来拟合基线。
-      -  ``--s_method_t``: 沿时间轴平滑的方法；可选 ``median``, ``gaussian``, ``boxcar``；
-         需配合 ``--s_sigma_t`` 参数。
-      -  ``--s_sigma_t``: 平滑尺度，单位为谱线数。
+   -  | Along the time axis for each *channel* (*frequency sample*) (post-processing may be required if enabled)
+      | Includes merging of spectral lines ``--njoin`` or smoothing ``--s_method_t``, typically using only one of these methods. (``--njoin`` reduces the number of baselines to be fitted, saving time.)
+      | Suitable for scenarios where the baseline is stable over the merged or smoothed time range. Post-processing can be done using a low-order polynomial for further baseline correction.
+      
+      -  ``--njoin``: Number of spectral lines to merge for baseline fitting.
+      -  ``--s_method_t``: Smoothing method along the time axis; options include ``median``, ``gaussian``, ``boxcar``; to be used with ``--s_sigma_t``.
+      -  ``--s_sigma_t``: Smoothing scale, in terms of the number of spectral lines.
 
-   -  | 沿频率轴对每条谱线（通常开启）
-      | 通常只需要以下的一种。
-      -  ``--s_method_freq``: 每条谱线沿频率轴平滑以提高信噪比，可选 ``gaussian``, ``boxcar``；
-         配合 ``--s_sigma_freq``。
-      -  ``--s_sigma_freq``: 平滑尺度，单位为采样点数量。一般W带可设为3, F和N带可设为48。
-      -  ``--average_every_freq``: 沿频率轴每多少个采样点进行平均从而降低频率采样提高信噪比。
+   -  | Along the frequency axis for each spectra line (usually enabled).
+      | Includes merging of channels ``--average_every_freq`` or smoothing ``--s_method_freq``, typically using only one of these methods.
+      
+      -  ``--s_method_freq``: Smoothing each spectral line along the frequency axis; options include ``gaussian``, ``boxcar``; used with ``--s_sigma_freq``.
+      -  ``--s_sigma_freq``: Smoothing scale, in terms of the number of sample points. Generally, set to 3 for W band, and 48 for F and N bands.
+      -  ``--average_every_freq``: Average every certain number of sample points along the frequency axis.
+   
+   -  ``--frange``:
+      Limits to this frequency range for the spectral lines. Followed by two numbers, space-separated, lower limit first.
+      A larger range increases fitting time, and the increase is not linear.
 
-迭代拟合基线
-^^^^^^^^^^^^^^^^^^^
+Iterative Baseline Fitting
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   -  | ``--method``: 拟合方法
+   -  | ``--method``: Fitting method
       | ``arPLS``, ``srPLS``, 
       | ``PLS-asym1``, ``PLS-asym2``, ``PLS-asym3``, ``PLS-sym1``,
-      | ``poly-asym1``, ``poly-asym2``, ``poly-asym3``, ``poly-sym1``
-      | 以上方法名字中包含 ``-`` 的前半段代表拟合的函数，后半段代表迭代过程中权重调整方法。（ ``PLS-asym1`` 即为 ``arPLS``）。
-      | 前半段有 ``PLS`` 或者 ``poly`` （多项式），其中多项式拟合，适用于基线比较简单的情况，例如减去参考点(off-source)谱线后
-        残余基线和连续谱的扣除。
-      | 后半段有 ``asym1``, ``asym2``, ``asym3`` 的都假设信号位于基线一侧，三种都有可能造成信号两侧基线过高的情况，
-        可配合 ``--exclude_add`` 缓解。
-        ``sym1`` 并不假设信号位于某一侧，但也因为少了这个先验信息，基线拟合效果可能不如 ``asym``。
-   -  ``--lam``: ``PLS`` 方法时的参数。调整平滑度，越大越接近低阶多项式(poly)拟合。
-   -  ``--deg``: ``PLS`` 时取2即可； ``poly`` 时为多项式阶数，例如 ``--deg 1`` 为线性拟合。
-   -  ``--niter``：迭代次数，用于排除“信号”区域来寻找基线。默认即可。
-   - ``--exclude_add``: 缓解信号两侧基线可能过高的情况。 ``none``, ``auto1`` 或 ``auto2``
-   -  ``--nproc``: 后接一个数，使用多少个进程来并行。
-   -  ``--frange``\ ：
-      只用这个频率范围内谱线。后接两个数，空格隔开，下限在前。
-      范围越大，拟合用时越长，并且不是线性增长。
+      | The prefix in the method names (before ``-``) represents the fitting function, and the suffix indicates the weight adjustment method during iteration (e.g., ``PLS-asym1`` is the same as ``arPLS``).
+      | ``PLS`` or ``poly`` (polynomial) are prefixes, with polynomial fitting suitable for simple baselines, such as subtracting off-source spectral lines or continuous spectra.
+      | Suffixes ``asym1``, ``asym2``, ``asym3`` assume the signal is on one side of the baseline, which can cause the baseline on both sides of the signal to be elevated. Use ``--exclude_add`` to alleviate this.
+        ``sym1`` does not assume the signal is on a specific side, but might be less effective than ``asym`` due to the lack of this prior information.
+   -  ``--lam``: Parameter for ``PLS`` method. Adjusts the smoothness; larger values are closer to low-order polynomial (poly) fitting.
+   -  ``--deg``: For ``PLS``, use 2; for ``poly``, it's the polynomial order, e.g., ``--deg 1`` for linear fitting.
+   -  ``--niter``: Number of iterations for excluding "signal" areas to find the baseline. Default is usually sufficient.
+   -  ``--exclude_add``: Alleviates potential elevation of the baseline around the signal. Options: ``none``, ``auto1``, or ``auto2``.
+   -  ``--nproc``: Number of processes to use for parallel processing.
+   
 
-后处理
-^^^^^^^^^^^^^^^^^^^^^^
+Post-processing
+^^^^^^^^^^^^^^^
 
-只有在预处理时开启了 ``--njoin`` 或者 ``--s_method_t`` 才需要。后处理用低阶多项式再次去基线，也可以把输出文件再次输入 ``hifast.bld`` 模块来替代。
+Required only if ``--njoin`` or ``--s_method_t`` was enabled in preprocessing. Post-processing involves using a low-order polynomial for further baseline correction, or the output file can be input again into the ``hifast.bld`` module as a substitute.
 
-- ``--post_method``: ``none``, ``poly-asym1``, ``poly-asym2``, ``poly-asym3``, ``poly-sym1``。默认是 ``none``。
+- ``--post_method``: Options include ``none``, ``poly-asym1``, ``poly-asym2``, ``poly-asym3``, ``poly-sym1``. The default is ``none``.
 - ``--post_s_method_freq``: 
 - ``--post_s_sigma_freq``: 
 - ``--post_average_every_freq``: 
-- ``--post_deg``: 多项式阶数，不宜过大。
+- ``--post_deg``: Polynomial order; should not be too high.
 - ``--post_ratio``: 
 - ``--post_niter``:
 - ``--post_exclude_add``: 
 
-JupyterLab中交互调参
-------------------------------
-   -  ``-i``: 执行交互模式
-   -  ``--length``: 每次用多少条谱线来测试，默认20
-   -  ``--figsize``: 输出图片大小，为matplotlib中的参数。
+Interactive Parameter Tuning in JupyterLab
+----------------------------------------------
+   -  ``-i``: Activate interactive mode.
+   -  ``--length``: Number of spectral lines to test at a time, default is 20.
+   -  ``--figsize``: Output figure size, a parameter in matplotlib.
 
-   同时\ ``--nproc``\ 和\ ``--frange``\ 在这一模式中也支持.
+   ``--nproc`` and ``--frange`` are also supported in this mode.
 
-参数
-------
+Parameters
+----------
 
-使用命令 ``python -m hifast.bld -h | more`` 查看更多参数说明。
+Use the command ``python -m hifast.bld -h | more`` for more parameter details. 

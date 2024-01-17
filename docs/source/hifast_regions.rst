@@ -1,37 +1,37 @@
-手动标记RFI 
-===============
-使用CARTA在瀑布图上标记出RFI的区域（region），导出后把文件输入到 ``hifast.rfi`` 中进行标记。
+Manually Masking RFI
+====================
+Use CARTA to mask the RFI areas (regions) on the waterfall plot, then export and input the file into ``hifast.rfi`` for masking.
 
-标记区域示例
--------------
-  
+Example of masking Areas
+------------------------
+
   .. figure:: download/regions1.png
     
-    标记形状示例。
+    Example of masking shapes.
 
   .. figure:: download/regions2.png
     
-    Mask效果。白色区域代表被替换为nan。
+    Mask effect. White areas represent those replaced with nan.
 
-  用CARTA打开去过基线的谱线数据，如图。目前支持的区域形状有两种：
+  Open the baseline-subtracted spectral line data with CARTA, as shown in the figure. Currently supported region shapes include:
 
-  - 方形（Rectangle）：区域内谱线会被标记
-  - 线段（line）：（CART v3.0版本支持）图中展示了水平和垂直两种，分别用来标记整个频率区间或者整条谱线。
-    操作时线段无需画得完全水平或者垂直，可以稍有倾斜角度。（注：示例图中被线段标记的并不是RFI，只是为了展示效果。）
+  - Rectangle: Spectral lines within the area will be masked.
+  - Line: (Supported in CARTA v3.0) The figure shows both horizontal and vertical lines, used to mask the entire frequency range or an entire spectral line.
+    When operating, the line does not need to be perfectly horizontal or vertical, a slight tilt is acceptable. (Note: The lines masked in the example are not RFI, they are just for demonstration purposes.)
   
-  在CARTA中通过放大和拖动来更好定位需要标记的区域，然后在CARTA的 Z Profile 里切换到另外一个偏振继续标记。
+  Use zoom and drag in CARTA to better locate the area to be masked, then switch to another polarization in CARTA's Z Profile to continue masking.
 
-导出标记区域到文件
----------------------
+Exporting masked Areas to a File
+--------------------------------
 
-  - 方法一：File --> Export regions --> 导出文件格式选 DS9 & Pixel，
-    文件名推荐使用谱线的文件名加上".reg"后缀，例如 ``XXX-bld.hdf5.reg``
-  - 方法二：使用下面的Snippets代码（CART v3.0版本支持：Preference --> Global --> Enable Code Snippets）
+  - Method 1: File --> Export regions --> Choose DS9 & Pixel as the export file format,
+    the file name is recommended to use the spectral line's file name with a ".reg" suffix, for example, ``XXX-bld.hdf5.reg``
+  - Method 2: Use the following Snippets code (Supported in CARTA v3.0: Preference --> Global --> Enable Code Snippets)
     
     .. code-block:: javascript
 
-        let dir=app.activeFrame.frameInfo.directory;
-        let fname=app.activeFrame.frameInfo.fileInfo.name + '.reg';
+        let dir = app.activeFrame.frameInfo.directory;
+        let fname = app.activeFrame.frameInfo.fileInfo.name + '.reg';
 
         app.fileBrowserStore.exportCoordinateType = 0;
         app.fileBrowserStore.exportFileType = 2;
@@ -41,26 +41,26 @@
         await app.exportRegions(dir, fname, app.fileBrowserStore.exportCoordinateType,
         app.fileBrowserStore.exportFileType, app.fileBrowserStore.exportRegionIndexes);
 
-导出的文件输入到 ``hifast.rfi``
------------------------------------
+Input the Exported File into ``hifast.rfi``
+-------------------------------------------
 
-使用 ``--reg_from`` 参数来指定上一步导出的文件。
+Use the ``--reg_from`` parameter to specify the file exported in the previous step.
 
-``--reg_from default`` 自动查找同目录下对应的 ``XXX-bld.hdf5.reg`` 文件：
+``--reg_from default`` automatically searches for the corresponding ``XXX-bld.hdf5.reg`` file in the same directory:
 
 .. code-block:: bash
 
   python -m hifast.rfi XXX-bld.hdf5 --reg_from default
 
-或者指定其他路径
+Or specify another path:
 
 .. code-block:: bash
 
   python -m hifast.rfi XXX-bld.hdf5 --reg_from XXX.reg
 
-其他
--------
-  可能有用的CARTA设置
+Other
+-----
+  Useful CARTA Settings
   
-  -  Preference --> Region --> Create Mode
-  -  Preference --> Region --> Line Witdth
+  - Preference --> Region --> Create Mode
+  - Preference --> Region --> Line Width

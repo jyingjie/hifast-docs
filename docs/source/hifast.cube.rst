@@ -1,51 +1,63 @@
-``hifast.cube`` 栅格化生成Data Cube
+``hifast.cube`` Data Cube regridding
 =====================================
 
 ``hifast.cube``
 
 ::
 
-   python -m hifast.cube **/data/*-fc*.hdf5 --outname ./test_cubes.fits --bwidth 60 -p SIN
+   python -m hifast.cube **/data/*-fc*.hdf5 --outname ./test_cubes.fits --bwidth 60 -p SIN --method gaussian
 
 
-处理流程
+Workflow
 ----------------------
 
-1. 输入经过多普勒(坐标系)修正后的谱线文件，文件名字中包含 ``-fc`` 。(目前需要所有文件中的谱线采样时间一致)
+1. Input files containing spectra corrected for Doppler (coordinate system) shifts,
+   identified by ``-fc`` in their filenames. (For now, all files need have the same
+   spectral sampling times.)
 
-2. 读取输入文件的坐标信息，以此生成 ``WCS`` 头文件，即RA-DEC平面网格。网格点的间隔由 ``--bwidth`` 指定。
-   默认 ``WCS`` 的RA和DEC范围由输入的文件决定，也可以通过 ``--ra_range`` 和 ``--dec_range`` 指定。
+2. Read the input files' coordinates to create a ``WCS`` header, forming the
+   RA-DEC grid. Grid point spacing is set by ``--bwidth``.
+   By default, the ``WCS`` RA and DEC range is defined by the input files, but
+   can also be set using ``--ra_range`` and ``--dec_range``.
    
-   - ``--type3``： 第三轴： ``vopt``， ``vrad`` 或 ``freq`` (默认: ``vrad``)
-   - ``--range3``： 第三轴的范围 (默认: None)
-   - ``-p``： 天球投影方式。参见 arXiv:astro-ph/0207413，第 7.2 节。投影的选择 (默认: AIT)
+   - ``--type3``: The third axis: ``vopt``, ``vrad``, or ``freq`` (default: ``vrad``)
+   - ``--range3``: Third axis range (default: None)
+   - ``-p``: Celestial projection method. See arXiv:astro-ph/0207413, section 7.2,
+     for choices (default: AIT)
+   - ``--wcs_ra_center``, ``--wcs_dec_center``: manually set "CRVAL1" and "CRVAL2" in ``WCS`` header.
   
-3. “卷积”
-   - ``--r_cut``：每个格点用到的谱线距离其中心的距离在此范围内，单位：角秒。
-   - ``--beam_fwhw``: 望远镜波束大小（全宽半高）；单位：角分 (默认: 2.9)
-   - ``--method``：卷积核类型 ``gaussian``， ``bessel_gaussian`` 或 ``sinc_gaussian`` (默认: ``gaussian``, Mangum et. al. arXiv:0709.0553)
-      * ``gaussian``: 用到参数：
-  
-        - ``--gaussian_fwhw``: 单位：角分；默认： ``beam_fwhw/2``
-        - ``--r_cut``: 此时默认为 ``3*gaussian_sigma``，即 ``3*(gaussian_fwhw/(sqrt(8ln(2))))``
+3. "Convolution"
+   - ``--r_cut``: The range within which spectral lines contribute to each grid point, in arcseconds.
+   - ``--beam_fwhw``: Beam size (FWHM); unit: arcminutes (default: 2.9)
+   - ``--method``: Convolution kernel types: ``gaussian``, ``bessel_gaussian``, or ``sinc_gaussian`` (default: ``gaussian``, Mangum et al., arXiv:0709.0553)
       
-      * ``bessel_gaussian``: 用到参数：
+      * ``gaussian``: Used parameters:
   
-        - ``--bsize``: 单位：角分；默认： ``1.55*beam_fwhw/3``
-        - ``--gsize``: 单位：角分；默认： ``2.52*beam_fwhw/3``
-        - ``--r_cut``: 此时默认为 ``3.8317059702075*bsize/pi``
+        - ``--gaussian_fwhw``: Unit: arcminutes; default: ``beam_fwhw/2``
+        - ``--r_cut``: Defaults to ``3*gaussian_sigma``, i.e., 
+          ``3*(gaussian_fwhw/(sqrt(8ln(2))))``
       
-      * ``sinc_gaussian``: 用到参数：
+      * ``bessel_gaussian``: Used parameters:
+  
+        - ``--bsize``: Unit: arcminutes; default: ``1.55*beam_fwhw/3``
+        - ``--gsize``: Unit: arcminutes; default: ``2.52*beam_fwhw/3``
+        - ``--r_cut``: Defaults to ``3.8317059702075*bsize/pi``
+      
+      * ``sinc_gaussian``: Used parameters:
 
-        - ``--bsize``: 单位：角分；默认： ``1.55*beam_fwhw/3``
-        - ``--gsize``: 单位：角分；默认： ``2.52*beam_fwhw/3``
-        - ``--r_cut``: 此时默认为 ``bsize``
+        - ``--bsize``: Unit: arcminutes; default: ``1.55*beam_fwhw/3``
+        - ``--gsize``: Unit: arcminutes; default: ``2.52*beam_fwhw/3``
+        - ``--r_cut``: Default is ``bsize``
    
-   - ``--frac_finite_min FRAC_FINITE_MIN``: 假设某个格点在 ``r_cut`` 内有 ``n`` 条光谱，如果某个频率（通道）中的 ``finite value`` （非nan且非无穷） 的数量小于 ``FRAC_FINITE_MIN * n``，则该通道的输出值将被设置为 ``nan`` (默认: 1)
+   - ``--frac_finite_min FRAC_FINITE_MIN``: For a grid point with ``n`` spectra
+     within ``r_cut``, if the count of ``finite value`` (neither nan nor infinite)
+     at a channel (frequency sampling) is below ``FRAC_FINITE_MIN * n``, the output for
+     that channel is set as ``nan`` (default: 1)
    
-   - ``--polar {XX,YY,M}``: 极化 (默认为 ``M`` , 即为合并两个偏振。)
+   - ``--polar {XX,YY,M}``: Polarization choice (default is ``M``, merging both
+     polarizations.)
 
-参数
-------
+Parameters
+--------------
 
-使用命令 ``python -m hifast.cube -h | more`` 查看更多参数说明。
+To view more parameter details, use ``python -m hifast.cube -h | more``.

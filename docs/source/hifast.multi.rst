@@ -1,25 +1,25 @@
-``hifast.multi`` 坐标系修正等
-===============================
+``hifast.multi`` Multi-step Operations (Doppler Correction, etc)
+==========================================================================
 
-``hifast.multi``：静止坐标系（frame）修正等
+``hifast.multi``: Multi-step Operations (Doppler Correction, etc)
 
--  示例：
+-  Example:
 
    ::
 
        python -m hifast.multi XXX.hdf5 --fc True --frame LSRK
 
--  参数
+-  Parameters
 
-   -  ``--fc``\ 从望远镜所在的地平参考系修正到太阳或者LSR为中心的参考系。
+   -  ``--fc``\ Corrects from the Topocentric reference frame of the telescope to a reference frame centered on the Sun or LSR.
 
       ``--fc True``
 
-      -  ``--frame``: 参考系选择，HELIOCEN 或者 LSRK
+      -  ``--frame``: Choice of reference frame, either HELIOCEN or LSRK.
 
    -  ``--replace_rfi``:
-      如果设为True并且输入文件中存在is_rfi，则会把rfi的值替换为nan。默认为True
+      If set to True and is_rfi exists in the input file, the value of rfi will be replaced with nan. Default is True.
 
-   -  ``--merge_polar``: 如果设为True，合并两个偏振。默认为True
+   -  ``--merge_polar``: If set to True, merge the two polarizations. Default is True.
 
--  输出文件名根据输入参数改变，可能包含 fc
+-  Output filename changes based on input parameters, may include -fc

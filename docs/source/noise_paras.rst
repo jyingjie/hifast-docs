@@ -1,11 +1,19 @@
-噪音管参数示例：
+Example for Noise diode Parameters:
+
   .. figure:: download/noise_paras.png
      
-     观测日志截图
+     Screenshot of Observation Log
+     
+  .. figure:: download/noise_paras-en.png
+     
+     Screenshot of Observation Log
 
-  从观测日志里可以读出 Delay时间、Cal On时间和Cal Off时间 分别是 251658240, 251658240 和 3523215360, 它们的单位都是 ``4ns`` (纳秒)。
-  而采样时间为0.5s，这里的单位实际是 ``251658240 * 4ns``, 所以采样时间实际为 0.5*(251658240*4ns)。
-  因此
+  From the observation log, the Delay time, Cal On time, and Cal Off time 
+  can be read as 251658240, 251658240, and 3523215360, respectively. 
+  Their unit is ``4ns`` (nanoseconds).
+  The sampling time is 0.5s, so the actual unit here is ``251658240 * 4ns``, 
+  meaning the actual sampling time is 0.5*(251658240*4ns).
+  Therefore:
 
   - `-d`:  251658240*4ns / (0.5*(251658240*4ns)) = 2
   - `-m`:  251658240*4ns / (0.5*(251658240*4ns)) = 2

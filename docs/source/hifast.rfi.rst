@@ -1,9 +1,9 @@
-``hifast.rfi`` 标记RFI
-====================
+``hifast.rfi`` RFI flagging
+============================
 
-``hifast.rfi`` : 标记RFI
+``hifast.rfi``: Identify the RFI and store the flag as ``is_rfi`` in the output file. 
 
-示例
+Examples
 ---------
 
    .. code-block:: bash
@@ -11,82 +11,89 @@
       fname=XXX-bld.hdf5
       python -m hifast.rfi $fname --nr True --sf True --lf False --all_beams False
 
--  输入去完基线得到的文件。目前不能好处理频率在1155到1295MHz之间的RFI。
+-  Input: Files after baseline removal. (Cannot process RFI in the 1155 to 1295MHz range effectively.)
 
--  输出文件名中包含 ``-rfi``。
+-  Output filenames include ``-rfi``.
 
--  示例Notebook：:download:`hifast.rfi_example.ipynb <examples/example1/hifast.rfi_example-20230309.ipynb>`
+-  Example Notebook: :download:`hifast.rfi_example.ipynb <examples/example1/hifast.rfi_example-20230309.ipynb>`
 
 
-RFI类型参数与优先顺序
--------------------------
+Parameters for different type RFI
+----------------------------------
 
-- 主要参数:
-   一般来说优先选用 ``--nr``, ``--sf``, 谨慎使用 ``--pr``，非低赤纬不要使用 ``--lf``
-- 通用参数：
-   -  ``--replace_rfi``: 是否将输出的RFI设为NAN
+- Main parameters:
+   Prefer ``--nr``, ``--sf``; use ``--pr`` with caution; avoid ``--lf`` if Dec is not low.
 
+- Common parameters:
+   -  ``--replace_rfi``: Set detected RFI as nan in spetra data (T or flux), instead of storing their flags in ``is_rfi``.
+  
    -  ``--rms_frange``:
-      计算rms用的频率范围，选一个没有信号和干扰范围。
-      例如\ ``--rms_frange 1400 1410``。不指定则会尝试自动判定。
-      ``--nr``, ``--sf`` 为True时需要此参数。
+      The frequency range for calculating rms, choose a range free of signals and interference.
+      For example, ``--rms_frange 1400 1410``. If not specified, it will try to determine automatically.
+      This parameter is needed when ``--nr``, ``--sf`` are True.
+   
    -  ``--mw_frange``:
-      一个大致的银河系范围，防止把它当成RFI
+      A rough range for the Milky Way, to prevent mistaking it for RFI.
 
    -  ``--all_beams``: 
-      将19波束做一个平均，更容易找出19波束同时存在的RFI。目前用于``--sf``和人工标记环节。
-      *请注意*， ``all_beams=True`` 时 *不要使用波束并行* ，建议先对M01单独处理，这样会生成'xxx-M01-xxx-19rfi.hdf5'后缀的文件(可能比较慢)，后续的处理会直接应用19rfi文件。
-      如果用了并行，则会产生大量的19rfi文件，后续的处理则会 *报错* (因为当前输出路径下只应该有一个19rfi文件)。 *所以如果不熟悉此功能的话请谨慎使用。*
- 
+      Average the 19 beams, making it easier to identify RFI present in all beams. Currently used for ``--sf`` and manual marking stages.
+      *Please note*, when ``--all_beams True``, *do not use beam parallel processing*. It's recommended to first process *M01* separately, generating files with suffix 'xxx-M01-xxx-19rfi.hdf5' (this may be slow). Subsequent processing will directly apply the 19rfi file.
+      If parallel processing is used, it will generate a large number of 19rfi files, and subsequent processing will *fail* (because there should only be one 19rfi file in the current output path). *Therefore, if you are not familiar with this function, please use it with caution.*
 
-- RFI类别以及优先级顺序：
+- RFI categories and priority order:
    .. figure:: download/rfi.png
 
-       RFI示意图。
+       RFI illustration.
 
-   #. 人工标记的RFI
-   #. ``lf``: Long-freq time RFI. 类似于上图中频率范围很大的时域RFI，可能是卫星。
-   #. ``sf``: Short-freq time RFI. 类似于上图中1380MHz的频率范围很小的时域RFI，主要是GPS。
-   #. ``tr``: Time domain continuous RFI. 时域上连续出现的RFI。最早为8MHz的RFI设计，可能标记不全，现在 *不推荐使用* 了。
-   #. ``nr``: Narrowband single channel RFI. 单通道频域RFI，如上图的竖线。
-   #. ``pdr``: Periodic 8 MHZ RFI. 间隔8MHz的高斯型RFI，来自于压缩机，2021年7月已消除。
-   #. ``pr``: Polarized RFI. 偏振上差异过大的RFI。
+   #. Manually marked RFI
+   #. ``lf``: Long-freq time RFI. Similar to the wide-frequency domain RFI in the figure (D), possibly satellites.
+   #. ``sf``: Short-freq time RFI. Similar to the narrow-frequency domain RFI around 1380MHz in the figure (B), mainly GPS.
+   #. ``tr``: Time domain continuous RFI. RFI continuously present in the time domain. Initially designed for 8MHz RFI, may not be fully marked, now *not recommended for use*.
+   #. ``nr``: Narrowband single channel RFI. Single channel frequency domain RFI, like the vertical lines in the figure (A,C).
+   #. ``pdr``: Periodic 8 MHZ RFI. Gaussian-shaped RFI at 8MHz intervals, from compressors, eliminated as of July 2021.
+   #. ``pr``: Polarized RFI. RFI with significant polarization differences.
 
 
-人工标记的RFI
---------------
-输入手动标记RFI生成的 ``.reg`` 文件。标记方法见 :doc:` 手动标记RFI </hifast\_regions>`。
+Manually masking RFI
+--------------------
+Input files generated from manually marking RFI using ``.reg``. For marking methods, see :doc:`Manually masking RFI <hifast_regions>`.
 
-- ``--reg_from`` 参数有以下用法：
-   - ``none``: 不做任何处理。
-   - ``default``: 将寻找名为 输入文件名+'.reg'的DS9格式region文件。如果未发现则跳过。适合用于只有个别波束有问题的RFI。
-   - ``shared``: 一些波束将会共用同一个region文件，适合用于RFI同时出现的一些波束。
-   - 结合 ``--reg_shared_beams`` 指定哪些波束会共用同一个名称为 ``*-19rfi.hdf5.reg`` 的且输出路径下唯一的region文件，默认为 ``all`` ，即19波束都需要。
-      这也就要求在 ``xxx-M01-xxx-19rfi.hdf5`` 上进行人工标记才行。
-      如果是逗号间隔的字符串，如 ``--reg_shared_beams 4,9,14`` ，则只有遇到4,9,14三个波束才会应用后缀与输入文件相同的且输出路径下唯一的region文件。这也就要求在*-bld.hdf5(类似的)上进行人工标记才行。
-      这里比较复杂和费时。
-   - ``路径``: 直接输入一个reg文件路径
+- ``--reg_from`` parameter:
+   - ``--reg_from none``: No processing.
+   
+   - ``--reg_from default``: looking for a DS9 format region file named as the input file path + '.reg'. If not found, it will skip.
+   
+   - ``--reg_from shared``: Some beams will share the same region file, suitable for RFI appearing in multiple beams.
+     
+      Combined with ``--reg_shared_beams`` to specify which beams will share the same ``*-19rfi.hdf5.reg`` file in the output path, by default ``all``, 
+      meaning all 19 beams are needed. This requires manual masking on ``xxx-M01-xxx-19rfi.hdf5``. For example, with ``--reg_shared_beams 4,9,14``, 
+      only beams 4, 9, and 14 will apply the region file with the same suffix as the input file and unique in the output path. 
+      This requires manual marking on *-bld.hdf5* (or similar).
+      This process is complex and time-consuming.
+   
+   - ``--reg_from path``: Directly input a reg file path.
 
-lf, sf, nr 的搜索原理
-----------------------
 
-他们三个看似参数复杂，实则都共用了同一个函数/原理。它们的共同参数是：
+Procdures in lf, sf and nr
+----------------------------------
 
-*  ``lf_frange``, ``sf_frange``: 在此频率区间寻找RFI，即只对这个频率区间做平均。nr则是对所有时间做平均。
-*  ``--lsn_thr_type``: 阈值的选取方法，默认设为 ``input_absmed_times`` 即使用中值的绝对值作为阈值。
-*  ``--lf_mean_times``, ``--sf_mean_times``, ``--nr_mean_times``: 通过平均后的找到异常谱线/通道所需的阈值
-*  ``--lf_diff_times``, ``--sf_diff_times``, ``--nr_diff_times``: lf的rfi边界平缓(所以设为0).sf和nr边缘一般比较陡峭，所以用平均后谱线的差的绝对值来限定陡峭的为sf/nr，防止标记可能的信号。
-*  ``--lf_rfi_last``, ``--sf_rfi_last``, ``--nr_rfi_width_lim``: rfi的持续时间(条数)/宽度(通道数)，lf通常较宽，nr则非常窄
-*  ``--lf_ext_add``, ``--sf_ext_add``: 向两边扩大RFI的标记范围，单位为channel数。
+These three parameters may seem complex, but they share the same function/principle. Their common parameters are:
+
+* ``lf_frange``, ``sf_frange``: Search for RFI within this frequency range, i.e., only average within this frequency range for detection. For nr, it averages over all time.
+* ``--lsn_thr_type``: Method for selecting threshold value, default is ``input_absmed_times``, using the absolute value of the median as the threshold.
+* ``--lf_mean_times``, ``--sf_mean_times``, ``--nr_mean_times``: Threshold values needed to identify abnormal spectral lines/channels after averaging
+* ``--lf_diff_times``, ``--sf_diff_times``, ``--nr_diff_times``: For lf, RFI boundaries are gradual (thus set to 0). For sf and nr, edges are typically steep, so use the absolute value of the difference in averaged spectral lines to define steep edges for sf/nr, preventing the marking of potential signals.
+* ``--lf_rfi_last``, ``--sf_rfi_last``, ``--nr_rfi_width_lim``: Duration (number of lines)/width (number of channels) of the RFI, lf is usually wide, nr is very narrow
+* ``--lf_ext_add``, ``--sf_ext_add``: Extend the marking range of RFI on both sides, unit in channel numbers.
 
 sf: Short-freq time RFI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    .. figure:: download/1380RFI.png
 
-      这张图片代表了标记1380MHz RFI的方法,即``--sf`` 
+      This image represents the method for marking 1380MHz RFI, i.e., ``--sf``
 
-   输出
+   Output
      
       .. code-block:: bash
          
@@ -100,91 +107,87 @@ sf: Short-freq time RFI
          Found :D
          Finish
 
-   
-   - 图中蓝色线是frange内所有谱线沿频率方向的平均， 平均阈值(黑色虚线)为中值的 ``--xx_mean_times`` 倍；
+   - The blue line in the image is the average of all spectral lines along the frequency direction within the frange, with the average threshold (black dashed line) set to ``--xx_mean_times`` times the median;
 
-   - 绿色线是后一个通道减前一个通道取绝对值，sf会需要此作为差的阈值(黑色虚线)，为中值的 ``--xx_diff_times`` 倍。
+   - The green line is the absolute value of the difference between subsequent channels, necessary for sf as the difference threshold (black dashed line), set to ``--xx_diff_times`` times the median.
 
-   - 画图时绿线有向下平移一个蓝线的最大值，为了把它们画在一个图里。
+   - The green line is shifted downward by the maximum value of the blue line for display purposes, to fit them in one graph.
 
-   - `rfis start at ... end in ...` 表示有哪些谱线满足了rfi_width_lim和大于times倍阈值条件，最后输出的只有3个mask frange，说明最后有三个满足边缘陡峭条件.
+   - `rfis start at ... end in ...` indicates which spectral lines meet the rfi_width_lim and threshold times condition, with only 3 mask franges output, indicating three that meet the steep edge criteria.
 
-   - 橙色线为标记的范围。
+   - The orange line marks the range.
 
-*可以通过示例Notebook了解具体参数*，这里建议不熟悉的话还是通过Jupyter先调参.
+*You can understand specific parameters through the example Notebook*. It's recommended to adjust parameters via Jupyter if unfamiliar.
 
 lf: Long-freq time RFI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-频率范围很大的时域RFI，可能是低赤纬的同步卫星导致的。高赤纬一般看不到，所以设成False。
+Wide frequency range time-domain RFI, possibly caused by low declination geostationary satellites. Generally not visible at high declinations, so set to False.
 
-具体参数见示例notebook：
+Specific parameters can be found in the example notebook:
 
-- ``--lf``: 设为True时标记\ *长RFI*。
+- ``--lf``: Set to True to mark \ *long RFI*.
 
-    *  ``--lf_mask_rms_times``: 如果是-1，会标记整条谱线；如果为0，只标记存在RFI谱线的frange区域(不过注意如果frange区域占比过大，余下的部分做FFT去驻波效果可能变差)；如果大于0，则只标记存在RFI谱线的大于RMS一个倍数阈值的部分，频率方向用ext_add扩展边缘。
+   * ``--lf_mask_rms_times``: If -1, will mark the entire spectral line; if 0, only mark the frange area where RFI spectral lines are present (but be aware if the frange area is too large, the remaining part's FFT ripple removal effect may worsen); if greater than 0, only mark parts of the RFI spectral lines exceeding a multiple of the RMS threshold, extending edges in the frequency direction using ext_add.
 
 sf: Short-freq time RFI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-短横条样子的时域RFI，是GPS L3导致的，常常出没于1380~1382MHz，影响附近的3~10MHz。
+Short horizontal time-domain RFI, caused by GPS L3, often appearing around 1380~1382MHz, affecting nearby 3~10MHz.
 
-具体参数见示例notebook：
+Specific parameters can be found in the example
 
-- ``--sf``: 设为True时标记\ *短RFI*。
+ notebook:
 
-   * ``--sf_mask_rms_times``: 这里是一个正数，mask小区间frange内，从rfi峰值向两边以半高全宽扩展，为了防止mask过多，通常扩展到2~2.5倍的RMS停止。 
+- ``--sf``: Set to True to mark \ *short RFI*.
+
+   * ``--sf_mask_rms_times``: This is a positive number, masking a small frange area, extending from the RFI peak along the half-width at half maximum. To prevent excessive masking, it usually stops extending at 2~2.5 times the RMS. 
 
 nr: Narrowband RFI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-单通道RFI
+Single channel RFI
 
-具体参数见示例notebook：
+Specific parameters can be found in the example notebook:
 
-- ``--nr``: 设为True时标记\ *窄RFI*。观测数据为W带的情况下， *窄RFI* 一般占据一到两个channel。
+- ``--nr``: Set to True to mark \ *narrow RFI*. For W-band observations, *narrow RFI* usually occupies one or two channels.
 
-   * ``--nr_mask_rms_times``: 如果是0，会标记整个通道；如果大于0，则只标记存在RFI通道的大于RMS一个倍数阈值的部分，时间方向用ext_add扩展边缘。
-
+   * ``--nr_mask_rms_times``: If 0, will mark the entire channel; if greater than 0, only mark parts of the RFI channel exceeding a multiple of the RMS threshold, extending edges in the time direction using ext_add.
 
 pdr: Periodic RFI
 ^^^^^^^^^^^^^^^^^^^^^
-8.1 MHz周期RFI，2021年7月后就没有了。
+Periodic 8.1 MHz RFI, which ceased after July 2021.
 
-去除参数过多, notebook有详细介绍，这里只说原理：
-从超过噪声一定水平的所有峰中选取最大的一个，在其前后范围内以大约8.1MHz的间隔寻找同样超过噪声水平的峰，
-列为一组。余下的用相同的方法再选出第二组，第三组。
-通过最小二乘拟合得到每组RFI的精确频率，然后依据推测的频率标记RFI的范围。
-  
+Omitting excessive parameters, the notebook provides a detailed introduction. The principle is as follows:
+Select the largest peak among all peaks exceeding a certain noise level, then search for similarly exceeding peaks at approximately 8.1MHz intervals in front and behind, grouping them. Repeat the process to identify the second, third groups.
+Use least squares fitting to precisely determine the frequency of each group of RFI, then mark the RFI range based on the estimated frequency.
+
 pr: Polarized RFI
 ^^^^^^^^^^^^^^^^^^^^^^^^
-利用两个偏振XX,YY差别很大来判断是否是RFI。需要注意有时银河系也可能被标记，请小心使用。
-但是pr对于偏振差异极大的RFI还是好用的，RFI边缘则容易标记不全。
+Identifies RFI by significant differences between two polarizations, XX and YY. Be cautious as the Milky Way may sometimes be marked; however, pr is useful for highly polarized RFI, though the edges may not be fully marked.
 
-- ``--pr``: 设为True时，比较两个偏振，如果偏差过大则标记对应channel为RFI。
+- ``--pr``: Set to True to compare two polarizations, marking the corresponding channel as RFI if the deviation is significant.
 
-   *  ``--pr_s_sigma``: 沿时间维度高斯平滑（以pr_s_sigma为sigma）谱线以提高信噪比
-   *  ``--pr_times``: 至少大于等于5
-   *  ``--pr_times_s``: 大于1
+   * ``--pr_s_sigma``: Gaussian smoothing along the time dimension of spectral lines with pr_s_sigma as sigma to improve the signal-to-noise ratio
+   * ``--pr_times``: At least 5 or greater
+   * ``--pr_times_s``: Greater than 1
 
+.. - ``--tr``: Set to True to identify RFI by finding "signals" exceeding noise in each spectral line, then comparing along the time axis. If a "signal" persists for a long duration (greater than ``--tr_n_continue``), it is considered RFI. Not suitable for the Galactic frequency band.
 
-.. - ``--tr``: 设为True时，通过找出每条谱线超出噪音的“信号”，然后在沿时间轴比较，如果一个“信号”持续很久(大于\ ``--tr_n_continue``)，则认为是RFI。不适用于银河系频段。
-
-..    -  ``--tr_s_sigma``: 沿时间维度高斯平滑（以tr_s_sigma为sigma）谱线以提高信噪比
-..    -  ``--tr_times``: 至少大于等于5
-..    -  ``--tr_times_s``: 大于1.5
-..    -  ``--tr_n_continue``: 一个“信号”持续多少条就标记为rfi
+..    -  ``--tr_s_sigma``: Gaussian smoothing along the time dimension of spectral lines with tr_s_sigma as sigma to improve the signal-to-noise ratio
+..    -  ``--tr_times``: At least 5 or greater
+..    -  ``--tr_times_s``: Greater than 1.5
+..    -  ``--tr_n_continue``: Duration (in lines) for a "signal" to be marked as RFI
 
 Tips
 --------
-- 建议先用M01测试，如果希望sf都被标记而没有遗漏，可以尝试使用 ``--all_beams`` ,之后 ``--sf_use_time_only`` 可以直接使用 ``xxx-M01-xxx-19rfi`` 中标记了的条数但是mask范围分波束确定。如果不熟悉还是不要 ``--all_beams``，使用各自波束确定mask范围。
+- It's advised to first test with M01. If you want to ensure all sf is marked without missing, you can try using ``--all_beams``, then ``--sf_use_time_only`` can directly use the counts marked in ``xxx-M01-xxx-19rfi`` but determine the mask range for each beam separately. If unfamiliar, avoid using ``--all_beams`` and determine the mask range for each beam separately.
 
-- 如果有很长频率的RFI(可能比较窄，就几百条，应该也是卫星导致的，类似于连续谱)会导致sf标记多，建议此时先手动CARTA标记，然后再跑sf。如果只是个别波束有问题，也不要使用 ``--all_beams``，可能连累其他波束。
+- If there is RFI with a very long frequency (possibly narrow, just a few hundred lines, likely satellite-induced, similar to a continuous spectrum), it may lead to excessive sf marking. In this case, it's recommended to first manually mark with CARTA, then run sf. If only individual beams have issues, also avoid using ``--all_beams``, as it may affect other beams.
 
-- 建议使用hifast.waterfall检查mask的效果(mask过多过少)，必要时可以生成cube后人工检查，迭代以上过程。
+- It's recommended to use hifast.waterfall to check the mask effect (excessive or insufficient masking). If necessary, generate a cube and manually inspect it, iterating the above process.
 
    .. code-block:: bash
 
       fname=XXX-bld-rfi.hdf5
-      python -m hifast.waterfall $fname --outdir ./waterplot/ --replace_rfi --polar -1
-
+      python -m hifast.waterfall $fname --outdir ./waterplot/ --replace_rfi --polar 0
 
  
-wrote by astroR2, 2023/3/9
+written by astroR2, 2023/3/9

@@ -10,7 +10,8 @@ files="$(ls RAW_data/*/*/*M01*W_0001.fits)"
 printf "${files}"
 echo
 # commands
-# python -m hifast sep -p 3 同时执行5个 python -m hifast.sep
+#     "python -m hifast.sep file.hdf5 ..." only supports one file
+# run "python -m hifast sep -p 3 file1.hdf5 file2.hdf5 file3.hdf5  ..." run multiple files and 3 files in parallel.
 python -m hifast sep -p 5 \
     $files \
    -d 4 -m 4 -n 36 \

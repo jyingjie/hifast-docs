@@ -1,3 +1,3 @@
-获得帮助
-========
-发送邮件至 jyj@nao.cas.cn
+Getting Help & Bug report
+=============================
+Feel free to send an email to jyj@nao.cas.cn for getting help or reporting any bug.

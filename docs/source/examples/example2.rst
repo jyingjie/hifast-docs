@@ -1,12 +1,12 @@
-OnOff观测
-============
-方法一 和 方法二 主要区别在 是否考虑驻波相位的漂移。
+OnOff Observation
+==================
+Method 1 and Method 2 primarily differ in whether they consider the drift of the standing wave phase.
 
 
-方法一 
+Method 1 
 ---------
-  
-  1. 用 `hifast.pos_swi` 分离噪音管on、off 和 源（src）和参考点（ref）观测，然后噪音管定标，src减去ref后合并成一条谱线（保留两个偏振）。
+
+  1. Use `hifast.pos_swi` to separate noise diode on, off, and source (src) and reference point (ref) observations, then calibrate using the noise tube, subtract ref from src, and combine into a single spectrum (retain both polarizations).
 
     :download:`M1-S1.sh <example2/M1-S1.sh>`
 
@@ -15,19 +15,19 @@ OnOff观测
       :emphasize-lines: 4
       :linenos:
   
-  2. 手动去基线，sin拟合驻波。
+  2. Manually remove the baseline, fit the standing wave with a sine function.
   
-    | 下载: :download:`M1-S2.ipynb <example2/M1-S2.ipynb>`
+    | Download: :download:`M1-S2.ipynb <example2/M1-S2.ipynb>`
 
-    .. | 查看: `notebook <example2/M1-S2.ipynb>`_
+    .. | View: `notebook <example2/M1-S2.ipynb>`_
 
-  3. 用 `hifast.flux` 流量定标 和 `hifast.multi --fc True` 坐标系修正。
+  3. Use `hifast.flux` for flux calibration and `hifast.multi --fc True` for coordinate system correction.
 
 
-方法二
+Method 2
 ----------
 
-1. 先不区分 源（src）和参考点（ref）观测。用跟mapping一样的方法来定标。
+1. Initially, do not differentiate between source (src) and reference point (ref) observations. Calibrate using the same method as for mapping.
    
    :download:`M2-S1.sh <example2/M2-S1.sh>`
 
@@ -36,17 +36,17 @@ OnOff观测
       :emphasize-lines: 4
       :linenos:
 
-2. 用fft方法对每条谱线去驻波
+2. Use the FFT method to remove the standing wave from each spectrum
    
    :download:`M2-S2.sh <example2/M2-S2.sh>`
-   :download:`S2-sw.ini <example1/conf/S2-sw.ini>`
+   :download:`S2-sw.ini <../files/example1/conf/S2-sw.ini>`
   
     .. literalinclude:: example2/M2-S2.sh
       :language: bash
       :emphasize-lines: 4
       :linenos:
 
-3. 用 `hifast.pos_swi_2` 分离源（src）和参考点（ref）观测，然后src减去ref后合并成一条谱线（保留两个偏振）。
+3. Use `hifast.pos_swi_2` to separate source (src) and reference point (ref) observations, then subtract ref from src and combine into a single spectrum (retain both polarizations).
    
    :download:`M2-S3.sh <example2/M2-S3.sh>`
 
@@ -55,10 +55,10 @@ OnOff观测
       :emphasize-lines: 4
       :linenos:
 
-4. 手动去基线
+4. Manually remove the baseline
    
-   | 下载: :download:`M2-S4.ipynb <example2/M2-S4.ipynb>`
+   | Download: :download:`M2-S4.ipynb <example2/M2-S4.ipynb>`
    
-   .. | 查看: `notebook <example2/M2-S4.ipynb>`_
+   .. | View: `notebook <example2/M2-S4.ipynb>`_
 
-5. `hifast.multi --fc True` 坐标系修正。
+5. Use `hifast.multi --fc True` for coordinate system correction.

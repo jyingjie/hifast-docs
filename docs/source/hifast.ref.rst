@@ -1,26 +1,33 @@
-``hifast.ref`` 减参考点
-===================
+``hifast.ref`` off-source subtraction
+======================================
 
-类似跟踪模式中的源上源外模式，\ ``hifast.ref`` 模块在扫描模式中估计出参考谱线("源外")，然后减去它们，依次扣除系统温度。
-此外 ``hifast.bld -T True`` 也可以达到类似效果。
+Similar to on-source/off-source mode in tracking, \ ``hifast.ref`` in scan mode
+estimates reference spectra ("off-source"), then subtracts them, reducing the
+system temperature. Also, ``hifast.bld -T True`` can have a similar effect.
 
-处理流程
+Processing Flow
+----------------
+
+- ``--method MinMed`` or ``--method MedMed``
+  
+  - Divide all spectra into segments over time ( ``--npart`` ), processing
+    each separately.
+    
+     * Further divide each segment into sub-segments (based on sub-segment
+       count ``--nsection`` or length ``--nspec``),
+     * Compute median (Med) along time for each sub-segment,
+     * Reference spectrum for a segment is median of medians ( ``MedMed`` ) or
+       minimum of medians ( ``MinMed`` ),
+     * Subtract reference spectrum.
+  - Process above steps separately for each frequency.
+
+- Typically, reapply low-order polynomial baseline subtraction to each
+  spectrum (add ``--post_*`` parameters or input the output into
+  ``hifast.bld`` module)
+
+Parameters
 ----------
 
-- ``--method MinMed`` 或 ``--method MedMed``
-  
-  - 把所有谱线在时间方向上切分为若干段（ ``--npart`` ），对每一段分别处理。
-     * 每一段再切分为若干个子段（ 依据子段数量 ``--nsection`` 或子段长度 ``--nspec`` ），
-     * 每个子段沿时间方向求中值（Med），
-     * 这一段的参考谱线为所有子段中值的中值（ ``MedMed`` ）或中值的最小值（ ``MinMed`` ），
-     * 减去参考谱线。
-  - 以上步骤每个频率分别处理。
+Use command ``python -m hifast.ref -h | more`` for more parameter details.
 
-- 一般需对每条谱线再去一次低阶多项式基线（添加 ``--post_*`` 参数或者把输出文件输入到 ``hifast.bld`` 模块中）
 
-参数
-------
-
-使用命令 ``python -m hifast.ref -h | more`` 查看更多参数说明。
-
-...
