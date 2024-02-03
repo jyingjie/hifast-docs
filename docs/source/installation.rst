@@ -1,8 +1,9 @@
 Installation
 ============
 
-Environment Configuration
--------------------------
+Environment Setup
+----------------------
+The environment setup involves configuring the dependencies with specific versions.
 
 * Method 1: Configure Environment Using Offline Package
    Download ``hifast_env.centos7.x86_64.v1.tar.gz`` (for Most Linux distributions) and (``threadpoolctl-3.1.0-py3-none-any.whl``) from https://pan.cstcloud.cn/s/QmkBVYgyRO8.

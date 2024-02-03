@@ -1,4 +1,4 @@
-``hifast.sep`` Noise Diode Calibration
+``hifast.sep`` Temperature Calibration
 ======================================
 
 ``hifast.sep`` processes raw data from a single beam, differentiating raw spectral data when the noise diode is on (Cal on) and off (Cal off). It computes the antenna temperature using noise diode data.

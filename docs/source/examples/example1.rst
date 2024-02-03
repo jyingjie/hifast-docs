@@ -35,8 +35,10 @@ Case 1
 
 Resluts
 --------------
+:download:`example1.ipynb <../files/example1/example1.ipynb>`:
 
 .. toctree::
    :maxdepth: 1
-
+   :name: `example1.ipynb <../files/example1/example1.ipynb>`:
+   
    ../files/example1/example1.ipynb

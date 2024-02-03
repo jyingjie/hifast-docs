@@ -1,6 +1,8 @@
 HiFAST
 ===================================
-An HI data calibration and imaging pipeline for FAST.
+HiFAST: An HI data calibration and imaging pipeline for FAST.
+
+Getting started from :doc:`Installation<installation>` and :doc:`Examples<examples/index>`, or trying it directly on `Colab <https://colab.research.google.com/drive/10NVtnRmb-POxl6ESl0yy7b52WcEU82Cd>`_.
 
 .. note::
 

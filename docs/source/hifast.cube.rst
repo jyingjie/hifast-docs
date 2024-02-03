@@ -1,4 +1,4 @@
-``hifast.cube`` Data Cube regridding
+``hifast.cube`` Regridding
 =====================================
 
 ``hifast.cube``

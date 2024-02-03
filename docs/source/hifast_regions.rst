@@ -1,4 +1,4 @@
-Manually Masking RFI
+Manually mask RFI
 ====================
 Use CARTA to mask the RFI areas (regions) on the waterfall plot, then export and input the file into ``hifast.rfi`` for masking.
 
