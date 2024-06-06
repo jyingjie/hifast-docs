@@ -14,6 +14,12 @@ author = 'HiFAST developers'
 release = ''
 version = ''
 
+# html_logo = "img/logo.svg"
+# html_theme_options = {
+#     "logo_only": True,
+#     "display_version": True,
+# }
+
 # -- General configuration
 
 extensions = [
@@ -48,7 +54,6 @@ exclude_patterns = ['_build', '_files/**', '**/RAW_data']
 
 # for nbsphinx
 html_sourcelink_suffix = ''
-
 
 html_css_files = [
     'css/custom.css',
