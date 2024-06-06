@@ -37,3 +37,8 @@ Table of Contents
    Tools <tools>
    changelog
    help
+
+
+.. note::
+
+   Unofficial tutorials in Chinese are also available at `This link <https://zhuanlan.zhihu.com/p/611842606>`_, `This link <https://zhuanlan.zhihu.com/p/679377110>`_, and `This link <https://zhuanlan.zhihu.com/p/681687989>`_.

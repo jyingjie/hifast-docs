@@ -77,4 +77,8 @@ locale_dirs = ['locales/']
 gettext_uuid = True
 gettext_compact = False
 
-
+html_logo = "_static/img/logo-preview.png"
+html_theme_options = {
+    'logo_only': True,
+    'display_version': False,
+}
