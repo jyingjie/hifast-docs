@@ -10,7 +10,7 @@ Corrections for temperature and zenith angle are necessary if your observation c
 
 Data
 ------------------------
-The data are available in HDF5 format at `This link <https://pan.cstcloud.cn/s/U6IEisNTQcg>`_ and include the following:
+The data are available in HDF5 format at `This link <https://download.scidb.cn/download?fileId=5a612e328587f62c27a3435aac1af0fa>`_ and include the following:
 
 * **Ambient_Temperature:** Ambient temperature (°C)
 * **ZA:** Zenith angle (°)
