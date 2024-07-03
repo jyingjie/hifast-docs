@@ -22,7 +22,7 @@ Usage
 ------------------------
 **Method 1: Simplified Approach**
 
-Use the `hifast.flux` function (in developing), which automatically handles ambient temperature and zenith angle corrections.
+Use the `hifast.flux` function (version >= 1.3a3), which automatically handles ambient temperature and zenith angle corrections.
 
 **Method 2: Manual Correction**
 

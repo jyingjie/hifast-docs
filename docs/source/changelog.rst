@@ -33,3 +33,9 @@ v1.3a1
 v1.3a2
 ^^^^^^^^^^^^
 - use `%[...]s` pattern instead of `%(...)` in ``--outdir``
+
+v1.3a3
+^^^^^^^^^^^^
+- add new pre-measured flux gains from :doc:`Liu et al. (2024) <fluxgain>`,
+- add an option to improve output clarity during multi-file operations by setting the environment variable ``export HIFAST_MAKE_OUTPUT_CLEAR=1``.
+- bug fixed
