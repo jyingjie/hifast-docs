@@ -17,13 +17,13 @@ printf "${files}\n"
 #       "python -m hifast sep -p 2 file1.hdf5 file2.hdf5 file3.hdf5 --para1 --para2" allows multiple files to be processed at the same time. 
 python -m hifast sep -p 3 \
     $files \
-    -d 0 -m 1 -n 1 --step 1 \
+    -d 4 -m 4 -n 596 --step 1 \
     --frange 1400 1440 \
     --smooth gaussian --s_sigma 2 \
     --check_cal A --pcal_vary_lim_bin 0.02 \
     --merge_pcals True --method_merge median --method_interp linear \
     --save_pcals True \
-    --outdir output_1/%[project]s/%[date]s --not_cali True
+    --outdir output_1/%[project]s/%[date]s
 
 # The output files from this step will be named following the pattern "*-specs_T.hdf5"
 
@@ -44,7 +44,7 @@ printf "${files}\n"
 # This block defines a pipeline of hifast module commands to process the files
 # Each line represents a step in the processing chain, configured with specific parameters
 commands=$(cat <<'EOF'
-#python -m hifast.flux  | 
+python -m hifast.flux  | 
 python -m hifast.bld  | --nproc 5 --frange 1400 1440 \
                         --method PLS-asym2 --lam 1e8 \
                         --njoin_t 20 \
