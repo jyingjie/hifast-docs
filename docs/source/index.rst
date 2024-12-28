@@ -37,6 +37,7 @@ Table of Contents
    Tools <tools>
    changelog
    help
+   citations
 
 
 .. note::
