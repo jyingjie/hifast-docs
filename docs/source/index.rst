@@ -8,6 +8,10 @@ Getting started from :doc:`Installation<installation>` and :doc:`Examples<exampl
 
    This project is currently under development
 
+.. note::
+
+   Unofficial tutorials in 中文 are also available at `This link <https://zhuanlan.zhihu.com/p/611842606>`_, `This link <https://zhuanlan.zhihu.com/p/679377110>`_, and `This link <https://zhuanlan.zhihu.com/p/681687989>`_.
+
 Flowchart
 --------------
 
@@ -38,8 +42,3 @@ Table of Contents
    changelog
    help
    citations
-
-
-.. note::
-
-   Unofficial tutorials in Chinese are also available at `This link <https://zhuanlan.zhihu.com/p/611842606>`_, `This link <https://zhuanlan.zhihu.com/p/679377110>`_, and `This link <https://zhuanlan.zhihu.com/p/681687989>`_.
