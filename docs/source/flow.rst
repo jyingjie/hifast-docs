@@ -22,4 +22,12 @@ Imaging
    :maxdepth: 1
 
    hifast.cube
+
+Stray radiation
+----------------
+
+.. toctree::
+   :maxdepth: 1
+
+   hifast.sr
    
