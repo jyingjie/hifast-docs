@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-# Enable recursive globbing to allow ** to match all files and directories recursively
+# Enable recursive globbing to allow ** to match all files and directories recursively.
 shopt -s globstar
 
-# Step 1: Temperature Calibration
-# Description: This step involves calibrating the temperature of the spectra.
-echo "Temperature calibration:"
-# Select the first chunk of each beam
-# Note: Assumes naming convention for files as M33_OTF_1_*W_0001.fits where * is a wildcard
-files="$(ls RAW_data/M33_OTF/20210731/M33_OTF_1_*W_0001.fits)"
-# Display the selected files to verify correct selection
-printf "${files}\n"
+# --- Step 1: Temperature Calibration ---
+# Calibrate the temperature for the raw spectrometer data.
+echo "Starting Step 1: Temperature Calibration..."
 
-# Run temperature calibration on selected files
-# Note: "python -m hifast.sep file.hdf5 --para1 --para2" processes only one HDF5 file at a time.
-#       "python -m hifast sep -p 2 file1.hdf5 file2.hdf5 file3.hdf5 --para1 --para2" allows multiple files to be processed at the same time. 
+# Select the first FITS file for each beam as input.
+# Note: Assumes naming convention M33_OTF_1_*W_0001.fits
+files="$(ls RAW_data/M33_OTF/20210731/M33_OTF_1_*W_0001.fits)"
+printf "Selected files for calibration:\n${files}\n"
+
+# Run hifast.sep to perform temperature calibration.
+# This converts the raw data into calibrated HDF5 files.
+# Note: "-p 3" enables parallel processing with 3 cores.
 python -m hifast sep -p 3 \
     $files \
     -d 4 -m 4 -n 596 --step 1 \
@@ -25,26 +25,31 @@ python -m hifast sep -p 3 \
     --save_pcals True \
     --outdir output_2/%[project]s/%[date]s
 
-# The output files from this step will be named following the pattern "*-specs_T.hdf5"
+# The output files from this step will be named with the suffix "-specs_T.hdf5".
 
-# Step 2: Generate RA-DEC File
-# Description: This step generates a file containing Right Ascension (RA) and Declination (DEC) information.
-# Note: This step only need input the Beam 01 of "*-specs_T.hdf5".
+# --- Step 2: Coordinate Calculation ---
+# Generate celestial coordinates (RA, Dec) for the calibrated data.
+echo "\nStarting Step 2: Coordinate Calculation..."
+
+# Run hifast.radec on the calibrated file for Beam 01.
+# Note: Only the M01 beam file is needed, as it contains the necessary trajectory
+# information to calculate coordinates for all other beams.
 python -m hifast radec output_2/**/*-M01*-specs_T.hdf5 --ky_dir RAW_data/KY/ --plot
 
-# Step 3: Process Baseline, Standing Wave, RFI (Radio Frequency Interference), etc.
-# Description: This step involves further processing of the calibrated files to address baseline,
-# standing waves, RFI, and other potential issues.
-# Note: This step processes all "*-specs_T.hdf5" files.
-files="$(ls output_2/**/*-M*-specs_T.hdf5)"
-# Display the selected files to ensure correctness
-printf "${files}\n"
+# --- Step 3: Data Processing Pipeline ---
+# Process the temperature-calibrated data to handle baseline, standing waves, and RFI.
+echo "\nStarting Step 3: Data Processing Pipeline..."
 
-# Define processing commands for hifast.sh script to handle multiple files and processes
-# This block defines a pipeline of hifast module commands to process the files
-# Each line represents a step in the processing chain, configured with specific parameters
+# Select all temperature-calibrated HDF5 files for further processing.
+files="$(ls output_2/**/*-M*-specs_T.hdf5)"
+printf "Selected files for pipeline processing:\n${files}\n"
+
+# Define the processing pipeline using a series of hifast modules.
+# This multi-line string defines the sequence of commands that hifast.sh will execute.
 commands=$(cat <<'EOF'
+# Apply flux calibration.
 python -m hifast.flux  | 
+# Perform a first-pass baseline removal.
 python -m hifast.bld  | --nproc 5 --frange 1360 1415 \
                         --method PLS-asym2 --lam 1e8 \
                         --njoin_t 20 \
@@ -52,19 +57,23 @@ python -m hifast.bld  | --nproc 5 --frange 1360 1415 \
                         --exclude_type auto2 \
                         --post_method poly-asym2 --post_deg 3 \
                         --post_exclude_type auto2
+# Flag Radio Frequency Interference (RFI).
 python -m hifast.rfi  | -c conf/S2-rfi.ini
-# use ``--nobld True`` to keep baseline and only remove standing wave
+# Remove standing waves, preserving the baseline for the next step.
 python -m hifast.sw   | --nobld True -c conf/S2-sw.ini
-# sustract "ref" observation
-# use ``hifast.ref`` or ``hifast.bld -T True``
+# Subtract the reference (off-source) observation to remove background noise and baseline.
+# This approach is used for point sources where a clean off-source reference is available.
+# It replaces the second baseline removal step seen in the extended source case (run_case1.sh).
 python -m hifast.ref | --method MedMed --nsection 11 --npart 8 \
                        --post_method poly-asym2 --post_deg 3 \
                        --post_s_method_freq gaussian --post_s_sigma_freq 1 \
                        --post_exclude_type auto2
+# Correct velocities, merge polarizations, and replace RFI flags.
 python -m hifast.multi | --vtype optical --frame LSRK --merge_polar True --replace_rfi True
 EOF
 )
 
-# Execute the hifast.sh script with the defined commands to process multiple files concurrently
-# -n 5 specifies the number of processes to run in parallel
+# Execute the pipeline on all selected files using hifast.sh.
+# ``-n 5`` runs 5 processes in parallel for efficiency.
+echo "\nExecuting pipeline with hifast.sh..."
 hifast.sh "$files" -c "$commands" -n 5
