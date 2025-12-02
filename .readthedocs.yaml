@@ -10,6 +10,9 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.9"
+  jobs:
+    post_install:
+      - pip install --no-deps git+https://gitlab.com/jingyj/hifast.git@v1.4#egg=hifast
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:

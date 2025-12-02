@@ -34,6 +34,17 @@ extensions = [
     'sphinxcontrib.mermaid',
 ]
 
+autodoc_mock_imports = [
+    'numpy',
+    'scipy',
+    'astropy',
+    'h5py',
+    'matplotlib',
+    'threadpoolctl',
+    'bottleneck',
+    'joblib',
+]
+
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),

@@ -2,3 +2,5 @@ sphinx
 nbsphinx
 sphinx_rtd_theme
 sphinx-argparse
+ConfigArgParse==1.5.3
+sphinxcontrib-mermaid
