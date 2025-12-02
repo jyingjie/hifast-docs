@@ -42,7 +42,9 @@ Explore the documentation to learn more about installing and using HiFAST, from 
    Installation <installation>
    Command-Line Usage <hifast.xxx>
    Examples <examples/index>
-   Workflow <flow>
+   Calibration <flow_cal>
+   Imaging <flow_img>
+   Stray Radiation <flow_sr>
    Parallel <parallel>
    Tools <tools>
    changelog
