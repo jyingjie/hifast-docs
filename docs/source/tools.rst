@@ -4,3 +4,4 @@
 .. toctree::
     hifast.waterfall
     hifast_regions
+    hifast.find
