@@ -28,6 +28,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'sphinxarg.ext',
     'dirlist',
     'nbsphinx',
 ]

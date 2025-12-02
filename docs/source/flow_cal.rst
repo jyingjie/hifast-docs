@@ -12,21 +12,3 @@ Calibration
    hifast.rfi
    hifast.sw
    hifast.multi
-
-
-Imaging 
---------
-
-.. toctree::
-   :maxdepth: 1
-
-   hifast.cube
-
-Stray radiation
-----------------
-
-.. toctree::
-   :maxdepth: 1
-
-   hifast.sr
-   
