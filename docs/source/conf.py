@@ -31,6 +31,7 @@ extensions = [
     'sphinxarg.ext',
     'dirlist',
     'nbsphinx',
+    'sphinxcontrib.mermaid',
 ]
 
 

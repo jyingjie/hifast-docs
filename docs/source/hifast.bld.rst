@@ -1,87 +1,120 @@
-``hifast.bld`` Baseline fitting
-====================================
+``hifast.bld`` Baseline Fitting
+===============================
 
-The ``hifast.bld`` module is designed for fitting and subtracting baselines.
+.. program:: python -m hifast.bld
 
-This process involves fitting and subtracting a baseline, considering all components other than the signal. Baselines are typically "smoother" than signals, 
-thus methods like PLS and polynomials can be employed for fitting. 
-During baseline fitting, signal regions are excluded by iteratively adjusting the weights of each data point to make them zero or very small in the signal areas. 
-Noise can impact the quality of baseline fitting. Therefore, optional preprocessing is provided to reduce this effect.
+Overview
+--------
 
-The workflow is: Preprocessing --> Iterative Fitting and Subtraction of Baseline --> Post-processing (optional, depends on preprocessing). 
-The output filename will include ``-bld`` or ``-bld_p``.
+The ``hifast.bld`` module is designed for fitting and subtracting baselines from spectral data. This is a critical step in radio astronomy data reduction to remove instrumental or environmental effects and isolate the astronomical signal.
+
+The module supports various fitting algorithms (e.g., PLS, polynomial, spline) and includes robust methods to exclude signal regions during fitting. It also offers preprocessing options (smoothing, binning) and an interactive mode for parameter tuning.
 
 Workflow
 --------
 
-Preprocessing
-^^^^^^^^^^^^^
+The baseline fitting process typically involves three stages:
 
-.. note::
+.. mermaid::
 
-   The spectrum after preprocessing is used only for fitting the baseline. The original spectrum is then used for baseline subtraction, thus preserving the original spectrum.
+   graph TD
+      A[Input Data] --> B[Preprocessing]
+      B --> C[Baseline Determination]
+      A --> D[Subtraction]
+      C --> D
+      D --> E{Post-processing?}
+      E -- Yes --> F[Post-processing]
+      E -- No --> G[Output Data]
+      F --> G
 
-Preprocessing involves operations along both the time axis and frequency direction:
+      subgraph Preprocessing
+         B1[Time Averaging/Smoothing]
+         B2[Frequency Smoothing/Binning]
+      end
 
-   -  | Along the time axis for each *channel* (*frequency sample*) (post-processing may be required if enabled)
-      | Includes merging of spectral lines ``--njoin`` or smoothing ``--s_method_t``, typically using only one of these methods. (``--njoin`` reduces the number of baselines to be fitted, saving time.)
-      | Suitable for scenarios where the baseline is stable over the merged or smoothed time range. Post-processing can be done using a low-order polynomial for further baseline correction.
-      
-      -  ``--njoin``: Number of spectral lines to merge for baseline fitting.
-      -  ``--s_method_t``: Smoothing method along the time axis; options include ``median``, ``gaussian``, ``boxcar``; to be used with ``--s_sigma_t``.
-      -  ``--s_sigma_t``: Smoothing scale, in terms of the number of spectral lines.
+      subgraph Fitting
+         C1[Method Selection]
+         C2[Iterative Reweighting]
+         C3[Signal Exclusion]
+      end
 
-   -  | Along the frequency axis for each spectra line (usually enabled).
-      | Includes merging of channels ``--average_every_freq`` or smoothing ``--s_method_freq``, typically using only one of these methods.
-      
-      -  ``--s_method_freq``: Smoothing each spectral line along the frequency axis; options include ``gaussian``, ``boxcar``; used with ``--s_sigma_freq``.
-      -  ``--s_sigma_freq``: Smoothing scale, in terms of the number of sample points. Generally, set to 3 for W band, and 48 for F and N bands.
-      -  ``--average_every_freq``: Average every certain number of sample points along the frequency axis.
+      B -.-> B1
+      B -.-> B2
+      C -.-> C1
+      C -.-> C2
+      C -.-> C3
+
+1. **Preprocessing (Optional)**
+   Data can be smoothed or averaged along the time or frequency axis to improve the signal-to-noise ratio for baseline estimation. This is configured using parameters like :option:`--njoin` (time averaging) or :option:`--s_method_freq` (frequency smoothing).
+
+   .. note::
+      The preprocessed data is used *only* for determining the baseline. The calculated baseline is then subtracted from the *original* (unprocessed) data, preserving the spectral resolution and signal characteristics.
+
+   .. important:: **Time Domain Fitting (-T)**
    
-   -  ``--frange``:
-      Limits to this frequency range for the spectral lines. Followed by two numbers, space-separated, lower limit first.
-      A larger range increases fitting time, and the increase is not linear.
+      You can fit the baseline along the **time axis** instead of the frequency axis by using the :option:`-T` (or :option:`--trans`) flag.
+      
+      **Crucially**, enabling this option **transposes** the data dimensions, which swaps the physical meaning of the preprocessing parameters:
+      
+      * **Time-related parameters** (e.g., :option:`--njoin`, :option:`--s_method_t`) will effectively apply to the **Frequency** axis.
+      * **Frequency-related parameters** (e.g., :option:`--average_every_freq`, :option:`--s_method_freq`) will effectively apply to the **Time** axis.
 
-Iterative Baseline Fitting
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-   -  | ``--method``: Fitting method
-      | ``arPLS``, ``srPLS``, 
-      | ``PLS-asym1``, ``PLS-asym2``, ``PLS-asym3``, ``PLS-sym1``,
-      | The prefix in the method names (before ``-``) represents the fitting function, and the suffix indicates the weight adjustment method during iteration (e.g., ``PLS-asym1`` is the same as ``arPLS``).
-      | ``PLS`` or ``poly`` (polynomial) are prefixes, with polynomial fitting suitable for simple baselines, such as subtracting off-source spectral lines or continuous spectra.
-      | Suffixes ``asym1``, ``asym2``, ``asym3`` assume the signal is on one side of the baseline, which can cause the baseline on both sides of the signal to be elevated. Use ``--exclude_add`` to alleviate this.
-        ``sym1`` does not assume the signal is on a specific side, but might be less effective than ``asym`` due to the lack of this prior information.
-   -  ``--lam``: Parameter for ``PLS`` method. Adjusts the smoothness; larger values are closer to low-order polynomial (poly) fitting.
-   -  ``--deg``: For ``PLS``, use 2; for ``poly``, it's the polynomial order, e.g., ``--deg 1`` for linear fitting.
-   -  ``--niter``: Number of iterations for excluding "signal" areas to find the baseline. Default is usually sufficient.
-   -  ``--exclude_add``: Alleviates potential elevation of the baseline around the signal. Options: ``none``, ``auto1``, or ``auto2``.
-   -  ``--nproc``: Number of processes to use for parallel processing.
+2. **Baseline Fitting & Subtraction**
+   The core step involves fitting a model to the baseline.
    
+   * **Method Selection**: Choose a method using :option:`--method`. Common choices include:
+     
+     * ``arPLS``: Asymmetrically Reweighted Penalized Least Squares (robust and popular).
+     * ``poly-asym1``: Polynomial fitting with asymmetric reweighting.
+     * ``spline-asym1``: Spline fitting.
+     * ``Gauss-asym1``: Gaussian smoothing based baseline.
+     
+   * **Parameter Tuning**:
+   
+     * :option:`--lam`: Smoothing parameter for PLS, Spline, and Gauss methods. Larger values result in a stiffer (smoother) baseline.
+     * :option:`--deg`: Degree for polynomial or spline methods.
+     
+   * **Signal Exclusion**: The module iteratively reweights data to ignore signal regions (lines).
+   
+     * :option:`--exclude_add`: Additional automatic exclusion logic.
+       
+       * ``auto1``: Excludes points where weights are very low (< 0.01) and extends the region.
+       * ``auto2``: Uses Gaussian filtering on residuals to identify and exclude outliers (> 3 sigma).
+       
+     * :option:`--src_file`: Provide a catalog to explicitly mask known sources.
 
-Post-processing
-^^^^^^^^^^^^^^^
+3. **Post-processing (Optional)**
+   If strong time-averaging was used in preprocessing, a secondary "post-processing" step on individual spectra might be necessary to remove residual baseline structures. This is configured using ``--post_*`` arguments.
 
-Required only if ``--njoin`` or ``--s_method_t`` was enabled in preprocessing. Post-processing involves using a low-order polynomial for further baseline correction, or the output file can be input again into the ``hifast.bld`` module as a substitute.
+Examples
+--------
 
-- ``--post_method``: Options include ``none``, ``poly-asym1``, ``poly-asym2``, ``poly-asym3``, ``poly-sym1``. The default is ``none``.
-- ``--post_s_method_freq``: 
-- ``--post_s_sigma_freq``: 
-- ``--post_average_every_freq``: 
-- ``--post_deg``: Polynomial order; should not be too high.
-- ``--post_ratio``: 
-- ``--post_niter``:
-- ``--post_exclude_add``: 
+.. code-block:: bash
 
-Interactive Parameter Tuning in JupyterLab
-----------------------------------------------
-   -  ``-i``: Activate interactive mode.
-   -  ``--length``: Number of spectral lines to test at a time, default is 20.
-   -  ``--figsize``: Output figure size, a parameter in matplotlib.
+   # Basic usage with default arPLS method
+   python -m hifast.bld data_flux.hdf5
 
-   ``--nproc`` and ``--frange`` are also supported in this mode.
+   # Use a polynomial fit of degree 1 (linear)
+   python -m hifast.bld data_flux.hdf5 --method poly-asym1 --deg 1
 
-Parameters
-----------
+   # Preprocess by averaging 10 time samples for stable baseline estimation
+   python -m hifast.bld data_flux.hdf5 --njoin 10
 
-Use the command ``python -m hifast.bld -h | more`` for more parameter details. 
+   # Interactive mode to tune parameters
+   python -m hifast.bld data_flux.hdf5 -i --length 50
+
+Full Parameter Reference
+------------------------
+
+.. tip::
+   You can also view the full list of parameters and their descriptions directly in your terminal by running:
+   
+   .. code-block:: bash
+   
+      python -m hifast.bld --help
+
+.. argparse::
+   :module: hifast.bld
+   :func: parser
+   :prog: python -m hifast.bld
+   :noepilog:
