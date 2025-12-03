@@ -17,6 +17,7 @@ The baseline fitting process typically involves three stages:
 
 .. mermaid::
 
+   %%{init: {'themeVariables': { 'fontSize': '50px'}, 'flowchart': {'diagramPadding': 0}}}%%
    graph TD
       A[Input Data] --> B[Preprocessing]
       B --> C[Baseline Determination]

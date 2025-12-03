@@ -1,20 +1,25 @@
 @import url("theme.css");
 
 .strike {
-    text-decoration: line-through;
-  }
+  text-decoration: line-through;
+}
 
 .custom-directory-listing-title {
-    font-size: larger; /* Adjust the size as needed */
-    font-weight: bold;
+  font-size: larger;
+  /* Adjust the size as needed */
+  font-weight: bold;
 }
 
 .nboutput .output_area {
-  max-height: 400px; /* Adjust the max-height as needed */
-  overflow-y: auto; /* Adds vertical scrollbar */
-  overflow-x: auto; /* horizontal scrollbar */
+  max-height: 400px;
+  /* Adjust the max-height as needed */
+  overflow-y: auto;
+  /* Adds vertical scrollbar */
+  overflow-x: auto;
+  /* horizontal scrollbar */
 }
 
-.wy-side-nav-search .wy-dropdown>a img.logo,.wy-side-nav-search>a img.logo {
+.wy-side-nav-search .wy-dropdown>a img.logo,
+.wy-side-nav-search>a img.logo {
   width: 55%;
 }
