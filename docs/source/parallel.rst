@@ -1,6 +1,6 @@
 .. _parallel:
 
-Parallel Processing with ``hifast.sh``
+Parallel
 ======================================
 
 Many ``hifast`` subcommands are designed to process a single input file at a time (e.g., data from one telescope beam). However, a typical observation may produce dozens of files that need to be processed with the same parameters. To handle this, HiFAST provides a shell script, ``hifast.sh``, to execute commands on multiple files in parallel, significantly speeding up the workflow.
