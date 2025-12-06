@@ -1,6 +1,6 @@
 sphinx
 nbsphinx
-sphinx_rtd_theme
+pydata-sphinx-theme==0.16.0
 sphinx-argparse
 ConfigArgParse==1.5.3
 sphinxcontrib-mermaid

@@ -23,3 +23,21 @@
 .wy-side-nav-search>a img.logo {
   width: 55%;
 }
+
+/* disable this container to avoid unnecessary overflow */
+#rtd-footer-container {
+  display: none;
+}
+
+.bd-sidebar-primary {
+  overflow-y: auto !important;
+}
+
+/* make left sidebar title invisible */
+.bd-links__title {
+  display: none;
+}
+
+.bd-links {
+  font-size: 120%;
+}

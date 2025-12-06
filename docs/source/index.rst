@@ -1,5 +1,9 @@
+:notoc:
+:html_theme.sidebar_secondary.remove:
+
 HiFAST
 ===================================
+
 
 **HiFAST** is a powerful, Python-based pipeline designed for the calibration and imaging of HI (neutral hydrogen) data from the Five-hundred-meter Aperture Spherical radio Telescope (FAST).
 
@@ -88,13 +92,18 @@ Explore the documentation to learn more about installing and using HiFAST, from 
    :maxdepth: 2
 
    Installation <installation>
-   Command-Line Usage <hifast.xxx>
    Examples <examples/index>
-   Calibration <flow_cal>
-   Imaging <flow_img>
-   Stray Radiation <flow_sr>
-   Parallel <parallel>
-   Tools <tools>
+   Command-Line <hifast.xxx>
+   
+.. toctree::
+   :maxdepth: 3
+   
+   Core Modules <core_workflow>
+   
+.. toctree::
+   :maxdepth: 2
+   
+   Tools <advanced_tools>
+   citations
    changelog
    help
-   citations

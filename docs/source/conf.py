@@ -56,7 +56,7 @@ templates_path = ['_templates']
 
 # -- Options for HTML output
 
-html_theme = 'sphinx_rtd_theme'
+html_theme = "pydata_sphinx_theme"
 
 html_static_path = ['_static',]
 
@@ -92,6 +92,9 @@ gettext_compact = False
 
 html_logo = "_static/img/logo-preview.png"
 html_theme_options = {
-    'logo_only': True,
-    'display_version': True,
+    "header_links_before_dropdown": 6,
+    "show_nav_level": 2,
+    "navigation_depth": 4,
+    # "logo_only": True,
+    # "display_version": True,
 }
