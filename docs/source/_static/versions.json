@@ -1,0 +1,13 @@
+[
+    {
+        "name": "v1.4",
+        "version": "v1.4",
+        "url": "https://hifast.readthedocs.io/en/v1.4/",
+        "preferred": true
+    },
+    {
+        "name": "v1.3",
+        "version": "v1.3",
+        "url": "https://hifast.readthedocs.io/en/v1.3/"
+    }
+]

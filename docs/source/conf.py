@@ -5,14 +5,17 @@
 import os
 import sys
 
+
+# more options https://github.com/pydata/pydata-sphinx-theme/blob/main/docs/conf.py
+
 sys.path.append(os.path.abspath("./_ext"))
 
 project = 'HiFAST'
 copyright = '2021-->>>>>>>>>>>, HiFAST developers'
 author = 'HiFAST developers'
 
-release = ''
-version = ''
+release = 'v1.4'
+version = 'v1.4'
 
 # html_logo = "img/logo.svg"
 # html_theme_options = {
@@ -90,11 +93,39 @@ locale_dirs = ['locales/']
 gettext_uuid = True
 gettext_compact = False
 
-html_logo = "_static/img/logo-preview.png"
+# html_logo = "_static/img/logo-preview.png"
+# html_title = "HiFAST"
+
+# Define the json_url for our version switcher.
+json_url = "https://hifast.readthedocs.io/en/latest/_static/versions.json"
+
+# Define the version we use for matching in the version switcher.
+version_match = os.environ.get("READTHEDOCS_VERSION")
+# If it's "latest" → change to "dev" (that's what we want the switcher to call it)
+if not version_match or version_match.isdigit() or version_match == "latest":
+    # For local development, infer the version to match from the package.
+    if "dev" in release or "rc" in release:
+        version_match = "dev"
+        # We want to keep the relative reference if we are in dev mode
+        # but we want the whole url if we are effectively in a released version
+        json_url = "_static/versions.json"
+    else:
+        version_match = release
+
 html_theme_options = {
     "header_links_before_dropdown": 6,
     "show_nav_level": 2,
     "navigation_depth": 4,
-    # "logo_only": True,
-    # "display_version": True,
+    "switcher": {
+        "json_url": json_url,
+        "version_match": version_match,
+    },
+    "navbar_start": ["navbar-logo", "version-switcher"],
+    "logo": {
+        "text": "HiFAST",
+        "image_light": "_static/img/logo-preview.png",
+        "image_dark": "_static/img/logo-preview.png",
+    },
+    # "logo_only": False,
+    "display_version": True,
 }
