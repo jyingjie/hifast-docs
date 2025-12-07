@@ -84,6 +84,8 @@ gettext_compact = False
 # html_logo = "_static/img/logo-preview.png"
 # html_title = "HiFAST"
 
+html_favicon = "_static/img/hifast_logo_only.png"
+
 # Define the json_url for our version switcher.
 json_url = "https://hifast.readthedocs.io/en/latest/_static/versions.json"
 
@@ -111,8 +113,8 @@ html_theme_options = {
     "navbar_start": ["navbar-logo", "version-switcher"],
     "logo": {
         "text": "HiFAST",
-        "image_light": "_static/img/logo-preview.png",
-        "image_dark": "_static/img/logo-preview.png",
+        "image_light": "_static/img/hifast_logo_only.png",
+        "image_dark": "_static/img/hifast_logo_only.png",
     },
     # "logo_only": False,
     "display_version": True,
