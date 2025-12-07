@@ -41,3 +41,46 @@
 .bd-links {
   font-size: 120%;
 }
+
+/* Force footer items to be on a single line */
+.bd-footer__inner,
+.footer-items__start,
+.footer-items__center,
+.footer-items__end {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Ensure individual items don't break the line */
+.footer-item {
+  margin-bottom: 0 !important;
+  display: inline-block;
+}
+
+/* Remove default margins that might cause stacking */
+.footer-item p {
+  margin-bottom: 0 !important;
+}
+
+/* Mermaid Fix: Force neutral gray stroke for edges/arrows */
+/* Using broad selectors to catch generated SVG elements */
+:root {
+  --mermaid-edge-color: #888;
+}
+
+.mermaid g.edgePaths path,
+.mermaid g.edgePaths line,
+.mermaid .edgePath .path {
+  stroke: var(--pst-color-text-base) !important;
+  opacity: 1 !important;
+}
+
+.mermaid g.marker path,
+.mermaid #arrowhead path {
+  fill: var(--pst-color-text-base) !important;
+  stroke: var(--pst-color-text-base) !important;
+}

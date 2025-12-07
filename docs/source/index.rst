@@ -22,7 +22,7 @@ Flowchart
 .. mermaid::
    :caption: This flowchart illustrates the standard data processing workflow in HiFAST, from raw data to final data cubes. While it shows a typical path, remember that these modules are adaptable for custom tasks. (Click on nodes to view detailed documentation)
 
-   %%{init: {'themeVariables': { 'fontSize': '50px'}, 'flowchart': {'nodeSpacing': 25, 'padding': 6, 'rankSpacing': 25, 'diagramPadding': 0}}}%%
+   %%{init: {'themeVariables': { 'fontSize': '50px'}, 'flowchart': {'nodeSpacing': 40, 'padding': 10, 'rankSpacing': 40, 'diagramPadding': 0}}}%%
    flowchart TB
       classDef default font-size:50px;
       %% Define subgraphs to enforce stacked layout
