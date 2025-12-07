@@ -103,7 +103,8 @@ Explore the documentation to learn more about installing and using HiFAST, from 
 .. toctree::
    :maxdepth: 2
    
-   Tools <advanced_tools>
+   parallel
+   tools
    citations
    changelog
    help
