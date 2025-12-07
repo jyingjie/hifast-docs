@@ -113,7 +113,7 @@ if not version_match or version_match.isdigit() or version_match == "latest":
         version_match = release
 
 html_theme_options = {
-    "header_links_before_dropdown": 6,
+    "header_links_before_dropdown": 7,
     "show_nav_level": 2,
     "navigation_depth": 4,
     "switcher": {
