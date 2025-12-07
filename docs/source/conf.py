@@ -95,6 +95,7 @@ gettext_compact = False
 
 # html_logo = "_static/img/logo-preview.png"
 # html_title = "HiFAST"
+html_favicon = "_static/img/hifast_logo_only.png"
 
 # Define the json_url for our version switcher.
 json_url = "https://hifast.readthedocs.io/en/latest/_static/versions.json"
