@@ -22,49 +22,39 @@ Flowchart
 .. mermaid::
    :caption: This flowchart illustrates the standard data processing workflow in HiFAST, from raw data to final data cubes. While it shows a typical path, remember that these modules are adaptable for custom tasks. (Click on nodes to view detailed documentation)
 
-   %%{init: {'themeVariables': { 'fontSize': '50px'}, 'flowchart': {'nodeSpacing': 40, 'padding': 10, 'rankSpacing': 40, 'diagramPadding': 0}}}%%
+   %%{init: {'themeVariables': { 'fontSize': '35px'}, 'flowchart': {'nodeSpacing': 50, 'padding': 12, 'rankSpacing': 50, 'diagramPadding': 1}}}%%
    flowchart TB
       classDef default font-size:50px;
-      %% Define subgraphs to enforce stacked layout
-      subgraph TopRow [" "]
-         direction LR
-         Load["Load&nbsp;raw&nbsp;data&nbsp;from&nbsp;FITS&nbsp;file"]
-         Temp["Temperature&nbsp;calibration"]
-         Stand["Standing&nbsp;wave&nbsp;removal"]
-         Off["Off‑source&nbsp;subtraction"]
-         Cont["Continuum&nbsp;removal"]
-         Base["Baseline&nbsp;removal"]
-         Flux["Flux&nbsp;density&nbsp;calibration"]
+      
+      Load("Load&nbsp;raw&nbsp;data&nbsp;from&nbsp;FITS&nbsp;file")
+      Temp("Temperature&nbsp;calibration")
+      Stand("Standing&nbsp;wave&nbsp;removal")
+      Off("Off‑source&nbsp;subtraction")
+      Cont("Continuum&nbsp;removal")
+      Base("Baseline&nbsp;removal")
+      Flux("Flux&nbsp;density&nbsp;calibration")
 
-         Load --> Temp --> Stand
-         Stand -- Option 1 --> Off --> Cont --> Flux
-         Stand -- Option 2 --> Base --> Flux
-      end
+      Load --> Temp --> Stand
+      Stand -- Option 1 --> Off --> Cont --> Flux
+      Stand -- Option 2 --> Base --> Flux
 
-      subgraph BottomRow [" "]
-         direction LR
-         Pos["Read&nbsp;the&nbsp;position&nbsp;of&nbsp;feed"]
-         RADEC["RA&nbsp;DEC&nbsp;calculation"]
-         Doppler["Doppler&nbsp;correction"]
-         RFI["RFI&nbsp;flagging"]
-         Stray["Stray&nbsp;radiation&nbsp;correction"]
-         Grid[Gridding]
-         Cube[(Data cube)]
+      Pos("Read&nbsp;the&nbsp;position&nbsp;of&nbsp;feed")
+      RADEC("RA&nbsp;DEC&nbsp;calculation")
+      Doppler("Doppler&nbsp;correction")
+      RFI("RFI&nbsp;flagging")
+      Stray("Stray&nbsp;radiation&nbsp;correction")
+      Grid("Gridding")
+      Cube[(Data cube)]
 
-         Pos --> RADEC --> Doppler
-         RFI --> Doppler
-         Doppler --> Grid
-         Stray -.-> Grid
-         Grid -.-> Stray
-         Grid --> Cube
-      end
+      Pos --> RADEC --> Stand
+      RFI --> Doppler
+      Doppler --> Grid
+      Stray -.-> Grid
+      Grid -.-> Stray
+      Grid --> Cube
 
       %% Inter-row connection
       Flux --> RFI
-
-      %% Hide subgraph borders/titles
-      style TopRow fill:none,stroke:none
-      style BottomRow fill:none,stroke:none
 
       %% Links
       click Load "hifast.sep.html"
