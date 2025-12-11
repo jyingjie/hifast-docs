@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../changelog.rst:2 ec5f900e3a6d44e3b3d25c8111dd124e
+msgid "更新说明"
+msgstr ""
+
+#: ../../changelog.rst:5 5b15cf64311249eab6f2244140b03a53
+msgid "v1.1a1"
+msgstr ""
+
+#: ../../changelog.rst:7 9ba1900f5e9e45bfb5c86a369720b615
+msgid "hifast.sep 增加处理Power Cal的方法"
+msgstr ""
+
+#: ../../changelog.rst:8 3d007dfea8a348dd9b72e2138ed6da5f
+msgid ""
+"hifast.radec 默认使用astropy来从地平坐标系转换到RA "
+"DEC，astropy会考虑UT1-UTC的短期变化，坐标计算与之前的差别会有几个角秒。"
+msgstr ""
+
+#: ../../changelog.rst:9 40d50eed9b6e48f8b179e6d807d104b5
+msgid "hifast.radec 增加了温度，压强等参数。"
+msgstr ""
+
+#: ../../changelog.rst:10 21a39e9ec2fe4f1f98433e2a91bceb88
+msgid "hifast.sw 提高FFT方法在强源附件的效果。"
+msgstr ""
+
+#: ../../changelog.rst:11 bc852a8ecee6485c88b992e33da8902d
+msgid "hifast.rfi 增加了对特定种类RFI的识别，比之前的方法效果好。"
+msgstr ""
+
+#: ../../changelog.rst:12 ae08521cccf14412a86e050136e129db
+msgid "hifast.cube 增加了bessel*gaussian卷积核。增加-f参数。"
+msgstr ""
+
+#: ../../changelog.rst:13 a00a1dd70c3349faaf60f0e1c9321f0e
+msgid "修复了一些bug。"
+msgstr ""
+

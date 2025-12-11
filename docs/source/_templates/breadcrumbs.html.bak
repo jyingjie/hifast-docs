@@ -1,0 +1,5 @@
+{% extends "!breadcrumbs.html" %}
+
+{% block breadcrumbs_aside %}
+    {% include "language_selector.html" %}
+{% endblock %}

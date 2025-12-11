@@ -1,0 +1,47 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../hifast.xxx.rst:2 bf3430d740db4e43b2e8c248a9d5cb82
+msgid "hifast.xxx 通用参数"
+msgstr ""
+
+#: ../../hifast.xxx.rst:4 4d197d6cfab543fe872aba1ab6cb583e
+msgid ""
+"大部分 ``hifast`` 的命令 ``hifast.xxx`` 可以在终端中用\\ ``python -m hifast.xxx``\\ "
+"来执行，后面接 文件路径 和\\ ``-``\\ 加一个字母或\\ ``--``\\ 加多个字符的参数。"
+msgstr ""
+
+#: ../../hifast.xxx.rst:7 91c7fe68e2214b9abbbc5986215a9c3e
+msgid "``python -m hifast.xxx -h`` 显示所有参数的说明。"
+msgstr ""
+
+#: ../../hifast.xxx.rst:8 3b8e4ab6ad8c4076b43bf0ea2870fd5d
+msgid "生成的中间文件一般为hdf5格式, 在终端执行"
+msgstr ""
+
+#: ../../hifast.xxx.rst:10 951186ac779748db914253324fb380c2
+msgid "``h5dump -g /Header XXX.hdf5`` 显示生成该文件时用的命令和参数。"
+msgstr ""
+
+#: ../../hifast.xxx.rst:11 25ee1229eed4475890cf6dbbfa562075
+msgid "``h5ls -r XXX.hdf5`` 显示文件中有什么内容。"
+msgstr ""
+

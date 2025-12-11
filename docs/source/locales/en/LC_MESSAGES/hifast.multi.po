@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../hifast.multi.rst:2 2dce6ca4db77454fa8d7e7545aa2715e
+msgid "hifast.multi 坐标系修正等"
+msgstr ""
+
+#: ../../hifast.multi.rst:4 1718f98905f9418aa3898cf08560da1c
+msgid "``hifast.multi``：静止坐标系（frame）修正等"
+msgstr ""
+
+#: ../../hifast.multi.rst:6 001f1accc93a4f789c520296c9621349
+msgid "示例："
+msgstr ""
+
+#: ../../hifast.multi.rst:12 103ee6f83d3948d884cc394a65d0ced0
+msgid "参数"
+msgstr ""
+
+#: ../../hifast.multi.rst:14 c085f2efe8f441f792e25249ef7c92e1
+msgid "``--fc``\\ 从望远镜所在的地平参考系修正到太阳或者LSR为中心的参考系。"
+msgstr ""
+
+#: ../../hifast.multi.rst:16 9db604ef1b7a4a2da30b6e9bcb4054b1
+msgid "``--fc True``"
+msgstr ""
+
+#: ../../hifast.multi.rst:18 0883b6b643fa4b25bd70cdcb91d53a79
+msgid "``--frame``: 参考系选择，HELIOCEN 或者 LSRK"
+msgstr ""
+
+#: ../../hifast.multi.rst:20 4cde569d510e4021abf55d0b45eb7e74
+msgid "``--replace_rfi``: 如果设为True并且输入文件中存在is_rfi，则会把rfi的值替换为nan。默认为True"
+msgstr ""
+
+#: ../../hifast.multi.rst:23 0a65984e488f4f428d8cb4248023ccc8
+msgid "``--merge_polar``: 如果设为True，合并两个偏振。默认为True"
+msgstr ""
+
+#: ../../hifast.multi.rst:25 fcb2b015c75347cf8af895e411c8421f
+msgid "输出文件名根据输入参数改变，可能包含 fc"
+msgstr ""
+

@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../examples/example1.rst:2 3a646c54581f4e5dad6a826c9bab91a7
+msgid "Mapping"
+msgstr ""
+
+#: ../../examples/example1.rst:5 f4f2d39ffbdd473a9b1a9139317a844d
+msgid "下载示例数据"
+msgstr ""
+
+#: ../../examples/example1.rst:7 6ba8c4ba35c7429fa520ed952985e9a9
+msgid "链接：https://pan.cstcloud.cn/s/u6u3iyfdRqo"
+msgstr ""
+
+#: ../../examples/example1.rst:19 225cd38f932444968223c23f25040235
+msgid "噪音管定标、RA-DEC"
+msgstr ""
+
+#: ../../examples/example1.rst:22 ../../examples/example1.rst:43
+#: a3a5d630e8eb481aa4cec4a619308aa6 d9a41fd02d2a4fe591be741f347e0153
+msgid "方法一"
+msgstr ""
+
+#: ../../examples/example1.rst:24 67d4a13091fb47abb9e34c466d9a025e
+msgid ":download:`run-s1-v1.sh <example1/run-s1-v1.sh>`"
+msgstr ""
+
+#: ../../examples/example1.rst:31 ../../examples/example1.rst:56
+#: b9561b08c64f4452ba3b1193fcb65aa4 c564675ade544a06ab68b2214cc5bc5b
+msgid "方法二"
+msgstr ""
+
+#: ../../examples/example1.rst:33 cca2f66a8aba4e9bb0100b1f69e02343
+msgid ":download:`run-s1-v2.sh <example1/run-s1-v2.sh>`"
+msgstr ""
+
+#: ../../examples/example1.rst:42 b20f5086e34e46a6bc73b954fe488bea
+msgid "基线、驻波、RFI ..."
+msgstr ""
+
+#: ../../examples/example1.rst:45 1bc2269b022a4e3486d8f4e0a8970d81
+msgid "用去基线的方法扣除系统温度"
+msgstr ""
+
+#: ../../examples/example1.rst:47 8c8f242afade4c2fa2135c2102325362
+msgid ""
+":download:`run-s2-v1.sh <example1/run-s2-v1.sh>` :download:`S2-sw.ini "
+"<example1/conf/S2-sw.ini>` :download:`S2-rfi.ini "
+"<example1/conf/S2-rfi.ini>`"
+msgstr ""
+
+#: ../../examples/example1.rst:58 6959f3ce101e4849a078b8d8d46f39e0
+msgid "减去Ref来扣除系统温度。S2-sw.ini 和 S2-rfi.ini 这两个参数文件与方法一的一致即可。"
+msgstr ""
+
+#: ../../examples/example1.rst:60 2a17dc5471a34cf8b4a2cc354f629969
+msgid ":download:`run-s2-v1.sh <example1/run-s2-v2.sh>`"
+msgstr ""
+
+#: ../../examples/example1.rst:68 29734a7897094853a1ebe6d6827c0b25
+msgid "Imaging"
+msgstr ""
+

@@ -1,0 +1,86 @@
+@import url("theme.css");
+
+.strike {
+  text-decoration: line-through;
+}
+
+.custom-directory-listing-title {
+  font-size: larger;
+  /* Adjust the size as needed */
+  font-weight: bold;
+}
+
+.nboutput .output_area {
+  max-height: 400px;
+  /* Adjust the max-height as needed */
+  overflow-y: auto;
+  /* Adds vertical scrollbar */
+  overflow-x: auto;
+  /* horizontal scrollbar */
+}
+
+.wy-side-nav-search .wy-dropdown>a img.logo,
+.wy-side-nav-search>a img.logo {
+  width: 55%;
+}
+
+/* disable this container to avoid unnecessary overflow */
+#rtd-footer-container {
+  display: none;
+}
+
+.bd-sidebar-primary {
+  overflow-y: auto !important;
+}
+
+/* make left sidebar title invisible */
+.bd-links__title {
+  display: none;
+}
+
+.bd-links {
+  font-size: 120%;
+}
+
+/* Force footer items to be on a single line */
+.bd-footer__inner,
+.footer-items__start,
+.footer-items__center,
+.footer-items__end {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Ensure individual items don't break the line */
+.footer-item {
+  margin-bottom: 0 !important;
+  display: inline-block;
+}
+
+/* Remove default margins that might cause stacking */
+.footer-item p {
+  margin-bottom: 0 !important;
+}
+
+/* Mermaid Fix: Force neutral gray stroke for edges/arrows */
+/* Using broad selectors to catch generated SVG elements */
+:root {
+  --mermaid-edge-color: #888;
+}
+
+.mermaid g.edgePaths path,
+.mermaid g.edgePaths line,
+.mermaid .edgePath .path {
+  stroke: var(--pst-color-text-base) !important;
+  opacity: 1 !important;
+}
+
+.mermaid g.marker path,
+.mermaid #arrowhead path {
+  fill: var(--pst-color-text-base) !important;
+  stroke: var(--pst-color-text-base) !important;
+}

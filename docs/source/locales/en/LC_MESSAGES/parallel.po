@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, HIFAST developers
+# This file is distributed under the same license as the HIFAST package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HIFAST \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-17 01:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../parallel.rst:2 a94f7947a7bc4a748954d793bdb3e096
+msgid "并行"
+msgstr ""
+
+#: ../../parallel.rst:5 aeadf51a22eb4fbbb99b49ba2962489c
+msgid "hifast.sh 组合脚本"
+msgstr ""
+
+#: ../../parallel.rst:7 c42803bea21f4431bb53fb64cd486722
+msgid ""
+"绝大多数 ``hifast.xxx`` 命令只能处理一个beam的文件。下面 #### 用hifast.sh来对多个文件执行相同的\\ "
+"``python -m hifast.xxx``\\ 操作"
+msgstr ""
+
+#: ../../parallel.rst:14 1e9e8c7f10324e9e9336455508b943f7
+msgid "这里用通配符来指定19个beam的文件."
+msgstr ""
+
+#: ../../parallel.rst:16 904f95667b0e44bcae2354c3797ccead
+msgid ""
+"``-c`` 参数指定用到的\\ ``python -m hifast.xxx``\\ 操作。 \\ ``-c`` 后引号内的内容用 ``|`` "
+"分割hifast命令和输入参数，省略输入的文件名。"
+msgstr ""
+
+#: ../../parallel.rst:19 feb9fb48f71a435fa61f14316896a957
+msgid "``-n`` 指定多少个文件同时执行。"
+msgstr ""
+
+#: ../../parallel.rst:21 5f3684845542496b9f5e3441cf19f762
+msgid "另外可以用.txt文件来输入文件列表，用.par文件来输入要执行的命令。"
+msgstr ""
+
+#: ../../parallel.rst:23 980b818b83354d978fbede5d147ddcdb
+msgid "例如:"
+msgstr ""
+
+#: ../../parallel.rst:25 5079d9a1377347cba8cb6fd649ce4def
+msgid "*files.txt* 内容如下："
+msgstr ""
+
+#: ../../parallel.rst:35 ../../parallel.rst:57 1467ab4b27264203a728db9cab89903a
+#: c18e4e02b9614ddcbda7d7132fe8b581
+msgid "*commands.par* 内容如下："
+msgstr ""
+
+#: ../../parallel.rst:41 6c7cf3f8d82c404cbf6e049cb222e337
+msgid "可以执行："
+msgstr ""
+
+#: ../../parallel.rst:43 6533a1774a0f4804904e5efca1b59007
+msgid "``hifast.sh -i files.txt -n 10 -c commands.par``"
+msgstr ""
+
+#: ../../parallel.rst:46 e4dddf7c5d3b49739e993b98fc15c297
+msgid "hifast.sh 示例"
+msgstr ""
+
+#: ../../parallel.rst:48 853a417bc31b4d34891bfedb3d2e64ef
+msgid "hifast.sh计算radec"
+msgstr ""
+
+#: ../../parallel.rst:54 283baa8f106d4b0db9e9764f548ba602
+msgid "hifast.sh 组合 ``hifast.bld`` 和 ``hifast.multi``"
+msgstr ""
+
+#: ../../parallel.rst:66 d4ceb75063fc446f9bcc507c94d9e2fc
+msgid "执行："
+msgstr ""
+
+#: ../../parallel.rst:68 7b711e8505a84a1a985310bafab460f8
+msgid ""
+"``hifast.sh data/*M*specs_T.hdf5  -n 10 -c commands.par`` 先运行\\ ``python "
+"-m hifast.bld``\\ 这行去基线，然后\\ ``hifast.sh``\\ 会自动把生成的文件输入到\\ ``python -m "
+"hifast.multi`` 这行。 注意 ``python -m hifast.bld``\\ 这行执行时会占用 ``3 * 5 = 15`` "
+"个线程。"
+msgstr ""
+
