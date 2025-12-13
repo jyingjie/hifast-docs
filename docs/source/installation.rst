@@ -89,16 +89,10 @@ Data Dependencies
 .. _label-tcal_file:
 
 * Noise diode temperature File:
+  
+  From v1.4, HiFAST will automatically check and download the required Tcal files (from R2 or GitHub) when processing data. You generally do not need to download them manually.
 
-  Download the `Tcal` folder from https://pan.cstcloud.cn/s/AfnCB96cT2s (alternative link: https://share.weiyun.com/fFynlcX0) and place it in your home directory.
-
-  .. code-block:: console
-
-     (hifast_env) $ ls ~/Tcal
-     20190115  20200531  20201014 ... ...
-
-  .. note::
-
-     The Noise diode temperature Files are sourced from 
-     `this link <https://fast.bao.ac.cn/cms/category/telescope_performance/noise_diode_calibration_report/>`_ 
-     and are regularly updated after format conversion.
+  **For Offline Environments:**
+  If you need to use HiFAST in an environment without internet access, please refer to the :doc:`hifast.utils.tcal` documentation for instructions on how to prepare the data using the ``update-all`` command and configure the offline mode.
+  
+  (The data source is `this link <https://fast.bao.ac.cn/cms/category/telescope_performance/noise_diode_calibration_report/>`_)
