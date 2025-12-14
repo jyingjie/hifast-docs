@@ -41,6 +41,16 @@ Parameters
    - ``--ky_fixed``: For early Drift scans where the feed file only recorded a few minutes of feed cabin position, this parameter calculates Right Ascension and Declination for the entire spectrum based on these few minutes. Caution: The feed may not have remained stable during the drift, so this could affect accuracy.
    - ``--plot``: This option plots and saves a figure of RA and Dec.
 
+   .. note::
+       
+       If your computer does not have internet access, automatic download of IERS data will fail, leading to errors like:
+       
+       *   ``IERSStaleWarning: leap-second file is expired.``
+       *   ``astropy.utils.iers.iers.IERSRangeError: (some) times are outside of range covered by IERS table.``
+       *   ``urllib.error.URLError: <urlopen error [Errno -2] Name or service not known>``
+       
+       To resolve this, please use the `IERS Offline Cache Updater <https://github.com/jyingjie/iers_cache>`_ tool to manually update the offline cache.
+
 - For additional parameter information, use: ``python -m hifast.radec -h | more``.
 
 Output
