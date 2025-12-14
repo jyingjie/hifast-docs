@@ -38,6 +38,17 @@ Processing Workflow
    *   **Backend**: You can choose between ``astropy`` (default) and ``erfa`` for the coordinate transformation using :option:`--backend`.
        
        *   **Astropy (Recommended)**: Automatically downloads and applies Earth orientation parameters (including **dUT1** and polar motion). If you use this backend, the manual :option:`--dUT1` argument is ignored.
+       
+           .. note::
+               
+               If your computer does not have internet access, Astropy will fail to download IERS data, leading to errors like:
+               
+               *   ``IERSStaleWarning: leap-second file is expired.``
+               *   ``astropy.utils.iers.iers.IERSRangeError: (some) times are outside of range covered by IERS table.``
+               *   ``urllib.error.URLError: <urlopen error [Errno -2] Name or service not known>``
+               
+               To resolve this, please use the `IERS Offline Cache Updater <https://github.com/jyingjie/iers_cache>`_ tool to manually update the offline cache.
+
        *   **Erfa**: Requires manual specification of :option:`--dUT1` if special requirement is needed.
        
    *   **Extrapolation**: Ideally, the feed cabin data (KY file) should fully cover the time range of your spectral data. However, small timing offsets can occur.
