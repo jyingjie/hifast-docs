@@ -1,5 +1,5 @@
-hifast.utils.config
-=============
+Configurations
+==============
 
 Overview
 --------
@@ -22,16 +22,18 @@ To disable all network requests (e.g., for working in isolated environments):
 
    # CLI
    python -m hifast.utils.config set general offline true
-
+   
    # Environment Variable
    export HIFAST_GENERAL_OFFLINE=1
+
+.. _tcal_configuration:
 
 Tcal Configuration
 ~~~~~~~~~~~~~~~~~~
 Configure the source for Noise Calibration data:
 
-*   **Source** (``tcal.source``): 'r2' (default) or 'github'.
-*   **Data Directory** (``tcal.tcal_dir``): Local storage path (Default: ``~/Tcal/``).
+*   **Source** (``tcal source``): 'r2' (default) or 'github'.
+*   **Data Directory** (``tcal tcal_dir``): Local storage path (Default: ``~/Tcal/``).
 
 Examples
 --------

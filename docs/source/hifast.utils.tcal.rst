@@ -1,9 +1,11 @@
-hifast.utils.tcal
+Tcal
 =================
 
 Overview
 --------
 The Tcal module handles the management and retrieval of noise calibration data files. It ensures that the necessary calibration data (matching MJD and Frequency) is available for processing.
+
+Relevant parameters can be set in :doc:`hifast.utils.config`, see the :ref:`tcal_configuration` section for details.
 
 Usage Scenarios
 ---------------
@@ -36,7 +38,12 @@ If you need to run HiFAST on a machine without internet access (e.g., a secure c
 
     .. code-block:: bash
 
+       # CLI
+       python -m hifast.utils.config set general offline true
+       # or
+       # Environment Variable
        export HIFAST_GENERAL_OFFLINE=1
+
 
     .. note::
        In this mode, the :code:`list` command will show "Source: Local Cache (Offline Mode)" and warn that the list might be incomplete if the local data is outdated.
