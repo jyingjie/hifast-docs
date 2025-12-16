@@ -1,14 +1,59 @@
 Installation
 ============
 
-Environment Setup
-----------------------
-The environment setup involves configuring the dependencies with specific versions.
+HiFAST maintains strict dependency versions and is tested primarily on **Python 3.9**. It is highly recommended to configure a dedicated Python environment.
 
-* Method 1: Configure Environment Using Offline Package
-   Download ``hifast_env.centos7.x86_64.v1.tar.gz`` (for Most Linux distributions) and (``threadpoolctl-3.1.0-py3-none-any.whl``) from https://pan.cstcloud.cn/s/QmkBVYgyRO8.
+Method 1: Online Installation
+-------------------------------------------
 
-   Install the environment package (this step is only required once):
+If your server has internet access, create a fresh environment and install HiFAST directly from PyPI.
+
+**Option A: Using uv (Fastest)**
+
+1. **Install uv** (if not installed):
+
+   .. code-block:: console
+
+      $ curl -LsSf https://astral.sh/uv/install.sh | sh
+   
+   (See `uv documentation <https://github.com/astral-sh/uv>`_ for more details)
+
+2. **Create environment and install**:
+
+   .. code-block:: console
+
+      $ uv venv ~/hifast_env --python 3.9
+      $ source ~/hifast_env/bin/activate
+      $ uv pip install hifast
+      $ # For interactive features (Jupyter/Widgets):
+      $ # uv pip install "hifast[interaction]"
+
+**Option B: Using conda**
+
+1. **Install conda** (if not installed):
+   
+   It is recommended to use `Miniconda3 <https://docs.conda.io/en/latest/miniconda.html>`_ or `Miniforge3 <https://github.com/conda-forge/miniforge>`_.
+
+2. **Create environment and install**:
+
+   .. code-block:: console
+
+      $ conda create -n hifast_env python=3.9
+      $ conda activate hifast_env
+      $ pip install hifast
+      $ # For interactive features (Jupyter/Widgets):
+      $ # pip install "hifast[interaction]"
+
+Method 2: Offline Installation
+------------------------------
+
+For servers without internet access (e.g., CentOS 7), follow this full procedure to set up the environment and install HiFAST.
+
+1. **Configure Environment** (using pre-packaged env):
+
+   Download ``hifast_env.centos7.x86_64.v1.tar.gz`` and ``threadpoolctl-3.1.0-py3-none-any.whl`` from `<https://pan.cstcloud.cn/s/QmkBVYgyRO8>`_.
+
+   Install the environment (only once):
 
    .. code-block:: console
 
@@ -16,72 +61,40 @@ The environment setup involves configuring the dependencies with specific versio
       $ tar -zxvf hifast_env.centos7.x86_64.v1.tar.gz -C ~/hifast_env
       $ source ~/hifast_env/bin/activate
       (hifast_env) $ conda-unpack
-      (hifast_env) $ # install additional package 
       (hifast_env) $ pip install threadpoolctl-3.1.0-py3-none-any.whl 
-      (hifast_env) $ source ~/hifast_env/bin/deactivate
 
-   To activate the environment:
+2. **Download HiFAST Package**:
+
+   * On a machine *with* internet access, visit the `HiFAST PyPI page <https://pypi.org/project/hifast/>`_.
+   * Click **Release history** (left sidebar) -> Select version.
+   * Click **Download files** (left sidebar), scroll to the bottom, and download the corresponding ``.whl`` file (e.g., ``hifast-1.4.0-py3-none-any.whl``).
+   
+   .. warning::
+      Do not modify the file name of the downloaded ``.whl`` package, otherwise ``pip`` may fail to install it.
+
+3. **Install HiFAST**:
+
+   Transfer the ``.whl`` file to your offline server and install:
 
    .. code-block:: console
 
       $ source ~/hifast_env/bin/activate
+      (hifast_env) $ pip install hifast-X.Y.Z-py3-none-any.whl --upgrade
 
-   To deactivate the environment:
+Method 3: Legacy Conda Environment File
+---------------------------------------
+
+If you prefer using a specific ``yml`` configuration file:
+
+1. Download :download:`hifast_env.yml <download/hifast_env.yml>` (or :download:`hifast_env.ARM64.yml <download/hifast_env.ARM64.yml>` for ARM).
+
+2. Create environment and install:
 
    .. code-block:: console
 
-      (hifast_env) $ source ~/hifast_env/bin/deactivate
-
-* Method 2: Environment Configuration with Conda
-   If conda is not installed, install `miniconda3 <https://docs.conda.io/en/latest/miniconda.html>`_
-   or `Miniforge3 <https://github.com/conda-forge/miniforge>`_. 
-   Use the configuration file :download:`hifast_env.yml <download/hifast_env.yml>`
-   (For ARM architecture, use :download:`hifast_env.ARM64.yml <download/hifast_env.ARM64.yml>`).
-
-  * To create a new environment:
-
-     .. code-block:: console
-
       $ conda env create -n hifast_env --file hifast_env.yml
-
-    Replace ``hifast_env`` with a preferred name. Then, activate the environment:
-
-     .. code-block:: console
-
       $ conda activate hifast_env
-
-    Or
-
-     .. code-block:: console
-
-       $ source activate hifast_env
-
-  * To update an existing environment:
-
-     .. code-block:: console
-
-      $ conda env update --file hifast_env.yml -n ENV_NAME
-
-    Substitute ``ENV_NAME`` with the name of an existing conda environment. Use ``base`` for the main environment.
-
-Installing hifast
------------------
-
-Download the hifast installation package from `<https://pan.cstcloud.cn/s/IfTYaVysS6k>`_. 
-The file is typically named ``hifast-XXX.whl`` (XXX represents the version number; avoid altering the file name).
-
-To install:
-
-  .. code-block:: console
-
-   (hifast_env) $ # Replace hifast-XXX.whl with the actual file name of the downloaded package
-   (hifast_env) $ python -m pip install hifast-XXX.whl --upgrade
-
-To uninstall:
-
-  .. code-block:: console
-
-   (hifast_env) $ python -m pip uninstall hifast
+      $ pip install hifast
 
 Data Dependencies
 -------------------
