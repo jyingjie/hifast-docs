@@ -84,3 +84,65 @@
   fill: var(--pst-color-text-base) !important;
   stroke: var(--pst-color-text-base) !important;
 }
+
+/* Fix alignment in navbar on mobile */
+.navbar-header-items__start {
+  align-items: center !important;
+}
+
+@media (max-width: 960px) {
+
+  /* Reset margins/padding for wrapper items to prevent inherited spacing issues */
+  .navbar-header-items__start .navbar-item {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: auto !important;
+    min-height: var(--pst-header-height);
+    display: flex;
+    align-items: center;
+  }
+
+  /* Reset margins for inner logo text and normalize line-height */
+  .navbar-brand p,
+  .navbar-brand .logo__title {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Constraint logo image height and margins */
+  .logo__image {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto;
+    max-height: 30px;
+    width: auto;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  /* Reset margins for version switcher container */
+  .version-switcher__container {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Reset vertical margin on the switcher button */
+  button.btn.version-switcher__button {
+    margin: 0 !important;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    vertical-align: middle;
+  }
+}
