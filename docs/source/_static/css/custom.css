@@ -1,21 +1,26 @@
 @import url("theme.css");
 
 .strike {
-    text-decoration: line-through;
-  }
+  text-decoration: line-through;
+}
 
 .custom-directory-listing-title {
-    font-size: larger; /* Adjust the size as needed */
-    font-weight: bold;
+  font-size: larger;
+  /* Adjust the size as needed */
+  font-weight: bold;
 }
 
 .nboutput .output_area {
-  max-height: 400px; /* Adjust the max-height as needed */
-  overflow-y: auto; /* Adds vertical scrollbar */
-  overflow-x: auto; /* horizontal scrollbar */
+  max-height: 400px;
+  /* Adjust the max-height as needed */
+  overflow-y: auto;
+  /* Adds vertical scrollbar */
+  overflow-x: auto;
+  /* horizontal scrollbar */
 }
 
-.wy-side-nav-search .wy-dropdown>a img.logo,.wy-side-nav-search>a img.logo {
+.wy-side-nav-search .wy-dropdown>a img.logo,
+.wy-side-nav-search>a img.logo {
   width: 55%;
 }
 
@@ -35,4 +40,109 @@
 
 .bd-links {
   font-size: 120%;
+}
+
+/* Force footer items to be on a single line */
+.bd-footer__inner,
+.footer-items__start,
+.footer-items__center,
+.footer-items__end {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Ensure individual items don't break the line */
+.footer-item {
+  margin-bottom: 0 !important;
+  display: inline-block;
+}
+
+/* Remove default margins that might cause stacking */
+.footer-item p {
+  margin-bottom: 0 !important;
+}
+
+/* Mermaid Fix: Force neutral gray stroke for edges/arrows */
+/* Using broad selectors to catch generated SVG elements */
+:root {
+  --mermaid-edge-color: #888;
+}
+
+.mermaid g.edgePaths path,
+.mermaid g.edgePaths line,
+.mermaid .edgePath .path {
+  stroke: var(--pst-color-text-base) !important;
+  opacity: 1 !important;
+}
+
+.mermaid g.marker path,
+.mermaid #arrowhead path {
+  fill: var(--pst-color-text-base) !important;
+  stroke: var(--pst-color-text-base) !important;
+}
+
+/* Fix alignment in navbar on mobile */
+.navbar-header-items__start {
+  align-items: center !important;
+}
+
+@media (max-width: 960px) {
+
+  /* Reset margins/padding for wrapper items to prevent inherited spacing issues */
+  .navbar-header-items__start .navbar-item {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: auto !important;
+    min-height: var(--pst-header-height);
+    display: flex;
+    align-items: center;
+  }
+
+  /* Reset margins for inner logo text and normalize line-height */
+  .navbar-brand p,
+  .navbar-brand .logo__title {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Constraint logo image height and margins */
+  .logo__image {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto;
+    max-height: 30px;
+    width: auto;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  /* Reset margins for version switcher container */
+  .version-switcher__container {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Reset vertical margin on the switcher button */
+  button.btn.version-switcher__button {
+    margin: 0 !important;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    vertical-align: middle;
+  }
 }
