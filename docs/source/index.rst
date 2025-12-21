@@ -22,27 +22,26 @@ Flowchart
 .. mermaid::
    :caption: This flowchart illustrates the standard data processing workflow in HiFAST, from raw data to final data cubes. While it shows a typical path, remember that these modules are adaptable for custom tasks. (Click on nodes to view detailed documentation)
 
-   %%{init: {'themeVariables': { 'fontSize': '35px'}, 'flowchart': {'nodeSpacing': 50, 'padding': 12, 'rankSpacing': 50, 'diagramPadding': 1}}}%%
+   %%{init: {'themeVariables': { 'fontSize': '18px'}, 'flowchart': {'htmlLabels': false, 'wrappingWidth': 500, 'nodeSpacing': 20, 'padding': 5, 'rankSpacing': 18, 'diagramPadding': 5}}}%%
    flowchart TB
-      classDef default font-size:50px;
       
-      Load("Load&nbsp;raw&nbsp;data&nbsp;from&nbsp;FITS&nbsp;file")
-      Temp("Temperature&nbsp;calibration")
-      Stand("Standing&nbsp;wave&nbsp;removal")
-      Off("Off‑source&nbsp;subtraction")
-      Cont("Continuum&nbsp;removal")
-      Base("Baseline&nbsp;removal")
-      Flux("Flux&nbsp;density&nbsp;calibration")
+      Load("Load raw data from FITS file")
+      Temp("Temperature calibration")
+      Stand("Standing wave removal")
+      Off("Off‑source subtraction")
+      Cont("Continuum removal")
+      Base("Baseline removal")
+      Flux("Flux density calibration")
 
       Load --> Temp --> Stand
       Stand -- Option 1 --> Off --> Cont --> Flux
       Stand -- Option 2 --> Base --> Flux
 
-      Pos("Read&nbsp;the&nbsp;position&nbsp;of&nbsp;feed")
-      RADEC("RA&nbsp;DEC&nbsp;calculation")
-      Doppler("Doppler&nbsp;correction")
-      RFI("RFI&nbsp;flagging")
-      Stray("Stray&nbsp;radiation&nbsp;correction")
+      Pos("Read the position of feed")
+      RADEC("RA DEC calculation")
+      Doppler("Doppler correction")
+      RFI("RFI flagging")
+      Stray("Stray radiation correction")
       Grid("Gridding")
       Cube[(Data cube)]
 
