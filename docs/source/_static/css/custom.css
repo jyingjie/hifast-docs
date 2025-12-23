@@ -85,6 +85,16 @@
   stroke: var(--pst-color-text-base) !important;
 }
 
+/* Mermaid interactivity */
+.mermaid .node {
+  cursor: pointer !important;
+  transition: opacity 0.2s;
+}
+
+.mermaid .node:hover {
+  opacity: 0.7 !important;
+}
+
 /* Fix alignment in navbar on mobile */
 .navbar-header-items__start {
   align-items: center !important;
