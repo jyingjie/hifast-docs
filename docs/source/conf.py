@@ -70,6 +70,11 @@ exclude_patterns = ['_build', '_files/**', '**/RAW_data']
 
 # for nbsphinx
 html_sourcelink_suffix = ''
+# Fix "Mismatched anonymous define() module" error.
+# nbsphinx loads require.js for ipywidgets, which conflicts with D3.js (used by Mermaid).
+# Disabling require.js resolves the error but breaks ipywidgets.
+# If ipywidgets are needed in the future, remove this line and use an AMD workaround.
+nbsphinx_requirejs_path = ''
 
 html_css_files = [
     'css/custom.css',
