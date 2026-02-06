@@ -12,7 +12,7 @@ build:
     python: "3.9"
   jobs:
     post_install:
-      - pip install --no-deps git+https://github.com/jyingjie/hifast.git@$READTHEDOCS_VERSION#egg=hifast
+      - pip install --no-deps git+https://github.com/jyingjie/hifast.git@$( [ "$READTHEDOCS_VERSION" != "latest" ] && echo "$READTHEDOCS_VERSION" )#egg=hifast
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
