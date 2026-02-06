@@ -5,6 +5,11 @@ This example demonstrates how to process On-Off observation data with HiFAST. In
 
 This page presents two different methods for processing On-Off data, which primarily differ in how they handle the removal of instrumental standing waves.
 
+Download Sample Data
+--------------------
+
+First, download the sample dataset from this link: https://pan.cstcloud.cn/s/LdEsxTHRY
+
 Method 1: Sine-fitting for Standing Waves
 -----------------------------------------
 This method is suitable when the standing wave phase is stable over time. It involves fitting and subtracting a sine wave from the spectrum.
