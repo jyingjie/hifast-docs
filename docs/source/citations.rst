@@ -21,6 +21,8 @@ If you use HiFAST and its modules in your research, please consider citing the f
 
     This paper presents the techniques employed by the HiFAST pipeline for removing standing waves from HI data, including the FFT-filter approach.
 
-.. 4. **Stray Radiation Correction Module:**
+4.  **Stray Radiation Correction Module:**
 
-.. This paper provides details on the correction of the stray radiation effects.
+    HiFAST: An HI Data Calibration and Imaging Pipeline for FAST IV. The stray-radiation correction. `DOI <https://doi.org/10.1088/1674-1056/ae4b27>`__ | `arXiv <https://arxiv.org/abs/2605.23685>`__ | `ADS <https://ui.adsabs.harvard.edu/abs/2026ChPhB..35e9501C/abstract>`__
+
+    This paper provides details on the correction of the stray radiation effects.
